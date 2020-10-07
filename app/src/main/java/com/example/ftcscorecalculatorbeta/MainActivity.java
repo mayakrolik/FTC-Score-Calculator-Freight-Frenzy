@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -22,10 +23,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView objAutresult;
     private TextView objTeleopresult;
     private TextView objEndresult;
+    private TextView objPenaltyresult;
     private EditText objTopGoals;
     private EditText objMiddleGoals;
     private EditText objLowGoals;
-    private EditText objPowerShotsScored;
     private Switch objSwitchStoppedOnLine;
     private Switch objSwitchWobbleGoalDeposited;
     private EditText objTopGoalsTellyOp;
@@ -45,8 +46,17 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton objEndExpandButton;
     private TableLayout objEndTable;
     private CardView objEndCard;
-
-
+    private CheckBox objPowerShot1;
+    private CheckBox objPowerShot2;
+    private CheckBox objPowerShot3;
+    private CheckBox objPowerShot1End;
+    private CheckBox objPowerShot2End;
+    private CheckBox objPowerShot3End;
+    private ImageButton objPenaltyExpandButton;
+    private TableLayout objPenaltyTable;
+    private CardView objPenaltyCard;
+    private EditText objPenaltyMinor;
+    private EditText objPenaltyMajor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         objAutresult = this.findViewById(R.id.text_autonomous_score);
         objTeleopresult = this.findViewById(R.id.text_teleops_score);
         objEndresult = this.findViewById(R.id.text_endgame_score);
+        objPenaltyresult = this.findViewById(R.id.text_penalty);
 
         TextWatcher objTW = new TextWatcher() {
             @Override
@@ -83,8 +94,26 @@ public class MainActivity extends AppCompatActivity {
         objLowGoals = this.findViewById(R.id.editTextNumberLowGoals);
         objLowGoals.addTextChangedListener(objTW);
 
-        objPowerShotsScored = this.findViewById(R.id.editTextNumberPowerShot);
-        objPowerShotsScored.addTextChangedListener(objTW);
+        objPowerShot1 = this.findViewById(R.id.CheckboxPowerShot1);
+        objPowerShot1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                updateTotals();
+            }
+        });
+
+        objPowerShot2 = this.findViewById(R.id.CheckboxPowerShot2);
+        objPowerShot2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                updateTotals();
+            }
+        });
+
+        objPowerShot3 = this.findViewById(R.id.CheckboxPowerShot3);
+        objPowerShot3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                updateTotals();
+            }
+        });
 
         objTopGoalsTellyOp = this.findViewById(R.id.editTextNumberTopGoalsTellyOp);
         objTopGoalsTellyOp.addTextChangedListener(objTW);
@@ -129,6 +158,33 @@ public class MainActivity extends AppCompatActivity {
                 updateTotals();
             }
         });
+        objPowerShot1End = this.findViewById(R.id.CheckboxPowerShot1End);
+        objPowerShot1End.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                updateTotals();
+            }
+        });
+
+        objPowerShot2End = this.findViewById(R.id.CheckboxPowerShot2End);
+        objPowerShot2End.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                updateTotals();
+            }
+        });
+
+        objPowerShot3End = this.findViewById(R.id.CheckboxPowerShot3End);
+        objPowerShot3End.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                updateTotals();
+            }
+        });
+        objPenaltyMinor = this.findViewById(R.id.editTextPenaltyMinor);
+        objPenaltyMinor.addTextChangedListener(objTW);
+
+        objPenaltyMajor = this.findViewById(R.id.editTextPenaltyMajor);
+        objPenaltyMajor.addTextChangedListener(objTW);
+
+
         objAutonomousExpandButton = this.findViewById(R.id.autonomous_expand_card);
 
         objAutonomousTable = this.findViewById(R.id.autonomous_table);
@@ -146,6 +202,12 @@ public class MainActivity extends AppCompatActivity {
         objEndTable = this.findViewById(R.id.endgame_table);
 
         objEndCard = this.findViewById(R.id.CardViewend);
+
+        objPenaltyExpandButton = this.findViewById(R.id.penalty_expand_card);
+
+        objPenaltyTable = this.findViewById(R.id.penalty_table);
+
+        objPenaltyCard = this.findViewById(R.id.CardViewPenalty);
 
         objAutonomousExpandButton.setOnClickListener(new View.OnClickListener() {
 
@@ -236,6 +298,35 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // // // endregion initialize event handlers
+        objPenaltyExpandButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // If the CardView is already expanded, set its visibility
+                //  to gone and change the expand less icon to expand more.
+                if (objPenaltyTable.getVisibility() == View.VISIBLE) {
+
+                    // The transition of the hiddenView is carried out
+                    //  by the TransitionManager class.
+                    // Here we use an object of the AutoTransition
+                    // Class to create a default transition.
+                    TransitionManager.beginDelayedTransition(objPenaltyCard,
+                            new AutoTransition());
+                    objPenaltyTable.setVisibility(View.GONE);
+                    objPenaltyExpandButton.setImageResource(R.drawable.ic_baseline_expand_more_24);
+                }
+
+                // If the CardView is not expanded, set its visibility
+                // to visible and change the expand more icon to expand less.
+                else {
+
+                    TransitionManager.beginDelayedTransition(objPenaltyCard,
+                            new AutoTransition());
+                    objPenaltyTable.setVisibility(View.VISIBLE);
+                    objPenaltyExpandButton.setImageResource(R.drawable.ic_baseline_expand_less_24);
+                }
+            }
+        });
     }
 
 
@@ -244,12 +335,24 @@ public class MainActivity extends AppCompatActivity {
         intAutonomous = intAutonomous + (Integer.parseInt("0" + objTopGoals.getText().toString()) * 12);
         intAutonomous = intAutonomous + (Integer.parseInt("0" + objMiddleGoals.getText().toString()) * 6);
         intAutonomous = intAutonomous + (Integer.parseInt("0" + objLowGoals.getText().toString()) * 3);
-        intAutonomous = intAutonomous + (Integer.parseInt("0" + objPowerShotsScored.getText().toString()) * 15);
+
         if (objSwitchStoppedOnLine.isChecked()) {
             intAutonomous = intAutonomous + 5;
         }
 
         if (objSwitchWobbleGoalDeposited.isChecked()) {
+            intAutonomous = intAutonomous + 15;
+        }
+
+        if (objPowerShot1.isChecked()) {
+            intAutonomous = intAutonomous + 15;
+        }
+
+        if (objPowerShot2.isChecked()) {
+            intAutonomous = intAutonomous + 15;
+        }
+
+        if (objPowerShot3.isChecked()) {
             intAutonomous = intAutonomous + 15;
         }
 
@@ -270,14 +373,31 @@ public class MainActivity extends AppCompatActivity {
             intEnd = intEnd + 5;
         }
 
+        if (objPowerShot1End.isChecked()) {
+            intEnd = intEnd + 15;
+        }
+
+        if (objPowerShot2End.isChecked()) {
+            intEnd = intEnd + 15;
+        }
+
+        if (objPowerShot3End.isChecked()) {
+            intEnd = intEnd + 15;
+        }
+
+        int intPenalty = 0;
+        intPenalty = intPenalty + (Integer.parseInt("0" + objPenaltyMinor.getText().toString()) * -10);
+        intPenalty = intPenalty + (Integer.parseInt("0" + objPenaltyMajor.getText().toString()) * -30);
+
         int intPoints = 0;
 
-        intPoints = intAutonomous + intEnd + intTeleop;
+        intPoints = intAutonomous + intEnd + intTeleop + intPenalty;
 
         objResult.setText(Integer.toString(intPoints));
         objAutresult.setText(Integer.toString(intAutonomous));
         objTeleopresult.setText(Integer.toString(intTeleop));
         objEndresult.setText(Integer.toString(intEnd));
+        objPenaltyresult.setText(Integer.toString(intPenalty));
 
     }
 
