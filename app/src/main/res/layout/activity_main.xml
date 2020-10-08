@@ -125,15 +125,38 @@
                             android:layout_column="1"
                             android:text="@string/middle_goals" />
 
-                        <EditText
-                            android:id="@+id/editTextNumberMiddleGoals"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_column="2"
-                            android:ems="12"
-                            android:hint="@string/middle_goals_hint"
-                            android:importantForAutofill="no"
-                            android:inputType="number" />
+                            android:layout_gravity="end"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <ImageButton
+                                android:id="@+id/middle_goals_subtract"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_remove_24" />
+
+                            <EditText
+                                android:id="@+id/text_middle_goals"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:hint="@string/middle_goals_hint"
+                                android:importantForAutofill="no"
+                                android:inputType="number" />
+
+                            <ImageButton
+                                android:id="@+id/middle_goals_add"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_add_24" />
+
+                        </LinearLayout>
 
                     </TableRow>
 
@@ -147,15 +170,37 @@
                             android:layout_column="1"
                             android:text="@string/low_goals" />
 
-                        <EditText
-                            android:id="@+id/editTextNumberLowGoals"
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_column="2"
+                            android:layout_gravity="end"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                        <ImageButton
+                            android:id="@+id/low_goals_subtract"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_column="2"
-                            android:ems="12"
+                            android:contentDescription="@string/todo"
+                            android:src="@drawable/ic_baseline_remove_24" />
+
+                        <EditText
+                            android:id="@+id/text_low_goals"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
                             android:hint="@string/low_goals_hint"
                             android:importantForAutofill="no"
                             android:inputType="number" />
+
+                        <ImageButton
+                            android:id="@+id/low_goals_add"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@string/todo"
+                            android:src="@drawable/ic_baseline_add_24" />
+                        </LinearLayout>
 
                     </TableRow>
 
@@ -304,16 +349,37 @@
                             android:layout_column="1"
                             android:text="@string/top_goals_telly" />
 
-                        <EditText
-                            android:id="@+id/editTextNumberTopGoalsTellyOp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_column="2"
-                            android:ems="12"
-                            android:hint="@string/top_goals_hint"
-                            android:importantForAutofill="no"
-                            android:inputType="number" />
+                            android:layout_gravity="end"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
 
+                            <ImageButton
+                                android:id="@+id/top_goals_teleop_subtract"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_remove_24" />
+
+                            <EditText
+                                android:id="@+id/text_top_goals_teleop"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:hint="@string/top_goals_telly"
+                                android:importantForAutofill="no"
+                                android:inputType="number" />
+
+                            <ImageButton
+                                android:id="@+id/top_goals_teleop_add"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_add_24" />
+                        </LinearLayout>
 
                     </TableRow>
 
@@ -327,15 +393,37 @@
                             android:layout_column="1"
                             android:text="@string/middle_goals_telly" />
 
-                        <EditText
-                            android:id="@+id/editTextNumberMiddleGoalsTellyOp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_column="2"
-                            android:ems="12"
-                            android:hint="@string/middle_goals_hint"
-                            android:importantForAutofill="no"
-                            android:inputType="number" />
+                            android:layout_gravity="end"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <ImageButton
+                                android:id="@+id/middle_goals_teleop_subtract"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_remove_24" />
+
+                            <EditText
+                                android:id="@+id/text_middle_goals_teleop"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:hint="@string/middle_goals_telly"
+                                android:importantForAutofill="no"
+                                android:inputType="number" />
+
+                            <ImageButton
+                                android:id="@+id/middle_goals_teleop_add"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_add_24" />
+                        </LinearLayout>
 
                     </TableRow>
 
@@ -349,15 +437,37 @@
                             android:layout_column="1"
                             android:text="@string/low_goals_telly" />
 
-                        <EditText
-                            android:id="@+id/editTextNumberLowGoalsTellyOp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_column="2"
-                            android:ems="12"
-                            android:hint="@string/low_goals_hint"
-                            android:importantForAutofill="no"
-                            android:inputType="number" />
+                            android:layout_gravity="end"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <ImageButton
+                                android:id="@+id/low_goals_teleop_subtract"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_remove_24" />
+
+                            <EditText
+                                android:id="@+id/text_low_goals_teleop"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:hint="@string/low_goals_telly"
+                                android:importantForAutofill="no"
+                                android:inputType="number" />
+
+                            <ImageButton
+                                android:id="@+id/low_goals_teleop_add"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_add_24" />
+                        </LinearLayout>
 
                     </TableRow>
                 </TableLayout>
@@ -433,15 +543,38 @@
                             android:layout_column="1"
                             android:text="@string/top_goals_end" />
 
-                        <EditText
-                            android:id="@+id/editTextNumberTopGoalsEnd"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_column="2"
-                            android:ems="12"
-                            android:hint="@string/top_goals_hint"
-                            android:importantForAutofill="no"
-                            android:inputType="number" />
+                            android:layout_gravity="end"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <ImageButton
+                                android:id="@+id/top_goals_end_subtract"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_remove_24" />
+
+                            <EditText
+                                android:id="@+id/text_top_goals_end"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:hint="@string/top_goals_hint"
+                                android:importantForAutofill="no"
+                                android:inputType="number" />
+
+                            <ImageButton
+                                android:id="@+id/top_goals_end_add"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_add_24" />
+
+                        </LinearLayout>
 
 
                     </TableRow>
@@ -456,15 +589,38 @@
                             android:layout_column="1"
                             android:text="@string/middle_goals_end" />
 
-                        <EditText
-                            android:id="@+id/editTextNumberMiddleGoalsEnd"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_column="2"
-                            android:ems="12"
-                            android:hint="@string/middle_goals_hint"
-                            android:importantForAutofill="no"
-                            android:inputType="number" />
+                            android:layout_gravity="end"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <ImageButton
+                                android:id="@+id/middle_goals_end_subtract"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_remove_24" />
+
+                            <EditText
+                                android:id="@+id/text_middle_goals_end"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:hint="@string/middle_goals_hint"
+                                android:importantForAutofill="no"
+                                android:inputType="number" />
+
+                            <ImageButton
+                                android:id="@+id/middle_goals_end_add"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_add_24" />
+
+                        </LinearLayout>
 
                     </TableRow>
 
@@ -478,15 +634,37 @@
                             android:layout_column="1"
                             android:text="@string/low_goals_end" />
 
-                        <EditText
-                            android:id="@+id/editTextNumberLowGoalsEnd"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_column="2"
-                            android:ems="12"
-                            android:hint="@string/low_goals_hint"
-                            android:importantForAutofill="no"
-                            android:inputType="number" />
+                            android:layout_gravity="end"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <ImageButton
+                                android:id="@+id/low_goals_end_subtract"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_remove_24" />
+
+                            <EditText
+                                android:id="@+id/text_low_goals_end"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:hint="@string/low_goals_hint"
+                                android:importantForAutofill="no"
+                                android:inputType="number" />
+
+                            <ImageButton
+                                android:id="@+id/low_goals_end_add"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_add_24" />
+                        </LinearLayout>
 
                     </TableRow>
 
@@ -539,15 +717,37 @@
                             android:layout_column="1"
                             android:text="@string/wobble_ring" />
 
-                        <EditText
-                            android:id="@+id/editTextNumberWobbleRing"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_column="2"
-                            android:ems="12"
-                            android:hint="@string/wobble_ring"
-                            android:importantForAutofill="no"
-                            android:inputType="number" />
+                            android:layout_gravity="end"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <ImageButton
+                                android:id="@+id/wobble_ring_subtract"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_remove_24" />
+
+                            <EditText
+                                android:id="@+id/text_wobble_ring"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:hint="@string/wobble_ring"
+                                android:importantForAutofill="no"
+                                android:inputType="number" />
+
+                            <ImageButton
+                                android:id="@+id/wobble_ring_add"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_add_24" />
+                        </LinearLayout>
 
                     </TableRow>
 
@@ -660,15 +860,37 @@
                             android:layout_column="1"
                             android:text="@string/penalty_minor" />
 
-                        <EditText
-                            android:id="@+id/editTextPenaltyMinor"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_column="2"
-                            android:ems="12"
-                            android:hint="@string/penalty_minor"
-                            android:importantForAutofill="no"
-                            android:inputType="number" />
+                            android:layout_gravity="end"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <ImageButton
+                                android:id="@+id/penalty_minor_subtract"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_remove_24" />
+
+                            <EditText
+                                android:id="@+id/text_penalty_minor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:hint="@string/penalty_minor"
+                                android:importantForAutofill="no"
+                                android:inputType="number" />
+
+                            <ImageButton
+                                android:id="@+id/penalty_minor_add"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_add_24" />
+                        </LinearLayout>
                     </TableRow>
 
                     <TableRow
@@ -682,15 +904,37 @@
                             android:layout_column="1"
                             android:text="@string/penalty_minor" />
 
-                        <EditText
-                            android:id="@+id/editTextPenaltyMajor"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_column="2"
-                            android:ems="12"
-                            android:hint="@string/penalty_major"
-                            android:importantForAutofill="no"
-                            android:inputType="number" />
+                            android:layout_gravity="end"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <ImageButton
+                                android:id="@+id/penalty_major_subtract"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_remove_24" />
+
+                            <EditText
+                                android:id="@+id/text_penalty_major"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:hint="@string/penalty_major"
+                                android:importantForAutofill="no"
+                                android:inputType="number" />
+
+                            <ImageButton
+                                android:id="@+id/penalty_major_add"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_add_24" />
+                        </LinearLayout>
                     </TableRow>
                 </TableLayout>
 

@@ -29,16 +29,35 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton objTopGoalsAdd;
     private ImageButton objTopGoalsSubtract;
     private EditText objTopGoals;
+    private ImageButton objMiddleGoalsAdd;
+    private ImageButton objMiddleGoalsSubtract;
     private EditText objMiddleGoals;
+    private ImageButton objLowGoalsAdd;
+    private ImageButton objLowGoalsSubtract;
     private EditText objLowGoals;
     private Switch objSwitchStoppedOnLine;
     private Switch objSwitchWobbleGoalDeposited;
+    private ImageButton objTopGoalsTellyOpAdd;
+    private ImageButton objTopGoalsTellyOpSubtract;
     private EditText objTopGoalsTellyOp;
+    private ImageButton objMiddleGoalsTellyOpAdd;
+    private ImageButton objMiddleGoalsTellyOpSubtract;
     private EditText objMiddleGoalsTellyOp;
+    private ImageButton objLowGoalsTellyOpAdd;
+    private ImageButton objLowGoalsTellyOpSubtract;
     private EditText objLowGoalsTellyOp;
+    private ImageButton objTopGoalsEndgameAdd;
+    private ImageButton objTopGoalsEndgameSubtract;
     private EditText objTopGoalsEndgame;
+    private ImageButton objMiddleGoalsEndgameAdd;
+    private ImageButton objMiddleGoalsEndgameSubtract;
     private EditText objMiddleGoalsEndgame;
+    private ImageButton objLowGoalsEndgameAdd;
+    private ImageButton objLowGoalsEndgameSubtract;
     private EditText objLowGoalsEndgame;
+    private ImageButton objWobbleRingAdd;
+    private ImageButton objWobbleRingSubtract;
+    private EditText objWobbleRing;
     private Switch objSwitchWobbleInDropZone;
     private Switch objSwitchStartLinePark;
     private ImageButton objAutonomousExpandButton;
@@ -60,7 +79,11 @@ public class MainActivity extends AppCompatActivity {
     private TableLayout objPenaltyTable;
     private CardView objPenaltyCard;
     private EditText objPenaltyMinor;
+    private ImageButton objPenaltyMinorAdd;
+    private ImageButton objPenaltyMinorSubtract;
     private EditText objPenaltyMajor;
+    private ImageButton objPenaltyMajorAdd;
+    private ImageButton objPenaltyMajorSubtract;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,11 +155,49 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        objMiddleGoals = this.findViewById(R.id.editTextNumberMiddleGoals);
+        objMiddleGoals = this.findViewById(R.id.text_middle_goals);
         objMiddleGoals.addTextChangedListener(objTW);
 
-        objLowGoals = this.findViewById(R.id.editTextNumberLowGoals);
+        objMiddleGoalsAdd = this.findViewById(R.id.middle_goals_add);
+        objMiddleGoalsAdd.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int intNewGoalPoints = Integer.parseInt("0" + objMiddleGoals.getText().toString()) + 1;
+                objMiddleGoals.setText(Integer.toString(intNewGoalPoints));
+                //updateTotals();
+            }
+        });
+        objMiddleGoalsSubtract = this.findViewById(R.id.middle_goals_subtract);
+        objMiddleGoalsSubtract.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int intNewGoalPoints = Math.max(Integer.parseInt("0" + objMiddleGoals.getText().toString()) - 1, 0);
+                objMiddleGoals.setText(Integer.toString(intNewGoalPoints));
+                //updateTotals();
+            }
+        });
+
+        objLowGoals = this.findViewById(R.id.text_low_goals);
         objLowGoals.addTextChangedListener(objTW);
+
+        objLowGoalsAdd = this.findViewById(R.id.low_goals_add);
+        objLowGoalsAdd.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int intNewGoalPoints = Integer.parseInt("0" + objLowGoals.getText().toString()) + 1;
+                objLowGoals.setText(Integer.toString(intNewGoalPoints));
+                //updateTotals();
+            }
+        });
+        objLowGoalsSubtract = this.findViewById(R.id.low_goals_subtract);
+        objLowGoalsSubtract.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int intNewGoalPoints = Math.max(Integer.parseInt("0" + objLowGoals.getText().toString()) - 1, 0);
+                objLowGoals.setText(Integer.toString(intNewGoalPoints));
+                //updateTotals();
+            }
+        });
 
         objPowerShot1 = this.findViewById(R.id.CheckboxPowerShot1);
         objPowerShot1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -159,23 +220,159 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        objTopGoalsTellyOp = this.findViewById(R.id.editTextNumberTopGoalsTellyOp);
+        objTopGoalsTellyOp = this.findViewById(R.id.text_top_goals_teleop);
         objTopGoalsTellyOp.addTextChangedListener(objTW);
 
-        objMiddleGoalsTellyOp = this.findViewById(R.id.editTextNumberMiddleGoalsTellyOp);
+        objTopGoalsTellyOpAdd = this.findViewById(R.id.top_goals_teleop_add);
+        objTopGoalsTellyOpAdd.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int intNewGoalPoints = Integer.parseInt("0" + objTopGoalsTellyOp.getText().toString()) + 1;
+                objTopGoalsTellyOp.setText(Integer.toString(intNewGoalPoints));
+                //updateTotals();
+            }
+        });
+        objTopGoalsTellyOpSubtract = this.findViewById(R.id.top_goals_teleop_subtract);
+        objTopGoalsTellyOpSubtract.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int intNewGoalPoints = Math.max(Integer.parseInt("0" + objTopGoalsTellyOp.getText().toString()) - 1, 0);
+                objTopGoalsTellyOp.setText(Integer.toString(intNewGoalPoints));
+                //updateTotals();
+            }
+        });
+
+        objMiddleGoalsTellyOp = this.findViewById(R.id.text_middle_goals_teleop);
         objMiddleGoalsTellyOp.addTextChangedListener(objTW);
 
-        objLowGoalsTellyOp = this.findViewById(R.id.editTextNumberLowGoalsTellyOp);
+        objMiddleGoalsTellyOpAdd = this.findViewById(R.id.middle_goals_teleop_add);
+        objMiddleGoalsTellyOpAdd.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int intNewGoalPoints = Integer.parseInt("0" + objMiddleGoalsTellyOp.getText().toString()) + 1;
+                objMiddleGoalsTellyOp.setText(Integer.toString(intNewGoalPoints));
+                //updateTotals();
+            }
+        });
+        objMiddleGoalsTellyOpSubtract = this.findViewById(R.id.middle_goals_teleop_subtract);
+        objMiddleGoalsTellyOpSubtract.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int intNewGoalPoints = Math.max(Integer.parseInt("0" + objMiddleGoalsTellyOp.getText().toString()) - 1, 0);
+                objMiddleGoalsTellyOp.setText(Integer.toString(intNewGoalPoints));
+                //updateTotals();
+            }
+        });
+
+        objLowGoalsTellyOp = this.findViewById(R.id.text_low_goals_teleop);
         objLowGoalsTellyOp.addTextChangedListener(objTW);
 
-        objTopGoalsEndgame = this.findViewById(R.id.editTextNumberTopGoalsEnd);
+        objLowGoalsTellyOpAdd = this.findViewById(R.id.low_goals_teleop_add);
+        objLowGoalsTellyOpAdd.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int intNewGoalPoints = Integer.parseInt("0" + objLowGoalsTellyOp.getText().toString()) + 1;
+                objLowGoalsTellyOp.setText(Integer.toString(intNewGoalPoints));
+                //updateTotals();
+            }
+        });
+        objLowGoalsTellyOpSubtract = this.findViewById(R.id.low_goals_teleop_subtract);
+        objLowGoalsTellyOpSubtract.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int intNewGoalPoints = Math.max(Integer.parseInt("0" + objLowGoalsTellyOp.getText().toString()) - 1, 0);
+                objLowGoalsTellyOp.setText(Integer.toString(intNewGoalPoints));
+                //updateTotals();
+            }
+        });
+
+        objTopGoalsEndgame = this.findViewById(R.id.text_top_goals_end);
         objTopGoalsEndgame.addTextChangedListener(objTW);
 
-        objMiddleGoalsEndgame = this.findViewById(R.id.editTextNumberMiddleGoalsEnd);
+        objTopGoalsEndgameAdd = this.findViewById(R.id.top_goals_end_add);
+        objTopGoalsEndgameAdd.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int intNewGoalPoints = Integer.parseInt("0" + objTopGoalsEndgame.getText().toString()) + 1;
+                objTopGoalsEndgame.setText(Integer.toString(intNewGoalPoints));
+                //updateTotals();
+            }
+        });
+        objTopGoalsEndgameSubtract = this.findViewById(R.id.top_goals_end_subtract);
+        objTopGoalsEndgameSubtract.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int intNewGoalPoints = Math.max(Integer.parseInt("0" + objTopGoalsEndgame.getText().toString()) - 1, 0);
+                objTopGoalsEndgame.setText(Integer.toString(intNewGoalPoints));
+                //updateTotals();
+            }
+        });
+
+        objMiddleGoalsEndgame = this.findViewById(R.id.text_middle_goals_end);
         objMiddleGoalsEndgame.addTextChangedListener(objTW);
 
-        objLowGoalsEndgame = this.findViewById(R.id.editTextNumberLowGoalsEnd);
+        objMiddleGoalsEndgameAdd = this.findViewById(R.id.middle_goals_end_add);
+        objMiddleGoalsEndgameAdd.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int intNewGoalPoints = Integer.parseInt("0" + objMiddleGoalsEndgame.getText().toString()) + 1;
+                objMiddleGoalsEndgame.setText(Integer.toString(intNewGoalPoints));
+                //updateTotals();
+            }
+        });
+        objMiddleGoalsEndgameSubtract = this.findViewById(R.id.middle_goals_end_subtract);
+        objMiddleGoalsEndgameSubtract.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int intNewGoalPoints = Math.max(Integer.parseInt("0" + objMiddleGoalsEndgame.getText().toString()) - 1, 0);
+                objMiddleGoalsEndgame.setText(Integer.toString(intNewGoalPoints));
+                //updateTotals();
+            }
+        });
+
+        objLowGoalsEndgame = this.findViewById(R.id.text_low_goals_end);
         objLowGoalsEndgame.addTextChangedListener(objTW);
+
+        objLowGoalsEndgameAdd = this.findViewById(R.id.low_goals_end_add);
+        objLowGoalsEndgameAdd.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int intNewGoalPoints = Integer.parseInt("0" + objLowGoalsEndgame.getText().toString()) + 1;
+                objLowGoalsEndgame.setText(Integer.toString(intNewGoalPoints));
+                //updateTotals();
+            }
+        });
+        objLowGoalsEndgameSubtract = this.findViewById(R.id.low_goals_end_subtract);
+        objLowGoalsEndgameSubtract.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int intNewGoalPoints = Math.max(Integer.parseInt("0" + objLowGoalsEndgame.getText().toString()) - 1, 0);
+                objLowGoalsEndgame.setText(Integer.toString(intNewGoalPoints));
+                //updateTotals();
+            }
+        });
+
+        objWobbleRing = this.findViewById(R.id.text_wobble_ring);
+        objWobbleRing.addTextChangedListener(objTW);
+
+        objWobbleRingAdd = this.findViewById(R.id.wobble_ring_add);
+        objWobbleRingAdd.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int intNewGoalPoints = Integer.parseInt("0" + objWobbleRing.getText().toString()) + 1;
+                objWobbleRing.setText(Integer.toString(intNewGoalPoints));
+                //updateTotals();
+            }
+        });
+        objWobbleRingSubtract = this.findViewById(R.id.wobble_ring_subtract);
+        objWobbleRingSubtract.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int intNewGoalPoints = Math.max(Integer.parseInt("0" + objWobbleRing.getText().toString()) - 1, 0);
+                objWobbleRing.setText(Integer.toString(intNewGoalPoints));
+                //updateTotals();
+            }
+        });
 
         objSwitchStoppedOnLine = this.findViewById(R.id.switchStoppedOnLine);
         objSwitchStoppedOnLine.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -222,12 +419,49 @@ public class MainActivity extends AppCompatActivity {
                 updateTotals();
             }
         });
-        objPenaltyMinor = this.findViewById(R.id.editTextPenaltyMinor);
+        objPenaltyMinor = this.findViewById(R.id.text_penalty_minor);
         objPenaltyMinor.addTextChangedListener(objTW);
 
-        objPenaltyMajor = this.findViewById(R.id.editTextPenaltyMajor);
+        objPenaltyMinorAdd = this.findViewById(R.id.penalty_minor_add);
+        objPenaltyMinorAdd.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int intNewGoalPoints = Integer.parseInt("0" + objPenaltyMinor.getText().toString()) + 1;
+                objPenaltyMinor.setText(Integer.toString(intNewGoalPoints));
+                //updateTotals();
+            }
+        });
+        objPenaltyMinorSubtract = this.findViewById(R.id.penalty_minor_subtract);
+        objPenaltyMinorSubtract.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int intNewGoalPoints = Math.max(Integer.parseInt("0" + objPenaltyMinor.getText().toString()) - 1, 0);
+                objPenaltyMinor.setText(Integer.toString(intNewGoalPoints));
+                //updateTotals();
+            }
+        });
+
+        objPenaltyMajor = this.findViewById(R.id.text_penalty_major);
         objPenaltyMajor.addTextChangedListener(objTW);
 
+        objPenaltyMajorAdd = this.findViewById(R.id.penalty_major_add);
+        objPenaltyMajorAdd.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int intNewGoalPoints = Integer.parseInt("0" + objPenaltyMajor.getText().toString()) + 1;
+                objPenaltyMajor.setText(Integer.toString(intNewGoalPoints));
+                //updateTotals();
+            }
+        });
+        objPenaltyMajorSubtract = this.findViewById(R.id.penalty_major_subtract);
+        objPenaltyMajorSubtract.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int intNewGoalPoints = Math.max(Integer.parseInt("0" + objPenaltyMajor.getText().toString()) - 1, 0);
+                objPenaltyMajor.setText(Integer.toString(intNewGoalPoints));
+                //updateTotals();
+            }
+        });
 
         objAutonomousExpandButton = this.findViewById(R.id.autonomous_expand_card);
 
@@ -419,6 +653,7 @@ public class MainActivity extends AppCompatActivity {
         intEnd = intEnd + (Integer.parseInt("0" + objTopGoalsEndgame.getText().toString()) * 6);
         intEnd = intEnd + (Integer.parseInt("0" + objMiddleGoalsEndgame.getText().toString()) * 4);
         intEnd = intEnd + (Integer.parseInt("0" + objLowGoalsEndgame.getText().toString()) * 2);
+        intEnd = intEnd + (Integer.parseInt("0" + objWobbleRing.getText().toString()) * 5);
         if (objSwitchWobbleInDropZone.isChecked()) {
             intEnd = intEnd + 20;
         }
