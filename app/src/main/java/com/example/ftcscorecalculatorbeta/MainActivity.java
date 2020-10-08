@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
@@ -117,6 +118,8 @@ public class MainActivity extends AppCompatActivity {
         objTopGoals = this.findViewById(R.id.text_top_goals);
         objTopGoals.addTextChangedListener(objTW);
 
+        // filter any number that is negative or huge
+        objTopGoals.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "100")});
 
         /*objTopGoalsAdd = this.findViewById(R.id.editTextNumberTopGoals);
         objTopGoalsAdd.setOnClickListener(new CompoundButton.OnClickListener() {
