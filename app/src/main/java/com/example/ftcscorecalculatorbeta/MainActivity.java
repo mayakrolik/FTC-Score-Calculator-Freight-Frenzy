@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.transition.AutoTransition; //
 import android.transition.TransitionManager; //
 import android.widget.TableLayout; //
+
 import androidx.cardview.widget.CardView; //
 
 public class MainActivity extends AppCompatActivity {
@@ -24,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView objTeleopresult;
     private TextView objEndresult;
     private TextView objPenaltyresult;
-    private EditText objTopGoals;
+    private ImageButton objTopGoalsAdd;
+    private ImageButton objTopGoalsSubtract;
+    private TextView objTopGoals;
     private EditText objMiddleGoals;
     private EditText objLowGoals;
     private Switch objSwitchStoppedOnLine;
@@ -57,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private CardView objPenaltyCard;
     private EditText objPenaltyMinor;
     private EditText objPenaltyMajor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         objTeleopresult = this.findViewById(R.id.text_teleops_score);
         objEndresult = this.findViewById(R.id.text_endgame_score);
         objPenaltyresult = this.findViewById(R.id.text_penalty);
+        objTopGoals = this.findViewById(R.id.text_top_goals);
 
         TextWatcher objTW = new TextWatcher() {
             @Override
@@ -85,10 +91,40 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         // region initialize event handlers
-        objTopGoals = this.findViewById(R.id.editTextNumberTopGoals);
-        objTopGoals.addTextChangedListener(objTW);
 
-        objMiddleGoals = this.findViewById(R.id.editTextNumberMiddleGoals);
+        /*objTopGoalsAdd = this.findViewById(R.id.editTextNumberTopGoals);
+        objTopGoalsAdd.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                updateTotals();
+            }
+        });
+
+        objTopGoalsSubtract = this.findViewById(R.id.editTextNumberTopGoals);
+        objTopGoalsSubtract.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                updateTotals();
+            }
+        });
+*/
+        objTopGoalsAdd = this.findViewById(R.id.top_goals_add);
+        objTopGoalsAdd.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateTotals();
+            }
+        });
+
+        objTopGoalsSubtract = this.findViewById(R.id.top_goals_subtract);
+        objTopGoalsSubtract.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateTotals();
+            }
+        });
+
+                objMiddleGoals = this.findViewById(R.id.editTextNumberMiddleGoals);
         objMiddleGoals.addTextChangedListener(objTW);
 
         objLowGoals = this.findViewById(R.id.editTextNumberLowGoals);
@@ -332,9 +368,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateTotals() {
         int intAutonomous = 0;
-        intAutonomous = intAutonomous + (Integer.parseInt("0" + objTopGoals.getText().toString()) * 12);
+        /*intAutonomous = intAutonomous + (Integer.parseInt("0" + objTopGoals.getText().toString()) * 12);*/
         intAutonomous = intAutonomous + (Integer.parseInt("0" + objMiddleGoals.getText().toString()) * 6);
         intAutonomous = intAutonomous + (Integer.parseInt("0" + objLowGoals.getText().toString()) * 3);
+        int intTopGoals = 0;
+        intAutonomous = intAutonomous + intTopGoals;
 
         if (objSwitchStoppedOnLine.isChecked()) {
             intAutonomous = intAutonomous + 5;
@@ -354,6 +392,14 @@ public class MainActivity extends AppCompatActivity {
 
         if (objPowerShot3.isChecked()) {
             intAutonomous = intAutonomous + 15;
+        }
+
+        intTopGoals = 0;
+        if (objTopGoalsAdd.isPressed()) {
+            intTopGoals = intTopGoals + 12;
+        }
+        if (objTopGoalsSubtract.isPressed()) {
+            intTopGoals = intTopGoals - 12;
         }
 
         int intTeleop = 0;
@@ -398,7 +444,10 @@ public class MainActivity extends AppCompatActivity {
         objTeleopresult.setText(Integer.toString(intTeleop));
         objEndresult.setText(Integer.toString(intEnd));
         objPenaltyresult.setText(Integer.toString(intPenalty));
+        objTopGoals.setText(Integer.toString(intTopGoals / 12));
+
 
     }
+
 
 }
