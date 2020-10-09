@@ -4,10 +4,10 @@
     <string name="top_goals">Top Goals</string>
     <string name="top_goals_add">Top Goals Add</string>
     <string name="top_goals_subtract">Top Goals Subtract</string>
-    <string name="middle_goals">Middle Goals</string>
+    <string name="middle_goals">Mid Goals</string>
     <string name="low_goals">Low Goals</string>
     <string name="top_goals_hint">Top Goals</string>
-    <string name="middle_goals_hint">Middle Goals</string>
+    <string name="middle_goals_hint">Mid Goals</string>
     <string name="low_goals_hint">Low Goals</string>
     <string name="total_points">Total Points</string>
     <string name="zero_points">0</string>
@@ -15,7 +15,7 @@
     <string name="wobble_goal_deposited">Wobble Goal Deposited</string>
     <string name="powershot_aut">Power Shots</string>
     <string name="top_goals_telly">Top Goals</string>
-    <string name="middle_goals_telly">Middle Goals</string>
+    <string name="middle_goals_telly">Mid Goals</string>
     <string name="low_goals_telly">Low Goals</string>
     <string name="autonomous_score">0</string>
     <string name="autonomous">Autonomous</string>
