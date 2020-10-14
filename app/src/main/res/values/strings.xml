@@ -37,5 +37,8 @@
     <string name="penalty">Penalty</string>
     <string name="penalty_minor">Penalty Minor</string>
     <string name="penalty_major">Penalty Major</string>
+    <string name="title_progress">Progress</string>
+    <string name="title_home">Home</string>
+    <string name="title_calculator">Calculator</string>
 
 </resources>
