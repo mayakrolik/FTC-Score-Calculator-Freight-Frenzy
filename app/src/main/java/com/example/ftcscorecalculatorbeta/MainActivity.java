@@ -121,29 +121,12 @@ public class MainActivity extends AppCompatActivity {
         // filter any number that is negative or huge
         objTopGoals.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "100")});
 
-        /*objTopGoalsAdd = this.findViewById(R.id.editTextNumberTopGoals);
-        objTopGoalsAdd.setOnClickListener(new CompoundButton.OnClickListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                updateTotals();
-            }
-        });
-
-        objTopGoalsSubtract = this.findViewById(R.id.editTextNumberTopGoals);
-        objTopGoalsSubtract.setOnClickListener(new CompoundButton.OnClickListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                updateTotals();
-            }
-        });
-*/
         objTopGoalsAdd = this.findViewById(R.id.top_goals_add);
         objTopGoalsAdd.setOnClickListener(new CompoundButton.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int intNewGoalPoints = Integer.parseInt("0" + objTopGoals.getText().toString()) + 1;
                 objTopGoals.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
 
@@ -153,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Math.max(Integer.parseInt("0" + objTopGoals.getText().toString()) - 1, 0);
                 objTopGoals.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
 
@@ -167,7 +149,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Integer.parseInt("0" + objMiddleGoals.getText().toString()) + 1;
                 objMiddleGoals.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
         objMiddleGoalsSubtract = this.findViewById(R.id.middle_goals_subtract);
@@ -176,7 +157,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Math.max(Integer.parseInt("0" + objMiddleGoals.getText().toString()) - 1, 0);
                 objMiddleGoals.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
 
@@ -189,7 +169,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Integer.parseInt("0" + objLowGoals.getText().toString()) + 1;
                 objLowGoals.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
         objLowGoalsSubtract = this.findViewById(R.id.low_goals_subtract);
@@ -198,7 +177,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Math.max(Integer.parseInt("0" + objLowGoals.getText().toString()) - 1, 0);
                 objLowGoals.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
 
@@ -232,7 +210,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Integer.parseInt("0" + objTopGoalsTellyOp.getText().toString()) + 1;
                 objTopGoalsTellyOp.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
         objTopGoalsTellyOpSubtract = this.findViewById(R.id.top_goals_teleop_subtract);
@@ -241,7 +218,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Math.max(Integer.parseInt("0" + objTopGoalsTellyOp.getText().toString()) - 1, 0);
                 objTopGoalsTellyOp.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
 
@@ -254,7 +230,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Integer.parseInt("0" + objMiddleGoalsTellyOp.getText().toString()) + 1;
                 objMiddleGoalsTellyOp.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
         objMiddleGoalsTellyOpSubtract = this.findViewById(R.id.middle_goals_teleop_subtract);
@@ -263,7 +238,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Math.max(Integer.parseInt("0" + objMiddleGoalsTellyOp.getText().toString()) - 1, 0);
                 objMiddleGoalsTellyOp.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
 
@@ -276,7 +250,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Integer.parseInt("0" + objLowGoalsTellyOp.getText().toString()) + 1;
                 objLowGoalsTellyOp.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
         objLowGoalsTellyOpSubtract = this.findViewById(R.id.low_goals_teleop_subtract);
@@ -285,7 +258,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Math.max(Integer.parseInt("0" + objLowGoalsTellyOp.getText().toString()) - 1, 0);
                 objLowGoalsTellyOp.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
 
@@ -298,7 +270,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Integer.parseInt("0" + objTopGoalsEndgame.getText().toString()) + 1;
                 objTopGoalsEndgame.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
         objTopGoalsEndgameSubtract = this.findViewById(R.id.top_goals_end_subtract);
@@ -307,7 +278,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Math.max(Integer.parseInt("0" + objTopGoalsEndgame.getText().toString()) - 1, 0);
                 objTopGoalsEndgame.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
 
@@ -320,7 +290,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Integer.parseInt("0" + objMiddleGoalsEndgame.getText().toString()) + 1;
                 objMiddleGoalsEndgame.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
         objMiddleGoalsEndgameSubtract = this.findViewById(R.id.middle_goals_end_subtract);
@@ -329,7 +298,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Math.max(Integer.parseInt("0" + objMiddleGoalsEndgame.getText().toString()) - 1, 0);
                 objMiddleGoalsEndgame.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
 
@@ -342,7 +310,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Integer.parseInt("0" + objLowGoalsEndgame.getText().toString()) + 1;
                 objLowGoalsEndgame.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
         objLowGoalsEndgameSubtract = this.findViewById(R.id.low_goals_end_subtract);
@@ -351,7 +318,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Math.max(Integer.parseInt("0" + objLowGoalsEndgame.getText().toString()) - 1, 0);
                 objLowGoalsEndgame.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
 
@@ -364,7 +330,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Integer.parseInt("0" + objWobbleRing.getText().toString()) + 1;
                 objWobbleRing.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
         objWobbleRingSubtract = this.findViewById(R.id.wobble_ring_subtract);
@@ -373,7 +338,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Math.max(Integer.parseInt("0" + objWobbleRing.getText().toString()) - 1, 0);
                 objWobbleRing.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
 
@@ -431,7 +395,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Integer.parseInt("0" + objPenaltyMinor.getText().toString()) + 1;
                 objPenaltyMinor.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
         objPenaltyMinorSubtract = this.findViewById(R.id.penalty_minor_subtract);
@@ -440,7 +403,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Math.max(Integer.parseInt("0" + objPenaltyMinor.getText().toString()) - 1, 0);
                 objPenaltyMinor.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
 
@@ -453,7 +415,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Integer.parseInt("0" + objPenaltyMajor.getText().toString()) + 1;
                 objPenaltyMajor.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
         objPenaltyMajorSubtract = this.findViewById(R.id.penalty_major_subtract);
@@ -462,7 +423,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int intNewGoalPoints = Math.max(Integer.parseInt("0" + objPenaltyMajor.getText().toString()) - 1, 0);
                 objPenaltyMajor.setText(Integer.toString(intNewGoalPoints));
-                //updateTotals();
             }
         });
 
@@ -639,14 +599,6 @@ public class MainActivity extends AppCompatActivity {
             intAutonomous = intAutonomous + 15;
         }
 
-        /*intTopGoals = 0;
-        if (objTopGoalsAdd.isPressed()) {
-            intTopGoals = intTopGoals + 12;
-        }
-        if (objTopGoalsSubtract.isPressed()) {
-            intTopGoals = intTopGoals - 12;
-        }*/
-
         int intTeleop = 0;
         intTeleop = intTeleop + (Integer.parseInt("0" + objTopGoalsTellyOp.getText().toString()) * 6);
         intTeleop = intTeleop + (Integer.parseInt("0" + objMiddleGoalsTellyOp.getText().toString()) * 4);
@@ -690,8 +642,6 @@ public class MainActivity extends AppCompatActivity {
         objTeleopresult.setText(Integer.toString(intTeleop));
         objEndresult.setText(Integer.toString(intEnd));
         objPenaltyresult.setText(Integer.toString(intPenalty));
-        //objTopGoals.setText(Integer.toString(intTopGoals / 12));
-
 
     }
 
