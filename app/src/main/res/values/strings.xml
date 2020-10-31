@@ -40,5 +40,7 @@
     <string name="title_progress">Progress</string>
     <string name="title_home">Home</string>
     <string name="title_calculator">Calculator</string>
+    <string name="HomeFragment">Test1234</string>
+    <string name="SaveScores">Save Score</string>
 
 </resources>

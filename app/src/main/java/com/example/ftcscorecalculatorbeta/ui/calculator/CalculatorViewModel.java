@@ -10,7 +10,7 @@ public class CalculatorViewModel extends ViewModel {
 
     public CalculatorViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("This is Calc fragment");
     }
 
     public LiveData<String> getText() {

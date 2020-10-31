@@ -1,11 +1,14 @@
 package com.example.ftcscorecalculatorbeta;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -17,10 +20,26 @@ import android.widget.TextView;
 import android.transition.AutoTransition; //
 import android.transition.TransitionManager; //
 import android.widget.TableLayout; //
+import android.widget.Toolbar;
 
 import androidx.cardview.widget.CardView; //
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationMenu;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+
+    final static String TAG = "MainActivity";
 
     private TextView objResult;
     private TextView objAutresult;
@@ -85,17 +104,52 @@ public class MainActivity extends AppCompatActivity {
     private EditText objPenaltyMajor;
     private ImageButton objPenaltyMajorAdd;
     private ImageButton objPenaltyMajorSubtract;
+    private Button objSaveScores;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        objSaveScores = this.findViewById(R.id.savescoresbutton);
+
+        objSaveScores.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
+                // Create a new user with a first and last name
+                Map<String, Object> score = new HashMap<>();
+                score.put("AutTopGoals", 3);
+                score.put("AutMiddleGoals", 2);
+                score.put("AutLowGoals", 3);
+                score.put("AutStoppedOnLine",  objSwitchStoppedOnLine.isChecked());
+
+                // Add a new document with a generated ID
+                db.collection("Scores")
+                        .add(score)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Error adding document", e);
+                            }
+                        });
+            }
+        });
+
         objResult = this.findViewById(R.id.textView2);
         objAutresult = this.findViewById(R.id.text_autonomous_score);
         objTeleopresult = this.findViewById(R.id.text_teleops_score);
         objEndresult = this.findViewById(R.id.text_endgame_score);
-        objPenaltyresult = this.findViewById(R.id.text_penalty);
+        objPenaltyresult = this.findViewById(R.id.text_penalty_score);
 
         TextWatcher objTW = new TextWatcher() {
             @Override
@@ -143,6 +197,9 @@ public class MainActivity extends AppCompatActivity {
         objMiddleGoals = this.findViewById(R.id.text_middle_goals);
         objMiddleGoals.addTextChangedListener(objTW);
 
+        // filter any number that is negative or huge
+        objMiddleGoals.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "100")});
+
         objMiddleGoalsAdd = this.findViewById(R.id.middle_goals_add);
         objMiddleGoalsAdd.setOnClickListener(new CompoundButton.OnClickListener() {
             @Override
@@ -162,6 +219,9 @@ public class MainActivity extends AppCompatActivity {
 
         objLowGoals = this.findViewById(R.id.text_low_goals);
         objLowGoals.addTextChangedListener(objTW);
+
+        // filter any number that is negative or huge
+        objLowGoals.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "100")});
 
         objLowGoalsAdd = this.findViewById(R.id.low_goals_add);
         objLowGoalsAdd.setOnClickListener(new CompoundButton.OnClickListener() {
@@ -204,6 +264,9 @@ public class MainActivity extends AppCompatActivity {
         objTopGoalsTellyOp = this.findViewById(R.id.text_top_goals_teleop);
         objTopGoalsTellyOp.addTextChangedListener(objTW);
 
+        // filter any number that is negative or huge
+        objTopGoalsTellyOp.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "100")});
+
         objTopGoalsTellyOpAdd = this.findViewById(R.id.top_goals_teleop_add);
         objTopGoalsTellyOpAdd.setOnClickListener(new CompoundButton.OnClickListener() {
             @Override
@@ -223,6 +286,9 @@ public class MainActivity extends AppCompatActivity {
 
         objMiddleGoalsTellyOp = this.findViewById(R.id.text_middle_goals_teleop);
         objMiddleGoalsTellyOp.addTextChangedListener(objTW);
+
+        // filter any number that is negative or huge
+        objMiddleGoalsTellyOp.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "100")});
 
         objMiddleGoalsTellyOpAdd = this.findViewById(R.id.middle_goals_teleop_add);
         objMiddleGoalsTellyOpAdd.setOnClickListener(new CompoundButton.OnClickListener() {
@@ -244,6 +310,9 @@ public class MainActivity extends AppCompatActivity {
         objLowGoalsTellyOp = this.findViewById(R.id.text_low_goals_teleop);
         objLowGoalsTellyOp.addTextChangedListener(objTW);
 
+        // filter any number that is negative or huge
+        objLowGoalsTellyOp.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "100")});
+
         objLowGoalsTellyOpAdd = this.findViewById(R.id.low_goals_teleop_add);
         objLowGoalsTellyOpAdd.setOnClickListener(new CompoundButton.OnClickListener() {
             @Override
@@ -263,6 +332,9 @@ public class MainActivity extends AppCompatActivity {
 
         objTopGoalsEndgame = this.findViewById(R.id.text_top_goals_end);
         objTopGoalsEndgame.addTextChangedListener(objTW);
+
+        // filter any number that is negative or huge
+        objTopGoalsEndgame.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "100")});
 
         objTopGoalsEndgameAdd = this.findViewById(R.id.top_goals_end_add);
         objTopGoalsEndgameAdd.setOnClickListener(new CompoundButton.OnClickListener() {
@@ -284,6 +356,9 @@ public class MainActivity extends AppCompatActivity {
         objMiddleGoalsEndgame = this.findViewById(R.id.text_middle_goals_end);
         objMiddleGoalsEndgame.addTextChangedListener(objTW);
 
+        // filter any number that is negative or huge
+        objMiddleGoalsEndgame.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "100")});
+
         objMiddleGoalsEndgameAdd = this.findViewById(R.id.middle_goals_end_add);
         objMiddleGoalsEndgameAdd.setOnClickListener(new CompoundButton.OnClickListener() {
             @Override
@@ -304,6 +379,9 @@ public class MainActivity extends AppCompatActivity {
         objLowGoalsEndgame = this.findViewById(R.id.text_low_goals_end);
         objLowGoalsEndgame.addTextChangedListener(objTW);
 
+        // filter any number that is negative or huge
+        objLowGoalsEndgame.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "100")});
+
         objLowGoalsEndgameAdd = this.findViewById(R.id.low_goals_end_add);
         objLowGoalsEndgameAdd.setOnClickListener(new CompoundButton.OnClickListener() {
             @Override
@@ -323,6 +401,9 @@ public class MainActivity extends AppCompatActivity {
 
         objWobbleRing = this.findViewById(R.id.text_wobble_ring);
         objWobbleRing.addTextChangedListener(objTW);
+
+        // filter any number that is negative or huge
+        objWobbleRing.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "15")});
 
         objWobbleRingAdd = this.findViewById(R.id.wobble_ring_add);
         objWobbleRingAdd.setOnClickListener(new CompoundButton.OnClickListener() {
@@ -389,6 +470,10 @@ public class MainActivity extends AppCompatActivity {
         objPenaltyMinor = this.findViewById(R.id.text_penalty_minor);
         objPenaltyMinor.addTextChangedListener(objTW);
 
+        // filter any number that is negative or huge
+        objPenaltyMinor.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "100")});
+
+
         objPenaltyMinorAdd = this.findViewById(R.id.penalty_minor_add);
         objPenaltyMinorAdd.setOnClickListener(new CompoundButton.OnClickListener() {
             @Override
@@ -408,6 +493,9 @@ public class MainActivity extends AppCompatActivity {
 
         objPenaltyMajor = this.findViewById(R.id.text_penalty_major);
         objPenaltyMajor.addTextChangedListener(objTW);
+
+        // filter any number that is negative or huge
+        objPenaltyMajor.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "100")});
 
         objPenaltyMajorAdd = this.findViewById(R.id.penalty_major_add);
         objPenaltyMajorAdd.setOnClickListener(new CompoundButton.OnClickListener() {

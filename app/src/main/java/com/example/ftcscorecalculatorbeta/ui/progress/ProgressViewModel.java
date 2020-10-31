@@ -10,7 +10,7 @@ public class ProgressViewModel extends ViewModel {
 
     public ProgressViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("This is Progress fragment");
     }
 
     public LiveData<String> getText() {
