@@ -117,31 +117,7 @@ public class MainActivity extends AppCompatActivity {
         objSaveScores.setOnClickListener(new CompoundButton.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-
-                // Create a new user with a first and last name
-                Map<String, Object> score = new HashMap<>();
-                score.put("AutTopGoals", 3);
-                score.put("AutMiddleGoals", 2);
-                score.put("AutLowGoals", 3);
-                score.put("AutStoppedOnLine",  objSwitchStoppedOnLine.isChecked());
-
-                // Add a new document with a generated ID
-                db.collection("Scores")
-                        .add(score)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error adding document", e);
-                            }
-                        });
+                saveScore();
             }
         });
 
@@ -658,6 +634,62 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void saveScore()
+    {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
+        // Create a new user with a first and last name
+        Map<String, Object> score = new HashMap<>();
+        score.put("TotalScore", objResult.getText().toString());
+
+        score.put("AutTopGoals", objTopGoals.getText().toString());
+        score.put("AutMiddleGoals", objMiddleGoals.getText().toString());
+        score.put("AutLowGoals", objLowGoals.getText().toString());
+        score.put("AutStoppedOnLine",  objSwitchStoppedOnLine.isChecked());
+        score.put("AutWobbleGoalDeposited",  objSwitchWobbleGoalDeposited.isChecked());
+        score.put("AutPowerShot1",  objPowerShot1.isChecked());
+        score.put("AutPowerShot2",  objPowerShot2.isChecked());
+        score.put("AutPowerShot3",  objPowerShot3.isChecked());
+        score.put("AutScore", objAutresult.getText().toString());
+
+        score.put("TelTopGoals", objTopGoalsTellyOp.getText().toString());
+        score.put("TelMiddleGoals", objMiddleGoalsTellyOp.getText().toString());
+        score.put("TelLowGoals", objLowGoalsTellyOp.getText().toString());
+        score.put("TelScore", objTeleopresult.getText().toString());
+
+        score.put("EndTopGoals", objTopGoalsEndgame.getText().toString());
+        score.put("EndMiddleGoals", objMiddleGoalsEndgame.getText().toString());
+        score.put("EndLowGoals", objLowGoalsEndgame.getText().toString());
+        score.put("EndWobbleGoals", objWobbleRing.getText().toString());
+        score.put("EndPowerShot1",  objPowerShot1End.isChecked());
+        score.put("EndPowerShot2",  objPowerShot2End.isChecked());
+        score.put("EndPowerShot3",  objPowerShot3End.isChecked());
+        score.put("EndWobbleInDropZone",  objSwitchWobbleInDropZone.isChecked());
+        score.put("EndStartLinePark",  objSwitchStartLinePark.isChecked());
+        score.put("EndScore", objEndresult.getText().toString());
+
+        score.put("PenaltyMajor", objPenaltyMajor.getText().toString());
+        score.put("PenaltyMinor", objPenaltyMinor.getText().toString());
+        score.put("PenaltyScore", objPenaltyresult.getText().toString());
+
+
+        // Add a new document with a generated ID
+        db.collection("Scores")
+                .add(score)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                    }
+                });
+    }
 
     private void updateTotals() {
         int intAutonomous = 0;
