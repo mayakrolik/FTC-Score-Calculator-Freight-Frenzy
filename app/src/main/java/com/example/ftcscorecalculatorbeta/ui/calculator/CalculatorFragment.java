@@ -1,5 +1,6 @@
 package com.example.ftcscorecalculatorbeta.ui.calculator;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -23,9 +24,14 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import com.example.ftcscorecalculatorbeta.InputFilterMinMax;
+import com.example.ftcscorecalculatorbeta.MainActivity;
 import com.example.ftcscorecalculatorbeta.R;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -102,6 +108,7 @@ public class CalculatorFragment extends Fragment {
     private ImageButton objPenaltyMajorAdd;
     private ImageButton objPenaltyMajorSubtract;
     private Button objSaveScores;
+    private Button objLoginButton;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -123,6 +130,16 @@ public class CalculatorFragment extends Fragment {
 
     private void doOnCreate(View view)
     {
+        objLoginButton = view.findViewById(R.id.loginbutton);
+        objLoginButton.setOnClickListener(new CompoundButton.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+            MainActivity activity = (MainActivity) getActivity();
+            activity.login();
+        }
+    });
+
         objSaveScores = view.findViewById(R.id.savescoresbutton);
 
         objSaveScores.setOnClickListener(new CompoundButton.OnClickListener() {
@@ -647,11 +664,18 @@ public class CalculatorFragment extends Fragment {
 
     private void saveScore()
     {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        MainActivity activity = (MainActivity) getActivity();
+        if (activity.currentUser == null) {
+            activity.login();
+            return;
+        }
 
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         // Create a new user with a first and last name
         Map<String, Object> score = new HashMap<>();
+        score.put("UserUid", activity.currentUser.getUid());
+        score.put("TeamId", activity.strFirstTeamId);
         score.put("TotalScore", (Integer.parseInt("0" + objResult.getText().toString())));
 
         score.put("AutTopGoals", (Integer.parseInt("0" + objTopGoals.getText().toString())));
