@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "2083224980",
+    "firebase_url": "https://ftc-calculator.firebaseio.com",
+    "project_id": "ftc-calculator",
+    "storage_bucket": "ftc-calculator.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2083224980:android:4000d228c4c9ac22552381",
+        "android_client_info": {
+          "package_name": "com.example.ftcscorecalculatorbeta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "2083224980-7k2vaem4ir7g0me9tr3vqop89qmbmlct.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAu2vzad9jCi-Ga3QhtnHQkJ1wvWK674kM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "2083224980-7k2vaem4ir7g0me9tr3vqop89qmbmlct.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
