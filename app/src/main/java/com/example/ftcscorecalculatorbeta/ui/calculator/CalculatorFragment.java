@@ -108,7 +108,6 @@ public class CalculatorFragment extends Fragment {
     private ImageButton objPenaltyMajorAdd;
     private ImageButton objPenaltyMajorSubtract;
     private Button objSaveScores;
-    private Button objLoginButton;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -116,30 +115,12 @@ public class CalculatorFragment extends Fragment {
         calculatorViewModel =
                 ViewModelProviders.of(this).get(CalculatorViewModel.class);
         View root = inflater.inflate(R.layout.fragment_calculator, container, false);
-        /*final TextView textView = root.findViewById(R.id.text_calculator);
-        calculatorViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-         */
         doOnCreate(root);
         return root;
     }
 
     private void doOnCreate(View view)
     {
-        objLoginButton = view.findViewById(R.id.loginbutton);
-        objLoginButton.setOnClickListener(new CompoundButton.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-
-            MainActivity activity = (MainActivity) getActivity();
-            activity.login();
-        }
-    });
-
         objSaveScores = view.findViewById(R.id.savescoresbutton);
 
         objSaveScores.setOnClickListener(new CompoundButton.OnClickListener() {
@@ -662,11 +643,19 @@ public class CalculatorFragment extends Fragment {
         });
     }
 
-    private void saveScore()
+    public void saveScore()
     {
         MainActivity activity = (MainActivity) getActivity();
         if (activity.currentUser == null) {
             activity.login();
+            return;
+        }
+
+        int intTotalPoints = Integer.parseInt("0" + objResult.getText().toString());
+
+        if (intTotalPoints <= 0)
+        {
+            // we don't save loosers ;)
             return;
         }
 
@@ -676,7 +665,7 @@ public class CalculatorFragment extends Fragment {
         Map<String, Object> score = new HashMap<>();
         score.put("UserUid", activity.currentUser.getUid());
         score.put("TeamId", activity.strFirstTeamId);
-        score.put("TotalScore", (Integer.parseInt("0" + objResult.getText().toString())));
+        score.put("TotalScore", intTotalPoints);
 
         score.put("AutTopGoals", (Integer.parseInt("0" + objTopGoals.getText().toString())));
         score.put("AutMiddleGoals", (Integer.parseInt("0" + objMiddleGoals.getText().toString())));
@@ -716,6 +705,7 @@ public class CalculatorFragment extends Fragment {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                        // TODO :  reset everything to zero and show progress fragment
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
