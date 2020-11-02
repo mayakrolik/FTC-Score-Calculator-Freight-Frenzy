@@ -103,6 +103,9 @@ public class MainActivity extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, gotoFragment).commit();
                 gotoFragment = null;
             }
+
+            // get user profile
+            strFirstTeamId = "14564";
         }
     }
 
@@ -137,15 +140,12 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.navigation_calculator:
                         fragment = cacl_frag;
                         blnRequireLogin = false;
-                        //Toast.makeText(MainActivity.this, "Calc", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.navigation_home:
                         fragment = home_frag;
-                        //Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.navigation_progress:
                         fragment = prog_frag;
-                        //Toast.makeText(MainActivity.this, "Progress", Toast.LENGTH_SHORT).show();
                         break;
                 }
                 if (blnRequireLogin & (currentUser == null))

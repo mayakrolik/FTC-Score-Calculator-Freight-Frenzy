@@ -33,6 +33,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -666,6 +667,8 @@ public class CalculatorFragment extends Fragment {
         score.put("UserUid", activity.currentUser.getUid());
         score.put("TeamId", activity.strFirstTeamId);
         score.put("TotalScore", intTotalPoints);
+        score.put("CreatedTimestamp", FieldValue.serverTimestamp());
+
 
         score.put("AutTopGoals", (Integer.parseInt("0" + objTopGoals.getText().toString())));
         score.put("AutMiddleGoals", (Integer.parseInt("0" + objMiddleGoals.getText().toString())));
