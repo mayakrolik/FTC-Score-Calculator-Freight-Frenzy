@@ -36,7 +36,7 @@ public class CalculatorFragment extends Fragment {
 
     private CalculatorViewModel calculatorViewModel;
 
-    final static String TAG = "MainActivity";
+    final static String TAG = "CalculatorFragment";
 
     private TextView objResult;
     private TextView objAutresult;

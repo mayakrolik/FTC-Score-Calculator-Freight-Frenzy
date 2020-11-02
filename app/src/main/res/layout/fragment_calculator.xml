@@ -473,11 +473,6 @@
                 </TableLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
-
-
-        //
-
-
         <androidx.cardview.widget.CardView
             android:id="@+id/CardViewend"
             android:layout_width="match_parent"
@@ -791,9 +786,6 @@
                 </TableLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
-
-        //
-
         <androidx.cardview.widget.CardView
             android:id="@+id/CardViewPenalty"
             android:layout_width="match_parent"
