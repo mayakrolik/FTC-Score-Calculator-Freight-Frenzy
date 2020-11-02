@@ -652,37 +652,37 @@ public class CalculatorFragment extends Fragment {
 
         // Create a new user with a first and last name
         Map<String, Object> score = new HashMap<>();
-        score.put("TotalScore", objResult.getText().toString());
+        score.put("TotalScore", (Integer.parseInt("0" + objResult.getText().toString())));
 
-        score.put("AutTopGoals", objTopGoals.getText().toString());
-        score.put("AutMiddleGoals", objMiddleGoals.getText().toString());
-        score.put("AutLowGoals", objLowGoals.getText().toString());
+        score.put("AutTopGoals", (Integer.parseInt("0" + objTopGoals.getText().toString())));
+        score.put("AutMiddleGoals", (Integer.parseInt("0" + objMiddleGoals.getText().toString())));
+        score.put("AutLowGoals", (Integer.parseInt("0" + objLowGoals.getText().toString())));
         score.put("AutStoppedOnLine",  objSwitchStoppedOnLine.isChecked());
         score.put("AutWobbleGoalDeposited",  objSwitchWobbleGoalDeposited.isChecked());
         score.put("AutPowerShot1",  objPowerShot1.isChecked());
         score.put("AutPowerShot2",  objPowerShot2.isChecked());
         score.put("AutPowerShot3",  objPowerShot3.isChecked());
-        score.put("AutScore", objAutresult.getText().toString());
+        score.put("AutScore", (Integer.parseInt("0" + objAutresult.getText().toString())));
 
-        score.put("TelTopGoals", objTopGoalsTellyOp.getText().toString());
-        score.put("TelMiddleGoals", objMiddleGoalsTellyOp.getText().toString());
-        score.put("TelLowGoals", objLowGoalsTellyOp.getText().toString());
-        score.put("TelScore", objTeleopresult.getText().toString());
+        score.put("TelTopGoals", (Integer.parseInt("0" + objTopGoalsTellyOp.getText().toString())));
+        score.put("TelMiddleGoals", (Integer.parseInt("0" + objMiddleGoalsTellyOp.getText().toString())));
+        score.put("TelLowGoals", (Integer.parseInt("0" + objLowGoalsTellyOp.getText().toString())));
+        score.put("TelScore", (Integer.parseInt("0" + objTeleopresult.getText().toString())));
 
-        score.put("EndTopGoals", objTopGoalsEndgame.getText().toString());
-        score.put("EndMiddleGoals", objMiddleGoalsEndgame.getText().toString());
-        score.put("EndLowGoals", objLowGoalsEndgame.getText().toString());
-        score.put("EndWobbleGoals", objWobbleRing.getText().toString());
+        score.put("EndTopGoals", (Integer.parseInt("0" + objTopGoalsEndgame.getText().toString())));
+        score.put("EndMiddleGoals", (Integer.parseInt("0" + objMiddleGoalsEndgame.getText().toString())));
+        score.put("EndLowGoals", (Integer.parseInt("0" + objLowGoalsEndgame.getText().toString())));
+        score.put("EndWobbleGoals", (Integer.parseInt("0" + objWobbleRing.getText().toString())));
         score.put("EndPowerShot1",  objPowerShot1End.isChecked());
         score.put("EndPowerShot2",  objPowerShot2End.isChecked());
         score.put("EndPowerShot3",  objPowerShot3End.isChecked());
         score.put("EndWobbleInDropZone",  objSwitchWobbleInDropZone.isChecked());
         score.put("EndStartLinePark",  objSwitchStartLinePark.isChecked());
-        score.put("EndScore", objEndresult.getText().toString());
+        score.put("EndScore", (Integer.parseInt("0" + objEndresult.getText().toString())));
 
-        score.put("PenaltyMajor", objPenaltyMajor.getText().toString());
-        score.put("PenaltyMinor", objPenaltyMinor.getText().toString());
-        score.put("PenaltyScore", objPenaltyresult.getText().toString());
+        score.put("PenaltyMajor", (Integer.parseInt("0" + objPenaltyMajor.getText().toString())));
+        score.put("PenaltyMinor", (Integer.parseInt("0" + objPenaltyMinor.getText().toString())));
+        score.put("PenaltyScore", (Integer.parseInt("0" + objPenaltyresult.getText().toString())));
 
 
         // Add a new document with a generated ID
