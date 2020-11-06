@@ -967,5 +967,11 @@
             android:layout_height="wrap_content"
             android:text="@string/SaveScores"
             />
+        <Button
+            android:id="@+id/logoutbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/LogoutButton"
+            />
     </LinearLayout>
 </ScrollView>

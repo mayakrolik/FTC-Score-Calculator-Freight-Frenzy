@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     public String strFirstTeamId;
 
     public void login() {
+        Log.d(TAG, "Current user ");
         if (currentUser == null) {
             GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestIdToken(getString(R.string.default_web_client_id))
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
             GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
             Intent signInIntent = mGoogleSignInClient.getSignInIntent();
             startActivityForResult(signInIntent, 1);
+        } else {
+            Log.d(TAG, currentUser.toString());
         }
         updateUI();
     }
