@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "2083224980-egliucdv79e3k137l9nt7e5oj7up05sm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ftcscorecalculatorbeta",
+            "certificate_hash": "15bb2790ed9413994a9b8930152bbed849ae7b0b"
+          }
+        },
+        {
           "client_id": "2083224980-602enthkug4lq0ehj35g653a6j2u5l08.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

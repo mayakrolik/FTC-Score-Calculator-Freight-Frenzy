@@ -38,7 +38,11 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
     public void onBindViewHolder(@NonNull ScoreViewHolder holder, int position) {
 
         holder.teamName.setText(scores.get(position).TeamId);
+        holder.totalScore.setText(String.valueOf(scores.get(position).TotalScore));
         holder.autonomousScore.setText(String.valueOf(scores.get(position).AutScore));
+        holder.tellyopScore.setText(String.valueOf(scores.get(position).TelScore));
+        holder.endScore.setText(String.valueOf(scores.get(position).EndScore));
+
         //holder.personPhoto.setImageResource(scores.get(position).photoId);
         Log.d(TAG, "onBindViewHolder");
 
@@ -60,13 +64,19 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
         CardView cv;
         TextView teamName;
         TextView autonomousScore;
+        TextView totalScore;
+        TextView tellyopScore;
+        TextView endScore;
         // ImageView personPhoto;
 
         ScoreViewHolder(View itemView) {
             super(itemView);
             cv = (CardView) itemView.findViewById(R.id.cv);
             teamName = (TextView) itemView.findViewById(R.id.team_name);
+            totalScore = (TextView) itemView.findViewById(R.id.total_score);
             autonomousScore = (TextView) itemView.findViewById(R.id.autonomous_score);
+            tellyopScore = (TextView) itemView.findViewById(R.id.tellyop_score);
+            endScore = (TextView) itemView.findViewById(R.id.end_score);
             //personPhoto = (ImageView)itemView.findViewById(R.id.person_photo);
         }
 

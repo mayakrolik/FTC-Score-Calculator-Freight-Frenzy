@@ -1,13 +1,18 @@
 package com.example.ftcscorecalculatorbeta.ui.progress;
 
 import android.os.Bundle;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -31,6 +36,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ProgressFragment extends Fragment {
+
+    private ImageButton objProgressExpandButton;
+    private TableLayout objProgressTable;
+    private CardView objProgressCard;
 
     final static String TAG = "ProgressFragment";
 
@@ -110,8 +119,54 @@ public class ProgressFragment extends Fragment {
         rv.setAdapter(adapter);
 
         //rv.setHasFixedSize(true);
+        //doOnCreate(root);
 
         return root;
     }
+
+    private void doOnCreate(View view) {
+
+        objProgressExpandButton = view.findViewById(R.id.progress_expand_card);
+
+        objProgressTable = view.findViewById(R.id.progress_table_initial);
+
+        objProgressCard = view.findViewById(R.id.cv);
+
+        if (objProgressTable.getVisibility() == View.VISIBLE) {
+            TransitionManager.beginDelayedTransition(objProgressCard,
+                    new AutoTransition());
+            objProgressTable.setVisibility(View.GONE);
+            objProgressExpandButton.setImageResource(R.drawable.ic_baseline_expand_more_24);
+        } else {
+
+            TransitionManager.beginDelayedTransition(objProgressCard,
+                    new AutoTransition());
+            objProgressTable.setVisibility(View.VISIBLE);
+            objProgressExpandButton.setImageResource(R.drawable.ic_baseline_expand_less_24);
+        }
+
+        objProgressExpandButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (objProgressTable.getVisibility() == View.VISIBLE) {
+
+                    TransitionManager.beginDelayedTransition(objProgressCard,
+                            new AutoTransition());
+                    objProgressTable.setVisibility(View.GONE);
+                    objProgressExpandButton.setImageResource(R.drawable.ic_baseline_expand_more_24);
+                } else {
+
+                    TransitionManager.beginDelayedTransition(objProgressCard,
+                            new AutoTransition());
+                    objProgressTable.setVisibility(View.VISIBLE);
+                    objProgressExpandButton.setImageResource(R.drawable.ic_baseline_expand_less_24);
+                }
+            }
+        });
+
+
+    }
+
 
 }
