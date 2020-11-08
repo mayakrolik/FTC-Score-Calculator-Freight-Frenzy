@@ -5,6 +5,7 @@ public class UserProfile {
     public UserProfile() {}
 
     public int TeamNumber;
+    public String TeamNickName;
     public String UserUid;
     public int LoginCount;
     public String City;

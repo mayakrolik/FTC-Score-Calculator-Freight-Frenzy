@@ -148,6 +148,7 @@ public class RegisterFragment extends DialogFragment {
         Map<String, Object> user = new HashMap<>();
         user.put("UserUid", activity.currentUser.getUid());
         user.put("TeamNumber", activity.myTeam.TeamNumber);
+        user.put("TeamNickName", activity.myTeam.NickName);
         user.put("LoginCount", 1);
         user.put("City", activity.myTeam.City);
         user.put("StateProv", activity.myTeam.StateProv);
