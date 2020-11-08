@@ -680,7 +680,7 @@ public class CalculatorFragment extends Fragment {
         score.put("CountryCode", activity.myTeam.CountryCode);
         score.put("City", activity.myTeam.City);
         score.put("TeamNickName", activity.myTeam.NickName);
-        score.put("TeamNickName", activity.myTeam.TeamType);
+        score.put("TeamType", activity.myTeam.TeamType);
         score.put("SeasonYear", activity.seasonYear);
 
 
@@ -717,7 +717,7 @@ public class CalculatorFragment extends Fragment {
 
         score.put("PenaltyMajor", (Integer.parseInt("0" + objPenaltyMajor.getText().toString())));
         score.put("PenaltyMinor", (Integer.parseInt("0" + objPenaltyMinor.getText().toString())));
-        score.put("PenaltyScore", (Integer.parseInt("0" + objPenaltyresult.getText().toString())));
+        score.put("PenaltyScore", (Integer.parseInt( objPenaltyresult.getText().toString())));
 
 
         // Add a new document with a generated ID
