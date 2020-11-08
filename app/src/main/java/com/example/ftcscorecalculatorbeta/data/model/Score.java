@@ -17,6 +17,9 @@ import androidx.lifecycle.ViewModelProviders;
 
 public class Score {
     public int TeamNumber;
+    public String TeamNickName;
+    public String UserDisplayName;
+    public String UserEmailAddress;
     public int AutScore;
     public int TelScore;
     public int EndScore;
@@ -59,6 +62,8 @@ public class Score {
     TelTopGoals
     TotalScore
     UserUid
+    UserDisplayName
+    UserEmailAddress
 */
 
 
