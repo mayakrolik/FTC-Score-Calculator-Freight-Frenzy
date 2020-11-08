@@ -15,17 +15,52 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.ftcscorecalculatorbeta.R;
-import com.example.ftcscorecalculatorbeta.MainActivity;
-import com.example.ftcscorecalculatorbeta.ui.progress.ProgressViewModel;
-
 public class Score {
-    private ProgressViewModel progressViewModel;
-    public String TeamId;
+    public int TeamNumber;
     public int AutScore;
     public int TelScore;
     public int EndScore;
     public int TotalScore;
+
+/*    AutLowGoals
+    AutMiddleGoals
+    AutPowerShot1
+    AutPowerShot2
+    AutPowerShot3
+    AutScore
+    AutStoppedOnLine
+    AutTopGoals
+    AutWobbleGoalDeposited
+    City
+    CountryCode
+    CreatedTimestamp
+    EndLowGoals
+    EndMiddleGoals
+    EndPowerShot1
+    EndPowerShot2
+    EndPowerShot3
+    EndScore
+    EndStartLinePark
+    EndTopGoals
+    EndWobbleGoals
+    EndWobbleInDropZone
+    PenaltyMajor
+    PenaltyMinor
+    PenaltyScore
+    PostalCode
+    SeasonYear
+    StateProv
+    TeamNickName
+    TeamNumber
+    TeamType
+    TelLowGoals
+    TelMiddleGoals
+    TelScore
+    TelTopGoals
+    TotalScore
+    UserUid
+*/
+
 
     public Score(){
 

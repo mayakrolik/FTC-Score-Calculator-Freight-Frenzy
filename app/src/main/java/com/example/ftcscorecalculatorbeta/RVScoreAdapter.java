@@ -37,7 +37,7 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
     @Override
     public void onBindViewHolder(@NonNull ScoreViewHolder holder, int position) {
 
-        holder.teamName.setText(scores.get(position).TeamId);
+        holder.teamName.setText(scores.get(position).TeamNumber);
         holder.totalScore.setText(String.valueOf(scores.get(position).TotalScore));
         holder.autonomousScore.setText(String.valueOf(scores.get(position).AutScore));
         holder.tellyopScore.setText(String.valueOf(scores.get(position).TelScore));
