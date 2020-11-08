@@ -7,5 +7,11 @@ public class UserProfile {
     public int TeamNumber;
     public String UserUid;
     public int LoginCount;
+    public String City;
+    public String StateProv;
+    public String PostalCode;
+    public String CountryCode;
+    public String DisplayName;
+    public String EmailAddress;
 
 }
