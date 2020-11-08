@@ -2,6 +2,8 @@ package com.example.ftcscorecalculatorbeta;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +11,9 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
+import com.example.ftcscorecalculatorbeta.data.model.Team;
+import com.example.ftcscorecalculatorbeta.data.model.UserProfile;
 import com.example.ftcscorecalculatorbeta.ui.calculator.CalculatorFragment;
 import com.example.ftcscorecalculatorbeta.ui.home.HomeFragment;
 import com.example.ftcscorecalculatorbeta.ui.progress.ProgressFragment;
@@ -18,6 +23,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.AuthCredential;
@@ -25,6 +32,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,7 +43,11 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     public FirebaseUser currentUser;
     private Fragment gotoFragment;
-    public String strFirstTeamId;
+    public Team myTeam;
+    public UserProfile userProfile;
+    public int seasonYear = 2020;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
 
     public void login() {
         Log.d(TAG, "Current user ");
@@ -48,9 +62,20 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Log.d(TAG, currentUser.toString());
         }
+        if (myTeam == null)
+        {
+            Log.d(TAG, "Not registered yet.");
+            startUserRegistration();
+        }
         updateUI();
     }
 
+    private void startUserRegistration()
+    {
+        FragmentManager fm = getSupportFragmentManager();
+        RegisterFragment regFragment = RegisterFragment.newInstance();
+        regFragment.show(fm, "fragment_register");
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -96,20 +121,89 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    private void updateUI() {
+    public void updateUI() {
         //currentUser
         if (currentUser != null)
         {
             Log.d( TAG, "User logged in is " + currentUser.getDisplayName());
-            if (gotoFragment != null)
-            {
-                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, gotoFragment).commit();
-                gotoFragment = null;
+
+            if (userProfile != null) {
+                if (gotoFragment != null) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, gotoFragment).commit();
+                    gotoFragment = null;
+                }
+            } else {
+                // get user profile
+                loadUserProfile();
             }
 
-            // get user profile
-            strFirstTeamId = "14564";
         }
+    }
+
+    private void loadUserProfile()
+    {
+        DocumentReference docRef = db.collection("Users").document(currentUser.getUid());
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        userProfile = document.toObject(UserProfile.class);
+                        loadTeam();
+                    } else {
+                        Log.d(TAG, "No such document (user profile) ");
+                        startUserRegistration();
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+    }
+
+    private void loadTeam()
+    {
+        DocumentReference docRef = db.collection("Teams").document(String.valueOf(userProfile.TeamNumber));
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        myTeam = document.toObject(Team.class);
+                        incrementLoginCount();
+                        updateUI();
+                    } else {
+                        Log.d(TAG, "No such document (team) ");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+    }
+
+    private void incrementLoginCount()
+    {
+        userProfile.LoginCount = userProfile.LoginCount + 1;
+        db.collection("Users")
+                .document(userProfile.UserUid)
+                .set(userProfile)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void avoid) {
+                        Log.d(TAG, "User Document updated.");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error updating user document", e);
+                    }
+                });
     }
 
     @Override
@@ -151,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment = prog_frag;
                         break;
                 }
-                if (blnRequireLogin & (currentUser == null))
+                if (blnRequireLogin & (myTeam == null))
                 {
                     gotoFragment = fragment;
                     login();

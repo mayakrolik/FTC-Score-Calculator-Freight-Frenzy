@@ -1,25 +1,15 @@
 package com.example.ftcscorecalculatorbeta.ui.progress;
 
 import android.os.Bundle;
-import android.transition.AutoTransition;
-import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.TableLayout;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-
 import com.example.ftcscorecalculatorbeta.MainActivity;
 import com.example.ftcscorecalculatorbeta.R;
 import com.example.ftcscorecalculatorbeta.RVScoreAdapter;
@@ -30,23 +20,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class ProgressFragment extends Fragment {
-
-    private ImageButton objProgressExpandButton;
-    private TableLayout objProgressTable;
-    private CardView objProgressCard;
 
     final static String TAG = "ProgressFragment";
 
     private boolean blnInitalized = false;
 
     private ProgressViewModel progressViewModel;
-    //private ArrayList<QueryDocumentSnapshot> results = new ArrayList<QueryDocumentSnapshot>();
 
 
     private void queryForRecentScoresForMyTeam()
@@ -56,7 +39,7 @@ public class ProgressFragment extends Fragment {
         MainActivity activity = (MainActivity) getActivity();
 
         db.collection("Scores")
-                .whereEqualTo("TeamId", activity.strFirstTeamId)
+                .whereEqualTo("TeamNumber", activity.myTeam.TeamNumber)
                 .orderBy("CreatedTimestamp", Query.Direction.DESCENDING)
                 .limit(50)
                 .get()
@@ -68,12 +51,13 @@ public class ProgressFragment extends Fragment {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 Score score = document.toObject(Score.class);
                                 scores.add(score);
-                                //results.add(document);
                             }
 
                             RecyclerView rv = (RecyclerView)  getView().findViewById(R.id.rv);
                             RVScoreAdapter adapter = new RVScoreAdapter(scores);
                             rv.setAdapter(adapter);
+                            //rv.setHasFixedSize(true);
+
                             blnInitalized = true;
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
@@ -84,89 +68,23 @@ public class ProgressFragment extends Fragment {
 
     }
 
-    private List<Score> scores = new ArrayList<>();;
-
-    // This method creates an ArrayList that has three Score objects
-    //private void initializeData(){
-    //    scores = new ArrayList<>();
-    //    scores.add(new Score("Emma Wilson", 1));
-    //    scores.add(new Score("Lavery Maiss", 43));
-    //    scores.add(new Score("Lillie Watts", 4343));
-    //}
-
+    private List<Score> scores = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         progressViewModel =  ViewModelProviders.of(this).get(ProgressViewModel.class);
         View root = inflater.inflate(R.layout.fragment_progress, container, false);
-        /*
-        final TextView textView = root.findViewById(R.id.text_progress);
-        progressViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-         */
+
         queryForRecentScoresForMyTeam();
-        //initializeData();
 
         RecyclerView rv = (RecyclerView)root.findViewById(R.id.rv);
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         rv.setLayoutManager(llm);
 
-        RVScoreAdapter adapter = new RVScoreAdapter(scores);
-        rv.setAdapter(adapter);
-
-        //rv.setHasFixedSize(true);
-        //doOnCreate(root);
+        //RVScoreAdapter adapter = new RVScoreAdapter(scores);
+        //rv.setAdapter(adapter);
 
         return root;
     }
-
-    private void doOnCreate(View view) {
-
-        objProgressExpandButton = view.findViewById(R.id.progress_expand_card);
-
-        objProgressTable = view.findViewById(R.id.progress_table_initial);
-
-        objProgressCard = view.findViewById(R.id.cv);
-
-        if (objProgressTable.getVisibility() == View.VISIBLE) {
-            TransitionManager.beginDelayedTransition(objProgressCard,
-                    new AutoTransition());
-            objProgressTable.setVisibility(View.GONE);
-            objProgressExpandButton.setImageResource(R.drawable.ic_baseline_expand_more_24);
-        } else {
-
-            TransitionManager.beginDelayedTransition(objProgressCard,
-                    new AutoTransition());
-            objProgressTable.setVisibility(View.VISIBLE);
-            objProgressExpandButton.setImageResource(R.drawable.ic_baseline_expand_less_24);
-        }
-
-        objProgressExpandButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (objProgressTable.getVisibility() == View.VISIBLE) {
-
-                    TransitionManager.beginDelayedTransition(objProgressCard,
-                            new AutoTransition());
-                    objProgressTable.setVisibility(View.GONE);
-                    objProgressExpandButton.setImageResource(R.drawable.ic_baseline_expand_more_24);
-                } else {
-
-                    TransitionManager.beginDelayedTransition(objProgressCard,
-                            new AutoTransition());
-                    objProgressTable.setVisibility(View.VISIBLE);
-                    objProgressExpandButton.setImageResource(R.drawable.ic_baseline_expand_less_24);
-                }
-            }
-        });
-
-
-    }
-
 
 }

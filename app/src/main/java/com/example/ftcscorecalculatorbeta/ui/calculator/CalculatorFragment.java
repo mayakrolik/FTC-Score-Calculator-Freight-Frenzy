@@ -674,7 +674,17 @@ public class CalculatorFragment extends Fragment {
         // Create a new user with a first and last name
         Map<String, Object> score = new HashMap<>();
         score.put("UserUid", activity.currentUser.getUid());
-        score.put("TeamId", activity.strFirstTeamId);
+        score.put("TeamNumber", activity.myTeam.TeamNumber);
+        score.put("StateProv", activity.myTeam.StateProv);
+        score.put("PostalCode", activity.myTeam.PostalCode);
+        score.put("CountryCode", activity.myTeam.CountryCode);
+        score.put("City", activity.myTeam.City);
+        score.put("TeamNickName", activity.myTeam.NickName);
+        score.put("TeamNickName", activity.myTeam.TeamType);
+        score.put("SeasonYear", activity.seasonYear);
+
+
+
         score.put("TotalScore", intTotalPoints);
         score.put("CreatedTimestamp", FieldValue.serverTimestamp());
 
