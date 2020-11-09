@@ -31,7 +31,7 @@ public class ProgressFragment extends Fragment {
 
     private ProgressViewModel progressViewModel;
 
-
+@NonNull
     private void queryForRecentScoresForMyTeam()
     {
         if (blnInitalized) return;
@@ -70,7 +70,7 @@ public class ProgressFragment extends Fragment {
 
     private List<Score> scores = new ArrayList<>();
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
+    /*public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         progressViewModel =  ViewModelProviders.of(this).get(ProgressViewModel.class);
         View root = inflater.inflate(R.layout.fragment_progress, container, false);
@@ -85,6 +85,6 @@ public class ProgressFragment extends Fragment {
         //rv.setAdapter(adapter);
 
         return root;
-    }
+    }*/
 
 }

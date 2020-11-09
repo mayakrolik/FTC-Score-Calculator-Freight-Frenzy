@@ -66,6 +66,22 @@ public class Score {
     UserEmailAddress
 */
 
+    public String getSafeUserDisplayName()
+    {
+
+        return UserDisplayName;
+    }
+    public String getSafeUserEmailAddress()
+    {
+        String output = "";
+        String input = UserEmailAddress;
+        for(int i = 0; i < input.length(); i++)
+        {
+            input = input + input.charAt(i);
+            //System.out.println("The Character at Position "  + i + " =  " + input.charAt(i));
+        }
+        return output;
+    }
 
     public Score(){
 

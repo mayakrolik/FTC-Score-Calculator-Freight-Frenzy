@@ -49,4 +49,6 @@
     <string name="find_team">Find My Team</string>
     <string name="select_state">Team State</string>
     <string name="eula_short">I agree to always showing gracious professionalism, and to the usage terms outline here.</string>
+    <string name="run_number">Run #</string>
+    <string name="kudos">Kudos</string>
 </resources>
