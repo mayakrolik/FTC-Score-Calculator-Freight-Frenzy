@@ -47,6 +47,15 @@ public class MainActivity extends AppCompatActivity {
     public UserProfile userProfile;
     public int seasonYear = 2020;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    public boolean checkLoginStatus;
+
+    public void macaroni() {
+        if (checkLoginStatus = false)
+            Log.w(TAG, "Sign in pending");
+            Toast.makeText(MainActivity.this, "We are gathering account info.\nPlease wait.", Toast.LENGTH_LONG).show();
+            updateUI();
+            checkLoginStatus = true;
+        }
 
 
     public void login() {
@@ -211,7 +220,9 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         currentUser = mAuth.getCurrentUser();
+        checkLoginStatus = false;
         updateUI();
+        macaroni();
     }
 
     @Override

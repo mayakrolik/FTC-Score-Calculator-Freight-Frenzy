@@ -510,29 +510,17 @@ public class CalculatorFragment extends Fragment {
         });
 
         objAutonomousExpandButton = view.findViewById(R.id.autonomous_expand_card);
-
         objAutonomousTable = view.findViewById(R.id.autonomous_table);
-
         objAutonomousCard = view.findViewById(R.id.autonomous_cardview);
-
         objTeleopsExpandButton = view.findViewById(R.id.teleops_expand_card);
-
         objTeleopsTable = view.findViewById(R.id.teleops_table);
-
         objTeleopsCard = view.findViewById(R.id.CardViewteleops);
-
         objEndExpandButton = view.findViewById(R.id.endgame_expand_card);
-
         objEndTable = view.findViewById(R.id.endgame_table);
-
         objEndCard = view.findViewById(R.id.CardViewend);
-
         objPenaltyExpandButton = view.findViewById(R.id.penalty_expand_card);
-
         objPenaltyTable = view.findViewById(R.id.penalty_table);
-
         objPenaltyCard = view.findViewById(R.id.CardViewPenalty);
-
         objAutonomousExpandButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
