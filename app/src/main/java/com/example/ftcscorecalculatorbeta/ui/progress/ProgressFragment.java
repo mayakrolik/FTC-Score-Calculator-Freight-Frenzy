@@ -39,7 +39,7 @@ public class ProgressFragment extends Fragment {
         MainActivity activity = (MainActivity) getActivity();
 
         db.collection("Scores")
-                .whereEqualTo("TeamNumber", activity.myTeam.TeamNumber)
+                .whereEqualTo("TeamNumber", activity.getMyTeam().TeamNumber)
                 .orderBy("CreatedTimestamp", Query.Direction.DESCENDING)
                 .limit(50)
                 .get()

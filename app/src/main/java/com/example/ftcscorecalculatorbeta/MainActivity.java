@@ -43,19 +43,34 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     public FirebaseUser currentUser;
     private Fragment gotoFragment;
-    public Team myTeam;
+    private Team myTeam;
     public UserProfile userProfile;
     public int seasonYear = 2020;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     public boolean checkLoginStatus;
 
-    public void macaroni() {
-        if (checkLoginStatus = false)
+    public Team getMyTeam()
+    {
+        return myTeam;
+    }
+
+    public void setMyTeam(Team newTeam)
+    {
+        this.myTeam = newTeam;
+        if (this.myTeam != null )
+        {
+            checkLoginStatus = true;
+        }
+    }
+
+
+
+/*    public void macaroni() {
+        if (checkLoginStatus == false)
             Log.w(TAG, "Sign in pending");
             Toast.makeText(MainActivity.this, "We are gathering account info.\nPlease wait.", Toast.LENGTH_LONG).show();
             updateUI();
-            checkLoginStatus = true;
-        }
+        }*/
 
 
     public void login() {
@@ -74,7 +89,15 @@ public class MainActivity extends AppCompatActivity {
         if (myTeam == null)
         {
             Log.d(TAG, "Not registered yet.");
-            startUserRegistration();
+
+            if (checkLoginStatus == false)
+            {
+                Log.w(TAG, "Sign in pending");
+                Toast.makeText(MainActivity.this, "We are gathering account info.\nPlease wait.", Toast.LENGTH_LONG).show();
+                updateUI();
+            } else {
+                startUserRegistration();
+            }
         }
         updateUI();
     }
@@ -184,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                         myTeam = document.toObject(Team.class);
                         incrementLoginCount();
+                        checkLoginStatus = true;
                         updateUI();
                     } else {
                         Log.d(TAG, "No such document (team) ");
@@ -222,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
         currentUser = mAuth.getCurrentUser();
         checkLoginStatus = false;
         updateUI();
-        macaroni();
+        //macaroni();
     }
 
     @Override

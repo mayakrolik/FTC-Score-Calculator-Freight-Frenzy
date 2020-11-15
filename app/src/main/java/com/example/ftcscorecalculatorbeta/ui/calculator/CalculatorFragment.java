@@ -664,13 +664,13 @@ public class CalculatorFragment extends Fragment {
         score.put("UserUid", activity.currentUser.getUid());
         score.put("UserDisplayName", activity.userProfile.DisplayName);
         score.put("UserEmailAddress", activity.userProfile.EmailAddress);
-        score.put("TeamNumber", activity.myTeam.TeamNumber);
-        score.put("StateProv", activity.myTeam.StateProv);
-        score.put("PostalCode", activity.myTeam.PostalCode);
-        score.put("CountryCode", activity.myTeam.CountryCode);
-        score.put("City", activity.myTeam.City);
-        score.put("TeamNickName", activity.myTeam.NickName);
-        score.put("TeamType", activity.myTeam.TeamType);
+        score.put("TeamNumber", activity.getMyTeam().TeamNumber);
+        score.put("StateProv", activity.getMyTeam().StateProv);
+        score.put("PostalCode", activity.getMyTeam().PostalCode);
+        score.put("CountryCode", activity.getMyTeam().CountryCode);
+        score.put("City", activity.getMyTeam().City);
+        score.put("TeamNickName", activity.getMyTeam().NickName);
+        score.put("TeamType", activity.getMyTeam().TeamType);
         score.put("SeasonYear", activity.seasonYear);
 
 
