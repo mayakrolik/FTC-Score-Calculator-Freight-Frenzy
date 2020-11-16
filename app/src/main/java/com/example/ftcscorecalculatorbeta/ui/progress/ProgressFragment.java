@@ -37,7 +37,7 @@ public class ProgressFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.progress_graph);
+        getActivity().setContentView(R.layout.progress_graph);
 
         double y,x;
         x = -5.0;
