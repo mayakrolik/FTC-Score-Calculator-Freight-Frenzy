@@ -22,16 +22,39 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class ProgressFragment extends Fragment {
 
     final static String TAG = "ProgressFragment";
-
     private boolean blnInitalized = false;
-
     private ProgressViewModel progressViewModel;
+    LineGraphSeries<DataPoint> series;
+    public GraphView GraphView;
 
-@NonNull
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.progress_graph);
+
+        double y,x;
+        x = -5.0;
+
+        GraphView graph = (GraphView) .findViewById(R.id.progress_graph2);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
+                new DataPoint(0, 1),
+                new DataPoint(1, 5),
+                new DataPoint(2, 3),
+                new DataPoint(3, 2),
+                new DataPoint(4, 6)
+        });
+        graph.addSeries(series);
+    }
+
+
+    @NonNull
     private void queryForRecentScoresForMyTeam()
     {
         if (blnInitalized) return;
