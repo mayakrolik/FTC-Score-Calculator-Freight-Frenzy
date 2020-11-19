@@ -2,14 +2,19 @@ package com.example.ftcscorecalculatorbeta.ui.progress;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.ftcscorecalculatorbeta.MainActivity;
 import com.example.ftcscorecalculatorbeta.R;
 import com.example.ftcscorecalculatorbeta.RVScoreAdapter;
 import com.example.ftcscorecalculatorbeta.data.model.Score;
+import com.example.ftcscorecalculatorbeta.ui.calculator.CalculatorViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -33,18 +38,10 @@ public class ProgressFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // getActivity().setContentView(R.layout.fragment_progress);
 
-        GraphView graph = (GraphView) .findViewById(R.id.progress_graph);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)
-        });
-        graph.addSeries(series);
+
     }
+
 
 
     @NonNull
@@ -86,21 +83,34 @@ public class ProgressFragment extends Fragment {
 
     private List<Score> scores = new ArrayList<>();
 
-    /*public View onCreateView(@NonNull LayoutInflater inflater,
+    public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         progressViewModel =  ViewModelProviders.of(this).get(ProgressViewModel.class);
         View root = inflater.inflate(R.layout.fragment_progress, container, false);
 
-        queryForRecentScoresForMyTeam();
+        //queryForRecentScoresForMyTeam();
 
-        RecyclerView rv = (RecyclerView)root.findViewById(R.id.rv);
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
-        rv.setLayoutManager(llm);
+        //RecyclerView rv = (RecyclerView)root.findViewById(R.id.rv);
+        //LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        //rv.setLayoutManager(llm);
 
         //RVScoreAdapter adapter = new RVScoreAdapter(scores);
         //rv.setAdapter(adapter);
 
+        GraphView graph = (GraphView) root.findViewById(R.id.progress_graph);
+
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
+                new DataPoint(0, 1),
+                new DataPoint(1, 5),
+                new DataPoint(2, 3),
+                new DataPoint(3, 2),
+                new DataPoint(4, 6)
+        });
+
+        graph.addSeries(series);
+
+
         return root;
-    }*/
+    }
 
 }
