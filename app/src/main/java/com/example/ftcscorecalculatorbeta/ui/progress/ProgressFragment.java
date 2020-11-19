@@ -2,13 +2,9 @@ package com.example.ftcscorecalculatorbeta.ui.progress;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.ftcscorecalculatorbeta.MainActivity;
 import com.example.ftcscorecalculatorbeta.R;
@@ -37,12 +33,9 @@ public class ProgressFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().setContentView(R.layout.progress_graph);
+       // getActivity().setContentView(R.layout.fragment_progress);
 
-        double y,x;
-        x = -5.0;
-
-        GraphView graph = (GraphView) .findViewById(R.id.progress_graph2);
+        GraphView graph = (GraphView) .findViewById(R.id.progress_graph);
         LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
                 new DataPoint(0, 1),
                 new DataPoint(1, 5),

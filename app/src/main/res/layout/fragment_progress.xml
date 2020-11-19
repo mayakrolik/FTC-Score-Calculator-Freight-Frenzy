@@ -4,7 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.progress.ProgressFragment">
+    tools:context=".ui.progress.ProgressFragment"
+    android:background="#80bfff">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="10dp">
 
     <LinearLayout
         android:gravity="center"
@@ -22,38 +29,37 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="5dp"
-            android:id="@+id/graph"
             android:gravity="center">
 
 
             <ProgressGraph
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:id="@+id/progress_graph"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@+id/graph"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="5dp"
+            android:layout_margin="10dp"
             android:gravity="center">
 
             <TextView
-                android:id="@+id/text_progress"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:textSize="20sp" />
+                android:layout_height="match_parent"
+                android:text="Hello"
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
 
-
     </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
