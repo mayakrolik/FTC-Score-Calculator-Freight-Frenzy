@@ -6,6 +6,7 @@ import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TableLayout;
@@ -17,14 +18,21 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ftcscorecalculatorbeta.data.model.Score;
+import com.example.ftcscorecalculatorbeta.data.model.Team;
 import com.example.ftcscorecalculatorbeta.ui.calculator.CalculatorViewModel;
 import com.example.ftcscorecalculatorbeta.ui.home.HomeViewModel;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import android.util.Log;
 
 public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreViewHolder> {
 
+    public ImageButton Kudos;
+    private Score myTotalScore;
 
     List<Score> scores;
 
@@ -245,22 +253,30 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
                 @Override
                 public void onClick(View view) {
                     objKudosButton.setImageResource(R.drawable.ic_baseline_thumb_up_blue_24);
-
+                    //updateKudos();
                 }
             });
             //personPhoto = (ImageView)itemView.findViewById(R.id.person_photo);
             doOnCreate(itemView);
 
-
-            
         }
 
+       /* public void updateKudos() {
 
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            Map<String, Object> score = new HashMap<>();
+
+            score.put("Kudos",  objKudosButton.isEnabled());
+
+        }*/
 
         private void doOnCreate(View view) {
             objHomeExpandButton = view.findViewById(R.id.home_expand_card);
             objHomeTable = view.findViewById(R.id.home_table_secondary);
             objHomeCard = view.findViewById(R.id.cv);
+            //objKudosButton = view.findViewById(R.id.savescoresbutton);
+
 
             if (objHomeTable.getVisibility() == View.VISIBLE) {
                 TransitionManager.beginDelayedTransition(objHomeCard,
@@ -294,5 +310,28 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
         }
     }
 
+    /*public Team getMyTeam()
+    {
+        return myTeam;
+    }
+
+    public void setMyTeam(Team newTeam)
+    {
+        this.myTeam = newTeam;
+        if (this.myTeam != null )
+        {
+            checkLoginStatus = true;
+        }
+    }
+
+    public static Score getMyTotalScore()
+    {
+        return myTotalScore;
+    }
+
+    public void setMyTotalScore(Score newTotalScore)
+    {
+        this.myTotalScore = newTotalScore;
+    }*/
 
 }

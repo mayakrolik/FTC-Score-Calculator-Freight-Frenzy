@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -34,10 +35,12 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Date;
 import java.sql.Timestamp;
+import java.util.Map;
 
 public class HomeFragment extends Fragment {
 
@@ -46,6 +49,7 @@ public class HomeFragment extends Fragment {
     final static String TAG = "HomeFragment";
 
     private boolean blnInitalized = false;
+    public ImageButton objKudosButton;
 
     private HomeViewModel homeViewModel;
 
@@ -114,7 +118,6 @@ public class HomeFragment extends Fragment {
 
         //rv.setHasFixedSize(true);
         //doOnCreate(root);
-
         return root;
     }
 

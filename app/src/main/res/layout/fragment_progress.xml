@@ -7,36 +7,53 @@
     tools:context=".ui.progress.ProgressFragment"
     android:background="#80bfff">
 
-    <androidx.cardview.widget.CardView
+    <!--<androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        app:cardCornerRadius="10dp">
+        android:layout_margin="10dp"
+        app:cardCornerRadius="10dp">-->
 
     <LinearLayout
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/lay_progress">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent">
+        android:id="@+id/layout_progress_fragment"
+        app:layout_constraintTop_toTopOf="@id/lay_progress"
+        app:layout_constraintBottom_toTopOf="@+id/fake_bar"
+        android:layout_margin="10dp">
 
-        <com.jjoe64.graphview.GraphView
+
+    <com.jjoe64.graphview.GraphView
             android:layout_width="match_parent"
-            android:layout_height="200dip"
-            android:id="@+id/progress_graph"/>
-
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Hello"
-                tools:ignore="HardcodedText" />
+            android:layout_height="match_parent"
+            android:id="@+id/progress_graph"
+            app:layout_constraintBottom_toTopOf="@+id/fake_bar"
+            android:padding="1dp"
+            android:background="#e6e6e6"/>
 
 
     </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+    <!--</androidx.cardview.widget.CardView>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        android:id="@+id/fake_bar"
+        app:layout_constraintBottom_toBottomOf="@id/lay_progress"
+        android:layout_margin="10dp">
+
+
+    </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

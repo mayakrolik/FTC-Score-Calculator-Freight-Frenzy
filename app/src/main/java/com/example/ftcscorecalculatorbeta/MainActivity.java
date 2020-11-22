@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.ftcscorecalculatorbeta.data.model.Team;
+import com.example.ftcscorecalculatorbeta.data.model.Score;
 import com.example.ftcscorecalculatorbeta.data.model.UserProfile;
 import com.example.ftcscorecalculatorbeta.ui.calculator.CalculatorFragment;
 import com.example.ftcscorecalculatorbeta.ui.home.HomeFragment;
@@ -44,10 +45,13 @@ public class MainActivity extends AppCompatActivity {
     public FirebaseUser currentUser;
     private Fragment gotoFragment;
     private Team myTeam;
+    public Score totalScore;
     public UserProfile userProfile;
     public int seasonYear = 2020;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     public boolean checkLoginStatus;
+    public boolean updateTotalScores;
+    private Score myTotalScore;
 
     public Team getMyTeam()
     {
@@ -63,14 +67,21 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public Score getMyTotalScore()
+    {
+        return myTotalScore;
+    }
 
+    @NonNull
+    public void setMyTotalScore(Score TotalScore)
+    {
+        this.myTotalScore = TotalScore;
+        if (this.myTotalScore != null)
+        {
+            updateTotalScores = true;
+        }
+    }
 
-/*    public void macaroni() {
-        if (checkLoginStatus == false)
-            Log.w(TAG, "Sign in pending");
-            Toast.makeText(MainActivity.this, "We are gathering account info.\nPlease wait.", Toast.LENGTH_LONG).show();
-            updateUI();
-        }*/
 
 
     public void login() {
