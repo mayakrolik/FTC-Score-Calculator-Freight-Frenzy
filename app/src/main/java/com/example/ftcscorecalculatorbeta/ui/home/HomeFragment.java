@@ -89,7 +89,6 @@ public class HomeFragment extends Fragment {
     }
 
     private List<Score> scores = new ArrayList<>();
-    ;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
