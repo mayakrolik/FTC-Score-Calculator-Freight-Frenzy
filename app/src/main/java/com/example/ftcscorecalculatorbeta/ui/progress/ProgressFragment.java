@@ -1,5 +1,6 @@
 package com.example.ftcscorecalculatorbeta.ui.progress;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -83,29 +84,31 @@ public class ProgressFragment extends Fragment {
 
                             LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(arrPoints);
 
-                                int intCount = lstPoints.size();
-                                String[] arrReturn = new String[intCount];
+                            int intCount = lstPoints.size();
+                            String[] arrReturn = new String[intCount];
 
-                                if (intCount > 0)
-                                {
-                                    arrReturn[intCount-1] = "Newest";
-                                }
+                            if (intCount > 0)
+                            {
+                                arrReturn[intCount-1] = "Newest";
+                            }
 
-                                if (intCount > 1)
-                                {
-                                    arrReturn[0] = "Oldest";
-                                }
+                            if (intCount > 1)
+                            {
+                                arrReturn[0] = "Oldest";
+                            }
 
-                                if (intCount > 2)
+                            if (intCount > 2)
+                            {
+                                for (int a = 1; a <= (intCount - 2); a++)
                                 {
-                                    for (int a = 1; a <= (intCount - 2); a++)
-                                    {
-                                        arrReturn[a] = "";
-                                    }
+                                    arrReturn[a] = "";
                                 }
+                            }
 
                             graph.addSeries(series);
-                            Log.d(TAG, "Added data to graph");
+                            series.setTitle("Total Scores");
+                            //series.setColor(Color.BLUE);
+                                Log.d(TAG, "Added data to graph");
 
                             StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
                             staticLabelsFormatter.setHorizontalLabels(arrReturn);

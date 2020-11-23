@@ -17,13 +17,21 @@ import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ftcscorecalculatorbeta.data.model.Kudo;
 import com.example.ftcscorecalculatorbeta.data.model.Score;
 import com.example.ftcscorecalculatorbeta.data.model.Team;
 import com.example.ftcscorecalculatorbeta.ui.calculator.CalculatorViewModel;
 import com.example.ftcscorecalculatorbeta.ui.home.HomeViewModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -55,7 +63,7 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
     @Override
     public void onBindViewHolder(@NonNull ScoreViewHolder holder, int position) {
 
-        holder.teamName.setText(String.valueOf(scores.get(position).getSafeUserEmailAddress()) + "\nfrom Team " + String.valueOf(scores.get(position).TeamNumber) + " " + String.valueOf(scores.get(position).TeamNickName));
+        holder.teamName.setText(String.valueOf(scores.get(position).getSafeUserDisplayInitials()) + " (#" + String.valueOf(scores.get(position).TeamNumber) + " " + String.valueOf(scores.get(position).TeamNickName) + ")");
         holder.totalScore.setText(String.valueOf(scores.get(position).TotalScore));
         holder.autonomousScore.setText(String.valueOf(scores.get(position).AutScore));
         holder.tellyopScore.setText(String.valueOf(scores.get(position).TelScore));
@@ -80,6 +88,8 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
         holder.endWobbleInDropZone.setText(Boolean.toString(scores.get(position).EndWobbleInDropZone));
         //holder.endStartLinePark.setText(Boolean.toString(scores.get(position).EndStartLinePark));
         holder.endWobbleGoals.setText(String.valueOf(scores.get(position).EndWobbleGoals));
+        holder.objScoreId.setText(String.valueOf(scores.get(position).DocumentId));
+
 
         if (scores.get(position).AutStoppedOnLine){
             holder.lineStop.setImageResource(R.drawable.ic_baseline_toggle_on_24);
@@ -207,8 +217,9 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
         ImageView objend3;
         ImageView objendStartLinePark;
         ImageView objendWobbleInDropZone;
+        TextView objScoreId;
 
-        ScoreViewHolder(View itemView) {
+        ScoreViewHolder(final View itemView) {
             super(itemView);
             cv = (CardView) itemView.findViewById(R.id.cv);
             teamName = (TextView) itemView.findViewById(R.id.team_name);
@@ -247,13 +258,56 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
             objend3 = (ImageView) itemView.findViewById(R.id.end_power_shot_3_image);
             objendStartLinePark = (ImageView) itemView.findViewById(R.id.parked_on_line_image);
             objendWobbleInDropZone = (ImageView) itemView.findViewById(R.id.wobble_goal_deposited_end_image);
-
+            objScoreId = (TextView) itemView.findViewById(R.id.score_id);
 
             objKudosButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     objKudosButton.setImageResource(R.drawable.ic_baseline_thumb_up_blue_24);
                     //updateKudos();
+                    final FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    final String strDocId = objScoreId.getText().toString();
+                    Log.d(TAG, "About to load Score " + strDocId);
+
+                    DocumentReference docRef = db.collection("Scores").document(strDocId);
+                    docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            Score score = documentSnapshot.toObject(Score.class);
+                            MainActivity activity = (MainActivity) itemView.getContext();
+                            Kudo kudo = new Kudo();
+                            kudo.TeamNickName = activity.getMyTeam().NickName;
+                            kudo.TeamNumber = activity.getMyTeam().TeamNumber;
+                            kudo.UserDisplayName = activity.currentUser.getDisplayName();
+                            kudo.UserEmailAddress = activity.currentUser.getEmail();
+                            kudo.UserUid = activity.currentUser.getUid();
+
+                            if (score.Kudos == null)
+                            {
+                                score.Kudos = new LinkedList<Kudo>();
+                            }
+                            score.Kudos.add(kudo);
+
+                            // save the score
+                            db.collection("Users")
+                                    .document(strDocId)
+                                    .set(score)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void avoid) {
+                                            Log.d(TAG, "Score Document updated.");
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error updating score document", e);
+                                        }
+                                    });
+
+                        }
+                    });
+
                 }
             });
             //personPhoto = (ImageView)itemView.findViewById(R.id.person_photo);

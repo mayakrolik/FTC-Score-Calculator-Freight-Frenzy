@@ -21,14 +21,34 @@
             android:padding="5dp"
             android:id="@+id/progress_layout">
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/team_name_layout">
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/team_name"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
                     android:textSize="15sp"
-                    android:text="@string/placeholder" />
+                    android:text="@string/placeholder"
+                    android:id="@+id/team_name"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@+id/progress_layout"
+                app:layout_constraintEnd_toEndOf="@+id/progress_layout">
 
                     <ImageButton
                         android:id="@+id/home_expand_card"
@@ -36,10 +56,9 @@
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/todo"
                         android:src="@drawable/ic_baseline_expand_more_24"
-                        android:layout_marginBottom="15dp"
-                        app:layout_constraintTop_toTopOf="@+id/progress_layout"
-                        app:layout_constraintEnd_toEndOf="@+id/progress_layout" />
+                        android:layout_marginBottom="15dp" />
 
+            </LinearLayout>
 
             <TableLayout
                 android:id="@+id/home_table_initial"
@@ -48,7 +67,7 @@
                 android:layout_marginTop="5dp"
                 android:visibility="visible"
                 app:layout_constraintStart_toStartOf="@+id/cv"
-                app:layout_constraintTop_toBottomOf="@+id/team_name"
+                app:layout_constraintTop_toBottomOf="@+id/team_name_layout"
                 tools:ignore="NotSibling">
 
                 <TableRow
@@ -159,6 +178,18 @@
                         app:layout_constraintTop_toTopOf="parent"
                         android:textSize="15sp"
                         android:text="@string/placeholder" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="5dp">
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"/>
 
                 </TableRow>
 
@@ -668,51 +699,51 @@
                 </TableRow>
 
                 <TableRow
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginLeft="5dp">
+                    android:layout_marginLeft="5dp"
+                    app:layout_constraintStart_toStartOf="parent">
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_column="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Top Goals"
                         android:layout_marginEnd="5dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="15sp"
-                        android:layout_marginRight="5dp" />
-
-                    <TextView
-                        android:layout_column="2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/end_top_goals"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="15sp"
-                        android:text="@string/placeholder" />
-
-                    <TextView
-                        android:layout_column="2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Wobble Rings"
-                        android:layout_marginEnd="5dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="15sp"
                         android:layout_marginRight="5dp"
-                        android:layout_marginStart="10dp" />
+                        android:text="Top Goals"
+                        android:textSize="15sp"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:layout_column="3"
+                        android:id="@+id/end_top_goals"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/wobble_goal_rings"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_column="2"
+                        android:text="@string/placeholder"
                         android:textSize="15sp"
-                        android:text="@string/placeholder" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="Wobble Rings"
+                        android:textSize="15sp"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/wobble_goal_rings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:text="@string/placeholder"
+                        android:textSize="15sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </TableRow>
 
@@ -777,15 +808,30 @@
 
             </TableLayout>
 
-            <ImageButton
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="@+id/progress_layout"
+                app:layout_constraintBottom_toBottomOf="@+id/progress_layout" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:id="@+id/score_id"/>
+
+
+                <ImageButton
                 android:id="@+id/kudos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/todo"
                 android:src="@drawable/ic_baseline_thumb_up_24"
                 android:layout_marginTop="15dp"
-                app:layout_constraintEnd_toEndOf="@+id/progress_layout"
-                app:layout_constraintBottom_toBottomOf="@+id/progress_layout" />
+                />
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

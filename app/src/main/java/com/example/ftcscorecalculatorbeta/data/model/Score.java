@@ -2,8 +2,15 @@ package com.example.ftcscorecalculatorbeta.data.model;
 
 
 import com.example.ftcscorecalculatorbeta.StringUtils;
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentId;
+import com.google.type.DateTime;
+
+import java.util.List;
 
 public class Score {
+    @com.google.firebase.firestore.DocumentId
+    public String DocumentId;
     public int TeamNumber;
     public String TeamNickName;
     public String UserDisplayName;
@@ -32,46 +39,34 @@ public class Score {
     public boolean EndStartLinePark;
     public int EndWobbleGoals;
     public boolean EndWobbleInDropZone;
-    public Kudo[] Kudos;
+    public List<Kudo> Kudos;
 
-/*
-    City
-    CountryCode
-    CreatedTimestamp
-    EndLowGoals
-    EndMiddleGoals
-    EndPowerShot1
-    EndPowerShot2
-    EndPowerShot3
-    EndScore
-    EndStartLinePark
-    EndTopGoals
-    EndWobbleGoals
-    EndWobbleInDropZone
-    PenaltyMajor
-    PenaltyMinor
-    PenaltyScore
-    PostalCode
-    SeasonYear
-    StateProv
-    TeamNickName
-    TeamNumber
-    TeamType
-    TelLowGoals
-    TelMiddleGoals
-    TelScore
-    TelTopGoals
-    TotalScore
-    UserUid
-    UserDisplayName
-    UserEmailAddress
-*/
+
+    public String City;
+    public String CountryCode;
+    public Timestamp CreatedTimestamp;
+    public int PenaltyMajor;
+    public int PenaltyMinor;
+    public int PenaltyScore;
+    public String PostalCode;
+    public int SeasonYear;
+    public String StateProv;
+    public String TeamType;
+    public String UserUid;
+
 
     public String getSafeUserDisplayInitials()
     {
+        String namefirstinitial = UserDisplayName.substring(0,1);
+        int intexofspace = UserDisplayName.indexOf(' ');
+        if (intexofspace < 0){
+            return (namefirstinitial.toUpperCase() + ".");
+        }
+        String namelastinitial = UserDisplayName.substring(intexofspace+1, intexofspace+2);
+        return (namefirstinitial.toUpperCase() + "." + namelastinitial.toUpperCase() + ".");
 
-        return UserDisplayName;
     }
+
     public String getSafeUserEmailAddress()
     {
         String astrix = "*";
