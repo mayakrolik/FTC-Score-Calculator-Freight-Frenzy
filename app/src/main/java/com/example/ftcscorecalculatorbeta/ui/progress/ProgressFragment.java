@@ -60,59 +60,73 @@ public class ProgressFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            double i = 1;
-                            for (QueryDocumentSnapshot document : task.getResult()) {
+                            QuerySnapshot qs  = task.getResult();
+                            double i = qs.size() - 1;
+                            double maxScore = 0;
+                            for (QueryDocumentSnapshot document : qs) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 Double dval = new Double((long) document.get("TotalScore"));
                                 DataPoint dp = new DataPoint( i, dval.doubleValue());
+                                maxScore = Math.max(maxScore, dval.doubleValue());
                                 lstPoints.add(dp);
-                                i++;
+                                i--;
 
                             }
                             DataPoint[] arrPoints = new DataPoint[lstPoints.size()];
 
-                            int j = 0;
+                            int j = 1;
                             for (DataPoint dp : lstPoints)
                             {
-                                arrPoints[j] = dp;
+                                arrPoints[lstPoints.size() - j] = dp;
                                 j++;
                             }
 
                             LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(arrPoints);
 
+                                int intCount = lstPoints.size();
+                                String[] arrReturn = new String[intCount];
+
+                                if (intCount > 0)
+                                {
+                                    arrReturn[intCount-1] = "Newest";
+                                }
+
+                                if (intCount > 1)
+                                {
+                                    arrReturn[0] = "Oldest";
+                                }
+
+                                if (intCount > 2)
+                                {
+                                    for (int a = 1; a <= (intCount - 2); a++)
+                                    {
+                                        arrReturn[a] = "";
+                                    }
+                                }
+
                             graph.addSeries(series);
                             Log.d(TAG, "Added data to graph");
 
                             StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
-                            staticLabelsFormatter.setHorizontalLabels(new String[] {"Old", "", "", "", "New"});
+                            staticLabelsFormatter.setHorizontalLabels(arrReturn);
 
-                            graph.getGridLabelRenderer().setHorizontalAxisTitle("Recent Activity");
-                            graph.getGridLabelRenderer().setNumHorizontalLabels(0);
-                            graph.getGridLabelRenderer().setNumVerticalLabels(5);
-
-                            // set manual x bounds to have nice steps
-                            graph.getViewport().setMinY(0.0);
+                            graph.getGridLabelRenderer().setHorizontalAxisTitle("Recent Scores");
+                            //graph.getGridLabelRenderer().setVerticalAxisTitle("Score");
+                            graph.getGridLabelRenderer().setNumHorizontalLabels(intCount);
+                           // graph.getGridLabelRenderer().setNumVerticalLabels(10);
+                            graph.getViewport().setMinY(0);
+                            graph.getViewport().setMaxY(maxScore+10);
                             graph.getViewport().setMinX(0);
-                            graph.getViewport().setMaxX(4);
+                            graph.getViewport().setMaxX(intCount-1);
                             graph.getViewport().setXAxisBoundsManual(true);
-
-                            // as we use dates as labels, the human rounding to nice readable numbers
-                            // is not necessary
-                            graph.getGridLabelRenderer().setHumanRounding(false);
+                            graph.getViewport().setYAxisBoundsManual(true);
+                            graph.getGridLabelRenderer().setHumanRounding(true);
                             graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
-
-
-
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
-
                 });
-
-        // set date label formatter
-
         return root;
     }
-
 }

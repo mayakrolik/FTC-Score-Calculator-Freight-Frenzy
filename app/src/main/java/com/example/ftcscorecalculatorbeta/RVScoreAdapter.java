@@ -55,7 +55,7 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
     @Override
     public void onBindViewHolder(@NonNull ScoreViewHolder holder, int position) {
 
-        holder.teamName.setText(String.valueOf(scores.get(position).getSafeUserEmailAddress()));
+        holder.teamName.setText(String.valueOf(scores.get(position).getSafeUserEmailAddress()) + "\nfrom Team " + String.valueOf(scores.get(position).TeamNumber) + " " + String.valueOf(scores.get(position).TeamNickName));
         holder.totalScore.setText(String.valueOf(scores.get(position).TotalScore));
         holder.autonomousScore.setText(String.valueOf(scores.get(position).AutScore));
         holder.tellyopScore.setText(String.valueOf(scores.get(position).TelScore));
@@ -310,28 +310,6 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
         }
     }
 
-    /*public Team getMyTeam()
-    {
-        return myTeam;
-    }
 
-    public void setMyTeam(Team newTeam)
-    {
-        this.myTeam = newTeam;
-        if (this.myTeam != null )
-        {
-            checkLoginStatus = true;
-        }
-    }
-
-    public static Score getMyTotalScore()
-    {
-        return myTotalScore;
-    }
-
-    public void setMyTotalScore(Score newTotalScore)
-    {
-        this.myTotalScore = newTotalScore;
-    }*/
 
 }

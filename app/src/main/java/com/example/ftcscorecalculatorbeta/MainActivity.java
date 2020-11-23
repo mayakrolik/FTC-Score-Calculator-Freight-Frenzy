@@ -72,15 +72,7 @@ public class MainActivity extends AppCompatActivity {
         return myTotalScore;
     }
 
-    @NonNull
-    public void setMyTotalScore(Score TotalScore)
-    {
-        this.myTotalScore = TotalScore;
-        if (this.myTotalScore != null)
-        {
-            updateTotalScores = true;
-        }
-    }
+
 
 
 

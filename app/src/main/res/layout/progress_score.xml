@@ -27,7 +27,7 @@
                     android:id="@+id/team_name"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:text="@string/placeholder" />
 
                     <ImageButton
