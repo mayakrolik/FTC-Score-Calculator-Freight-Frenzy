@@ -51,4 +51,5 @@
     <string name="eula_short">I agree to always showing gracious professionalism, and to the usage terms outline here.</string>
     <string name="run_number">Run #</string>
     <string name="kudos">Kudos</string>
+    <string name="kudo_number">0</string>
 </resources>

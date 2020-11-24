@@ -26,8 +26,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -158,6 +160,23 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
             holder.objend3.setImageResource(R.drawable.ic_baseline_check_box_outline_blank_24);
         }
 
+        MainActivity activity = (MainActivity) holder.itemView.getContext();
+
+        if (scores.get(position).Kudos != null){
+            holder.objKudoAmount.setText(String.valueOf(scores.get(position).Kudos.size()));
+            for (Kudo kudo : scores.get(position).Kudos){
+                //Log.d(TAG, "~~~~~~~~~~" + kudo.UserUid + "e");
+                //Log.d(TAG, "~~~~~~~~~~1" + activity.currentUser.getUid() + "e");
+                if (kudo.UserUid.equals(activity.currentUser.getUid())) {
+                    holder.objKudosButton.setImageResource(R.drawable.ic_baseline_thumb_up_blue_24);
+                    holder.objKudosButton.setEnabled(false);
+                    //Log.d(TAG, "ooooooooooooooooo");
+                    break;
+                }
+
+            }
+        }
+
         //holder.personPhoto.setImageResource(scores.get(position).photoId);
         Log.d(TAG, "onBindViewHolder");
 
@@ -218,6 +237,7 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
         ImageView objendStartLinePark;
         ImageView objendWobbleInDropZone;
         TextView objScoreId;
+        TextView objKudoAmount;
 
         ScoreViewHolder(final View itemView) {
             super(itemView);
@@ -259,12 +279,13 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
             objendStartLinePark = (ImageView) itemView.findViewById(R.id.parked_on_line_image);
             objendWobbleInDropZone = (ImageView) itemView.findViewById(R.id.wobble_goal_deposited_end_image);
             objScoreId = (TextView) itemView.findViewById(R.id.score_id);
+            objKudoAmount = (TextView) itemView.findViewById(R.id.kudo_count);
 
             objKudosButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     objKudosButton.setImageResource(R.drawable.ic_baseline_thumb_up_blue_24);
-                    //updateKudos();
+                    objKudosButton.setEnabled(false);
                     final FirebaseFirestore db = FirebaseFirestore.getInstance();
                     final String strDocId = objScoreId.getText().toString();
                     Log.d(TAG, "About to load Score " + strDocId);
@@ -274,6 +295,9 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             Score score = documentSnapshot.toObject(Score.class);
+                            // check if score already has kudos from current user
+
+
                             MainActivity activity = (MainActivity) itemView.getContext();
                             Kudo kudo = new Kudo();
                             kudo.TeamNickName = activity.getMyTeam().NickName;
@@ -281,6 +305,7 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
                             kudo.UserDisplayName = activity.currentUser.getDisplayName();
                             kudo.UserEmailAddress = activity.currentUser.getEmail();
                             kudo.UserUid = activity.currentUser.getUid();
+                            kudo.CreatedTimestamp = Timestamp.now();  // com.google.firebase.firestore.FieldValue.serverTimestamp();
 
                             if (score.Kudos == null)
                             {
@@ -289,7 +314,7 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
                             score.Kudos.add(kudo);
 
                             // save the score
-                            db.collection("Users")
+                            db.collection("Scores")
                                     .document(strDocId)
                                     .set(score)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -305,6 +330,8 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
                                         }
                                     });
 
+
+
                         }
                     });
 
@@ -314,16 +341,6 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
             doOnCreate(itemView);
 
         }
-
-       /* public void updateKudos() {
-
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-            Map<String, Object> score = new HashMap<>();
-
-            score.put("Kudos",  objKudosButton.isEnabled());
-
-        }*/
 
         private void doOnCreate(View view) {
             objHomeExpandButton = view.findViewById(R.id.home_expand_card);

@@ -808,19 +808,33 @@
 
             </TableLayout>
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="@+id/progress_layout"
-                app:layout_constraintBottom_toBottomOf="@+id/progress_layout" >
+                app:layout_constraintBottom_toBottomOf="@+id/progress_layout"
+                android:id="@+id/kudos_layout">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
-                    android:id="@+id/score_id"/>
+                    android:id="@+id/score_id"
+                    app:layout_constraintEnd_toStartOf="@+id/kudos"
+                    app:layout_constraintBottom_toBottomOf="@+id/kudos_layout" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/kudo_count"
+                    android:text="@string/kudo_number"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toStartOf="@+id/kudos"
+                    app:layout_constraintBottom_toBottomOf="@+id/kudos_layout"
+                    app:layout_constraintTop_toTopOf="@+id/kudos_layout"
+                    android:layout_marginRight="5dp"
+                    android:textStyle="bold"/>
 
                 <ImageButton
                 android:id="@+id/kudos"
@@ -829,9 +843,11 @@
                 android:contentDescription="@string/todo"
                 android:src="@drawable/ic_baseline_thumb_up_24"
                 android:layout_marginTop="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/kudos_layout"
+                    app:layout_constraintBottom_toBottomOf="@+id/kudos_layout"
                 />
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
