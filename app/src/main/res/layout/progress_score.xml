@@ -469,6 +469,16 @@
                         android:layout_column="1"
                         android:textStyle="bold"/>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Penalties"
+                        android:textSize="15sp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginStart="70dp"
+                        android:layout_column="3"
+                        android:textStyle="bold"/>
+
                 </TableRow>
 
                 <TableRow
@@ -495,9 +505,29 @@
                     app:layout_constraintEnd_toEndOf="@+id/row1"
                     app:layout_constraintTop_toTopOf="parent"
                     android:textSize="15sp"
-                    android:text="@string/placeholder" />
+                    android:text="@string/placeholder"
+                    android:layout_marginRight="5dp" />
 
+                    <TextView
+                        android:layout_column="3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Minor"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="parent"
+                        android:textSize="15sp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginStart="70dp"/>
 
+                    <TextView
+                        android:layout_column="4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/penalty_minor"
+                        app:layout_constraintEnd_toEndOf="@+id/row1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:textSize="15sp"
+                        android:text="@string/placeholder" />
 
             </TableRow>
 
@@ -527,6 +557,26 @@
                     android:textSize="15sp"
                     android:text="@string/placeholder" />
 
+                <TextView
+                    android:layout_column="3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Major"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="parent"
+                    android:textSize="15sp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginStart="70dp"/>
+
+                <TextView
+                    android:layout_column="4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/penalty_major"
+                    app:layout_constraintEnd_toEndOf="@+id/row1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textSize="15sp"
+                    android:text="@string/placeholder" />
 
             </TableRow>
 

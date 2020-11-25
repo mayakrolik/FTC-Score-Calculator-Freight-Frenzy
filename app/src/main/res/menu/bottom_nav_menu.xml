@@ -17,4 +17,9 @@
         android:icon="@drawable/ic_baseline_assessment_24"
         android:title="@string/title_progress" />
 
+    <item
+        android:id="@+id/navigation_team"
+        android:icon="@drawable/ic_baseline_people_24"
+        android:title="@string/title_team" />
+
 </menu>

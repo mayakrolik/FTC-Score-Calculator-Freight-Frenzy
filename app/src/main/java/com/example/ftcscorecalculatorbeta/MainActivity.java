@@ -21,6 +21,7 @@ import com.example.ftcscorecalculatorbeta.data.model.UserProfile;
 import com.example.ftcscorecalculatorbeta.ui.calculator.CalculatorFragment;
 import com.example.ftcscorecalculatorbeta.ui.home.HomeFragment;
 import com.example.ftcscorecalculatorbeta.ui.progress.ProgressFragment;
+import com.example.ftcscorecalculatorbeta.ui.team.TeamFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -312,6 +313,7 @@ public class MainActivity extends AppCompatActivity {
         final Fragment cacl_frag = new CalculatorFragment();
         final Fragment home_frag = new HomeFragment();
         final Fragment prog_frag = new ProgressFragment();
+        final Fragment team_frag = new TeamFragment();
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.nav_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -329,6 +331,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.navigation_progress:
                         fragment = prog_frag;
+                        break;
+                    case R.id.navigation_team:
+                        fragment = team_frag;
                         break;
                 }
                 if (blnRequireLogin & (myTeam == null))

@@ -83,6 +83,8 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
         holder.telTopGoals.setText(String.valueOf(scores.get(position).TelHighGoals));
         holder.telMidGoals.setText(String.valueOf(scores.get(position).TelMiddleGoals));
         holder.telLowGoals.setText(String.valueOf(scores.get(position).TelLowGoals));
+        holder.penMin.setText(String.valueOf(scores.get(position).PenaltyMinor));
+        holder.penMaj.setText(String.valueOf(scores.get(position).PenaltyMajor));
         holder.endTopGoals.setText(String.valueOf(scores.get(position).EndTopGoals));
         holder.endMidGoals.setText(String.valueOf(scores.get(position).EndMiddleGoals));
         holder.endLowGoals.setText(String.valueOf(scores.get(position).EndLowGoals));
@@ -167,12 +169,9 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
         if (scores.get(position).Kudos != null){
             holder.objKudoAmount.setText(String.valueOf(scores.get(position).Kudos.size()));
             for (Kudo kudo : scores.get(position).Kudos){
-                //Log.d(TAG, "~~~~~~~~~~" + kudo.UserUid + "e");
-                //Log.d(TAG, "~~~~~~~~~~1" + activity.currentUser.getUid() + "e");
                 if (kudo.UserUid.equals(activity.currentUser.getUid())) {
                     holder.objKudosButton.setImageResource(R.drawable.ic_baseline_thumb_up_blue_24);
                     holder.objKudosButton.setEnabled(false);
-                    //Log.d(TAG, "ooooooooooooooooo");
                     break;
                 }
 
@@ -224,6 +223,8 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
         TextView telTopGoals;
         TextView telMidGoals;
         TextView telLowGoals;
+        TextView penMin;
+        TextView penMaj;
         TextView endTopGoals;
         TextView endMidGoals;
         TextView endLowGoals;
@@ -266,6 +267,8 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
             telTopGoals = (TextView) itemView.findViewById(R.id.tel_top_goals);
             telMidGoals = (TextView) itemView.findViewById(R.id.tel_mid_goals);
             telLowGoals = (TextView) itemView.findViewById(R.id.tel_low_goals);
+            penMin = (TextView) itemView.findViewById(R.id.penalty_minor);
+            penMaj = (TextView) itemView.findViewById(R.id.penalty_major);
             endTopGoals = (TextView) itemView.findViewById(R.id.end_top_goals);
             endMidGoals = (TextView) itemView.findViewById(R.id.end_mid_goals);
             endLowGoals = (TextView) itemView.findViewById(R.id.end_low_goals);

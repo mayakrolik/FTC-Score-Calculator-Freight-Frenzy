@@ -52,4 +52,7 @@
     <string name="run_number">Run #</string>
     <string name="kudos">Kudos</string>
     <string name="kudo_number">0</string>
+    <string name="title_team">My Team</string>
+    <string name="TeamName">Team Name</string>
+    <string name="TeamNumber">#</string>
 </resources>
