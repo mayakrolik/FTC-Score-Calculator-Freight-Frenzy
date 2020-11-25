@@ -78,6 +78,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .build();
         NotificationManagerCompat manager = NotificationManagerCompat.from(getApplicationContext());
         manager.notify(1, notification);
+        Log.d(TAG, "Local notification created.");
         return;
     }
     // [END receive_message]

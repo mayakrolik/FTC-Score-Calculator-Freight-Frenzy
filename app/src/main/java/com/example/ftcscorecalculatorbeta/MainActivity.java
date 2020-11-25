@@ -263,15 +263,27 @@ public class MainActivity extends AppCompatActivity {
 
     private void subscribeToFirebaseMessageingTeamTopics()
     {
+        OnCompleteListener oncomplete = new OnCompleteListener<Void>() {
+        @Override
+        public void onComplete(@NonNull Task<Void> task) {
+            String msg = "Subscribed successfully to topic.";
+            if (!task.isSuccessful()) {
+                msg = "Subscription to topic failed.";
+            }
+            Log.d(TAG, msg);
+            // Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+        }
+        };
+
         String strTopicName = myTeam.ProgramCodeDisplay + "_Team_" + myTeam.TeamNumber + "_Kudos";
         Log.d(TAG, "******************* Subscribing 1 " + strTopicName);
-        FirebaseMessaging.getInstance().subscribeToTopic(strTopicName);
+        FirebaseMessaging.getInstance().subscribeToTopic(strTopicName).addOnCompleteListener(oncomplete);
         strTopicName = myTeam.ProgramCodeDisplay + "_Team_" + myTeam.TeamNumber + "_Scores";
         Log.d(TAG, "Subscribing 2 " + strTopicName);
-        FirebaseMessaging.getInstance().subscribeToTopic(strTopicName);
+        FirebaseMessaging.getInstance().subscribeToTopic(strTopicName).addOnCompleteListener(oncomplete);
         strTopicName = myTeam.ProgramCodeDisplay + "_Team_" + myTeam.TeamNumber + "_Users";
         Log.d(TAG, "Subscribing 3 " + strTopicName);
-        FirebaseMessaging.getInstance().subscribeToTopic(strTopicName);
+        FirebaseMessaging.getInstance().subscribeToTopic(strTopicName).addOnCompleteListener(oncomplete);
         Log.d(TAG, "Subscribing Done");
     }
 
