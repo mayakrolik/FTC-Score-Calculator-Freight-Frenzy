@@ -14,5 +14,7 @@ public class UserProfile {
     public String CountryCode;
     public String DisplayName;
     public String EmailAddress;
-
+    public String FirebaseMessagingToken;
+    public String ProgramCodeDisplay;
+    public String ProgramName;
 }

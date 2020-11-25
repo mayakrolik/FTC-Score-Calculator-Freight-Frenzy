@@ -31,6 +31,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -305,7 +307,7 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
                             kudo.UserDisplayName = activity.currentUser.getDisplayName();
                             kudo.UserEmailAddress = activity.currentUser.getEmail();
                             kudo.UserUid = activity.currentUser.getUid();
-                            kudo.CreatedTimestamp = Timestamp.now();  // com.google.firebase.firestore.FieldValue.serverTimestamp();
+                            kudo.CreatedTimestamp = Timestamp.now();
 
                             if (score.Kudos == null)
                             {

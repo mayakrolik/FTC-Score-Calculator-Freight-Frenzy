@@ -149,13 +149,15 @@ public class RegisterFragment extends DialogFragment {
         user.put("UserUid", activity.currentUser.getUid());
         user.put("TeamNumber", activity.getMyTeam().TeamNumber);
         user.put("TeamNickName", activity.getMyTeam().NickName);
-        user.put("LoginCount", 1);
+        user.put("LoginCount", 0);
         user.put("City", activity.getMyTeam().City);
         user.put("StateProv", activity.getMyTeam().StateProv);
         user.put("PostalCode", activity.getMyTeam().PostalCode);
         user.put("CountryCode", activity.getMyTeam().CountryCode);
         user.put("DisplayName", activity.currentUser.getDisplayName());
         user.put("EmailAddress", activity.currentUser.getEmail());
+        user.put("ProgramCodeDisplay", activity.getMyTeam().ProgramCodeDisplay);
+        user.put("ProgramName", activity.getMyTeam().ProgramName);
 
         // Add a new document with a generated ID
         db.collection("Users")

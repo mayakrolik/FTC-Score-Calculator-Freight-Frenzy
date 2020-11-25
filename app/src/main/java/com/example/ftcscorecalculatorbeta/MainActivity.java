@@ -3,8 +3,11 @@ package com.example.ftcscorecalculatorbeta;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -36,6 +39,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -209,7 +213,8 @@ public class MainActivity extends AppCompatActivity {
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                         myTeam = document.toObject(Team.class);
-                        incrementLoginCount();
+                        //incrementLoginCount();
+                        retrieveCurrentFirebaseMessagingRegistrationToken();
                         checkLoginStatus = true;
                         updateUI();
                     } else {
@@ -222,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void incrementLoginCount()
+    private void incrementLoginCountAndUpdateMessagingToken()
     {
         userProfile.LoginCount = userProfile.LoginCount + 1;
         db.collection("Users")
@@ -232,6 +237,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void avoid) {
                         Log.d(TAG, "User Document updated.");
+                        //createNotificationChannel();
+                        //retrieveCurrentFirebaseMessagingRegistrationToken();
+                        subscribeToFirebaseMessageingTeamTopics();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -242,6 +250,62 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+    private void subscribeToFirebaseMessageingTeamTopics()
+    {
+        String strTopicName = myTeam.ProgramCodeDisplay + "_Team_" + myTeam.TeamNumber + "_Kudos";
+        Log.d(TAG, "******************* Subscribing 1 " + strTopicName);
+        FirebaseMessaging.getInstance().subscribeToTopic(strTopicName);
+        strTopicName = myTeam.ProgramCodeDisplay + "_Team_" + myTeam.TeamNumber + "_Scores";
+        Log.d(TAG, "Subscribing 2 " + strTopicName);
+        FirebaseMessaging.getInstance().subscribeToTopic(strTopicName);
+        strTopicName = myTeam.ProgramCodeDisplay + "_Team_" + myTeam.TeamNumber + "_Users";
+        Log.d(TAG, "Subscribing 3 " + strTopicName);
+        FirebaseMessaging.getInstance().subscribeToTopic(strTopicName);
+        Log.d(TAG, "Subscribing Done");
+
+        /*
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = "Subscribed to topic " + strTopicName;
+                        if (!task.isSuccessful()) {
+                            msg = "Failed to subscribe to topic " + strTopicName;
+                        }
+                        Log.d(TAG, msg);
+                        // Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
+*/
+
+    }
+
+    private void retrieveCurrentFirebaseMessagingRegistrationToken()
+    {
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+
+                        // Log and toast
+                        String msg = "Token received was " + token;
+                        Log.d(TAG, msg);
+                        userProfile.FirebaseMessagingToken = token;
+                        //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                        incrementLoginCountAndUpdateMessagingToken();
+                    }
+                });
+    }
+
+
+
+
     @Override
     public void onStart() {
         super.onStart();
@@ -249,13 +313,18 @@ public class MainActivity extends AppCompatActivity {
         currentUser = mAuth.getCurrentUser();
         checkLoginStatus = false;
         updateUI();
-        //macaroni();
+
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // the line below can be used to get the "extra" "data" section of the Firebase Cloud Messaging notification passed when the user taps on the notification.
+        // this can be used to start the app in a relevant position (and not at the default landing fragment).
+        // Bundle extras = getIntent().getExtras();
 
         mAuth = FirebaseAuth.getInstance();
 
