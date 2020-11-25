@@ -41,6 +41,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
 
     final static String TAG = "MainActivity";
@@ -49,13 +51,10 @@ public class MainActivity extends AppCompatActivity {
     public FirebaseUser currentUser;
     private Fragment gotoFragment;
     private Team myTeam;
-    public Score totalScore;
     public UserProfile userProfile;
-    public int seasonYear = 2020;
+    public int seasonYear = Calendar.getInstance().get(Calendar.YEAR);
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     public boolean checkLoginStatus;
-    public boolean updateTotalScores;
-    private Score myTotalScore;
 
     public Team getMyTeam()
     {
@@ -70,15 +69,6 @@ public class MainActivity extends AppCompatActivity {
             checkLoginStatus = true;
         }
     }
-
-    public Score getMyTotalScore()
-    {
-        return myTotalScore;
-    }
-
-
-
-
 
     public void login() {
         Log.d(TAG, "Current user ");
@@ -213,7 +203,6 @@ public class MainActivity extends AppCompatActivity {
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                         myTeam = document.toObject(Team.class);
-                        //incrementLoginCount();
                         retrieveCurrentFirebaseMessagingRegistrationToken();
                         checkLoginStatus = true;
                         updateUI();
@@ -225,58 +214,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private void incrementLoginCountAndUpdateMessagingToken()
-    {
-        userProfile.LoginCount = userProfile.LoginCount + 1;
-        db.collection("Users")
-                .document(userProfile.UserUid)
-                .set(userProfile)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void avoid) {
-                        Log.d(TAG, "User Document updated.");
-                        //createNotificationChannel();
-                        //retrieveCurrentFirebaseMessagingRegistrationToken();
-                        subscribeToFirebaseMessageingTeamTopics();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error updating user document", e);
-                    }
-                });
-    }
-
-    private void subscribeToFirebaseMessageingTeamTopics()
-    {
-        String strTopicName = myTeam.ProgramCodeDisplay + "_Team_" + myTeam.TeamNumber + "_Kudos";
-        Log.d(TAG, "******************* Subscribing 1 " + strTopicName);
-        FirebaseMessaging.getInstance().subscribeToTopic(strTopicName);
-        strTopicName = myTeam.ProgramCodeDisplay + "_Team_" + myTeam.TeamNumber + "_Scores";
-        Log.d(TAG, "Subscribing 2 " + strTopicName);
-        FirebaseMessaging.getInstance().subscribeToTopic(strTopicName);
-        strTopicName = myTeam.ProgramCodeDisplay + "_Team_" + myTeam.TeamNumber + "_Users";
-        Log.d(TAG, "Subscribing 3 " + strTopicName);
-        FirebaseMessaging.getInstance().subscribeToTopic(strTopicName);
-        Log.d(TAG, "Subscribing Done");
-
-        /*
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        String msg = "Subscribed to topic " + strTopicName;
-                        if (!task.isSuccessful()) {
-                            msg = "Failed to subscribe to topic " + strTopicName;
-                        }
-                        Log.d(TAG, msg);
-                        // Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
-                    }
-                });
-*/
-
     }
 
     private void retrieveCurrentFirebaseMessagingRegistrationToken()
@@ -303,8 +240,40 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+    private void incrementLoginCountAndUpdateMessagingToken()
+    {
+        userProfile.LoginCount = userProfile.LoginCount + 1;
+        db.collection("Users")
+                .document(userProfile.UserUid)
+                .set(userProfile)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void avoid) {
+                        Log.d(TAG, "User Document updated.");
+                        subscribeToFirebaseMessageingTeamTopics();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error updating user document", e);
+                    }
+                });
+    }
 
-
+    private void subscribeToFirebaseMessageingTeamTopics()
+    {
+        String strTopicName = myTeam.ProgramCodeDisplay + "_Team_" + myTeam.TeamNumber + "_Kudos";
+        Log.d(TAG, "******************* Subscribing 1 " + strTopicName);
+        FirebaseMessaging.getInstance().subscribeToTopic(strTopicName);
+        strTopicName = myTeam.ProgramCodeDisplay + "_Team_" + myTeam.TeamNumber + "_Scores";
+        Log.d(TAG, "Subscribing 2 " + strTopicName);
+        FirebaseMessaging.getInstance().subscribeToTopic(strTopicName);
+        strTopicName = myTeam.ProgramCodeDisplay + "_Team_" + myTeam.TeamNumber + "_Users";
+        Log.d(TAG, "Subscribing 3 " + strTopicName);
+        FirebaseMessaging.getInstance().subscribeToTopic(strTopicName);
+        Log.d(TAG, "Subscribing Done");
+    }
 
     @Override
     public void onStart() {
@@ -313,8 +282,6 @@ public class MainActivity extends AppCompatActivity {
         currentUser = mAuth.getCurrentUser();
         checkLoginStatus = false;
         updateUI();
-
-
     }
 
     @Override
