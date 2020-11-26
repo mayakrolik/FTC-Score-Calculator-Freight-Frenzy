@@ -36,7 +36,7 @@
             android:id="@+id/progress_graph"
             app:layout_constraintBottom_toTopOf="@+id/fake_bar"
             android:padding="1dp"
-            android:background="#e6e6e6"/>
+            android:background="#ffffff"/>
 
 
     </LinearLayout>

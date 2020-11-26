@@ -961,17 +961,34 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:visibility="visible"
+            app:cardCornerRadius="10dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#8BBBEA">
+
         <Button
             android:id="@+id/savescoresbutton"
             android:layout_width="match_parent"
+            android:padding="5dp"
             android:layout_height="wrap_content"
             android:text="@string/SaveScores"
-            />
-        <Button
+            android:textColor="#ffffff"
+            android:background="@color/colorPrimaryDark"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <!--<Button
             android:id="@+id/logoutbutton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/LogoutButton"
-            />
+            />-->
+
     </LinearLayout>
 </ScrollView>

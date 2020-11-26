@@ -1,5 +1,6 @@
 package com.example.ftcscorecalculatorbeta.ui.home;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -7,10 +8,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -50,41 +53,84 @@ public class HomeFragment extends Fragment {
 
     private boolean blnInitalized = false;
     public ImageButton objKudosButton;
-
+    private String filterOption = "MyTeam";
     private HomeViewModel homeViewModel;
+    public Button FilterCity;
+    public Button FilterState;
+    public Button FilterCountry;
+    public Button FilterTeam;
 
 
     private void queryForRecentScoresForMyTeam() {
-        if (blnInitalized) return;
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         MainActivity activity = (MainActivity) getActivity();
 
-        db.collection("Scores")
-                .whereEqualTo("TeamNumber", activity.getMyTeam().TeamNumber)
-                .orderBy("CreatedTimestamp", Query.Direction.DESCENDING)
-                .limit(50)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                Score score = document.toObject(Score.class);
-                                scores.add(score);
-                                //results.add(document);
-                            }
 
-                            RecyclerView rv = (RecyclerView) getView().findViewById(R.id.rv);
-                            RVScoreAdapter adapter = new RVScoreAdapter(scores);
-                            rv.setAdapter(adapter);
-                            blnInitalized = true;
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
+        OnCompleteListener<QuerySnapshot> oncompletelistener = new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    scores.clear();
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Log.d(TAG, document.getId() + " => " + document.getData());
+                        Score score = document.toObject(Score.class);
+                        scores.add(score);
+
                     }
-                });
 
+                    RecyclerView rv = (RecyclerView) getView().findViewById(R.id.rv);
+                    RVScoreAdapter adapter = (RVScoreAdapter) rv.getAdapter();
+                    if (adapter == null){
+                        adapter = new RVScoreAdapter(scores);
+                        rv.setAdapter(adapter);
+
+                    } else {
+                        adapter.addAll(scores);
+                    }
+
+                    blnInitalized = true;
+                    Toast.makeText(getContext(), "Feed Updated", Toast.LENGTH_LONG).show();
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+            }
+        };
+
+
+        if (filterOption.equals("City")) {
+            db.collection("Scores")
+                    .whereEqualTo("City", activity.getMyTeam().City)
+                    .orderBy("CreatedTimestamp", Query.Direction.DESCENDING)
+                    .limit(50)
+                    .get()
+                    .addOnCompleteListener(oncompletelistener);
+
+        }
+        if (filterOption.equals("StateProv")) {
+            db.collection("Scores")
+                    .whereEqualTo("StateProv", activity.getMyTeam().StateProv)
+                    .orderBy("CreatedTimestamp", Query.Direction.DESCENDING)
+                    .limit(50)
+                    .get()
+                    .addOnCompleteListener(oncompletelistener);
+        }
+        if (filterOption.equals("MyTeam")) {
+            db.collection("Scores")
+                    .whereEqualTo("TeamNumber", activity.getMyTeam().TeamNumber)
+                    .orderBy("CreatedTimestamp", Query.Direction.DESCENDING)
+                    .limit(50)
+                    .get()
+                    .addOnCompleteListener(oncompletelistener);
+        }
+
+        if (filterOption.equals("CountryCode")) {
+            db.collection("Scores")
+                    .whereEqualTo("CountryCode", activity.getMyTeam().CountryCode)
+                    .orderBy("CreatedTimestamp", Query.Direction.DESCENDING)
+                    .limit(50)
+                    .get()
+                    .addOnCompleteListener(oncompletelistener);
+        }
 
     }
 
@@ -116,8 +162,53 @@ public class HomeFragment extends Fragment {
         rv.setAdapter(adapter);
 
         //rv.setHasFixedSize(true);
-        //doOnCreate(root);
+        doOnCreate(root);
         return root;
+
+    }
+
+    private void doOnCreate(View view) {
+        FilterCity = view.findViewById(R.id.filter_button_city);
+        FilterState = view.findViewById(R.id.filter_button_state);
+        FilterCountry = view.findViewById(R.id.filter_button_country);
+        FilterTeam = view.findViewById(R.id.filter_button_my_team);
+
+        FilterCity.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterOption = "City";
+                FilterCity.setBackgroundColor(getResources().getColor(R.color.colorButtonActivated));
+                FilterState.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
+                FilterTeam.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
+                FilterCountry.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
+                queryForRecentScoresForMyTeam();
+            }
+        });
+
+        FilterState.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterOption = "StateProv";
+                queryForRecentScoresForMyTeam();
+            }
+        });
+
+        FilterCountry.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterOption = "CountryCode";
+                queryForRecentScoresForMyTeam();
+            }
+        });
+
+        FilterTeam.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterOption = "MyTeam";
+                queryForRecentScoresForMyTeam();
+            }
+        });
+
     }
 
 }

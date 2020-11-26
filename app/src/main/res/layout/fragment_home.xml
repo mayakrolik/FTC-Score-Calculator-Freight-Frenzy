@@ -1,23 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
-
-<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/home_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ui.home.HomeFragment">
+    android:orientation="vertical"
+    android:padding="5dp"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:context=".ui.home.HomeFragment"
+    tools:ignore="HardcodedText">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
+    <LinearLayout
+        android:id="@+id/filter_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <Button
+            android:id="@+id/filter_button_my_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorButtonActivated"
+            android:contentDescription="@string/todo"
+            android:padding="5dp"
+            android:text="My Team"
+            android:layout_weight="1"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/filter_button_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorButtonDeactivated"
+            android:contentDescription="@string/todo"
+            android:padding="5dp"
+            android:text="City"
+            android:layout_weight="1"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</ScrollView>
+        <Button
+            android:id="@+id/filter_button_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorButtonDeactivated"
+            android:contentDescription="@string/todo"
+            android:padding="5dp"
+            android:text="State"
+            android:textSize="15sp"
+            android:layout_weight="1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/filter_button_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorButtonDeactivated"
+            android:contentDescription="@string/todo"
+            android:padding="5dp"
+            android:text="Country"
+            android:layout_weight="1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        app:layout_constraintTop_toTopOf="@id/filter_layout">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </ScrollView>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@id/home_layout" />
+
+</LinearLayout>

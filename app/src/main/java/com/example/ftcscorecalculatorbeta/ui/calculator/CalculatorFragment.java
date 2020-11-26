@@ -122,14 +122,14 @@ public class CalculatorFragment extends Fragment {
 
     private void doOnCreate(View view)
     {
-        Button objLogout = view.findViewById(R.id.logoutbutton);
+        /*Button objLogout = view.findViewById(R.id.logoutbutton);
 
         objLogout.setOnClickListener(new CompoundButton.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
             }
-        });
+        });*/
 
         objSaveScores = view.findViewById(R.id.savescoresbutton);
 
