@@ -183,6 +183,17 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
 
     }
 
+    public void clear() {
+        scores.clear();
+        notifyDataSetChanged();
+    }
+
+    // Add a list of items -- change to type used
+    public void addAll(List<Score> list) {
+        scores.addAll(list);
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         Log.d(TAG, "getItemCount " + String.valueOf(scores.size()));
