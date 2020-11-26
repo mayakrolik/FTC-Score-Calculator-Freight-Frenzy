@@ -250,6 +250,7 @@ public class MainActivity extends AppCompatActivity {
     {
         userProfile.LoginCount = userProfile.LoginCount + 1;
         userProfile.LastLogin = Timestamp.now();
+        userProfile.ProfilePhotoUrl = String.valueOf(currentUser.getPhotoUrl());
         db.collection("Users")
                 .document(userProfile.UserUid)
                 .set(userProfile)

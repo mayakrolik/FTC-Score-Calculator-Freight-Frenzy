@@ -22,6 +22,7 @@ public class UserProfile {
     public String FirebaseMessagingToken;
     public String ProgramCodeDisplay;
     public String ProgramName;
+    public String ProfilePhotoUrl;
     public List<FollowingTeam> FollowingTeams;
 
 }

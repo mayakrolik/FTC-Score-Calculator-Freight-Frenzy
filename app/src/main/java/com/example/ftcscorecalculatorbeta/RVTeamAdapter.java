@@ -1,5 +1,6 @@
 package com.example.ftcscorecalculatorbeta;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -17,6 +18,7 @@ import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.ftcscorecalculatorbeta.data.model.Kudo;
 import com.example.ftcscorecalculatorbeta.data.model.UserProfile;
 import com.example.ftcscorecalculatorbeta.data.model.Team;
@@ -73,6 +75,13 @@ public class RVTeamAdapter extends RecyclerView.Adapter<RVTeamAdapter.UserViewHo
         holder.UserEmail.setText(String.valueOf(users.get(position).EmailAddress));
         holder.LoginCount.setText(String.valueOf(users.get(position).LoginCount));
         holder.LastLogin.setText(sfd.format(users.get(position).LastLogin.toDate()));
+        String strProfilePicUrl = users.get(position).ProfilePhotoUrl;
+        if (strProfilePicUrl != null) {
+            //holder.ProfilePic.setImageURI(Uri.parse(strProfilePicUrl));
+            Glide.with(holder.itemView.getContext())
+                    .load(Uri.parse(strProfilePicUrl))
+                    .into(holder.ProfilePic);
+        }
     }
 
     @Override
@@ -92,6 +101,7 @@ public class RVTeamAdapter extends RecyclerView.Adapter<RVTeamAdapter.UserViewHo
         TextView UserEmail;
         TextView LoginCount;
         TextView LastLogin;
+        ImageView ProfilePic;
 
 
         UserViewHolder(final View itemView) {
@@ -100,7 +110,7 @@ public class RVTeamAdapter extends RecyclerView.Adapter<RVTeamAdapter.UserViewHo
             UserEmail = (TextView) itemView.findViewById(R.id.user_email);
             LoginCount = (TextView) itemView.findViewById(R.id.login_count);
             LastLogin = (TextView) itemView.findViewById(R.id.last_login);
-
+            ProfilePic = (ImageView) itemView.findViewById(R.id.profilePicImageView);
         }
     }
 
