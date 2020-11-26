@@ -189,6 +189,10 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 filterOption = "StateProv";
+                FilterCity.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
+                FilterState.setBackgroundColor(getResources().getColor(R.color.colorButtonActivated));
+                FilterTeam.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
+                FilterCountry.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
                 queryForRecentScoresForMyTeam();
             }
         });
@@ -197,6 +201,10 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 filterOption = "CountryCode";
+                FilterCity.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
+                FilterState.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
+                FilterTeam.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
+                FilterCountry.setBackgroundColor(getResources().getColor(R.color.colorButtonActivated));
                 queryForRecentScoresForMyTeam();
             }
         });
@@ -205,6 +213,10 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 filterOption = "MyTeam";
+                FilterCity.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
+                FilterState.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
+                FilterTeam.setBackgroundColor(getResources().getColor(R.color.colorButtonActivated));
+                FilterCountry.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
                 queryForRecentScoresForMyTeam();
             }
         });

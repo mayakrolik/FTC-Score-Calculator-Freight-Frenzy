@@ -3,46 +3,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#4da6ff"
     android:gravity="center">
 
     <TextView
         android:layout_width="375dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/splash_screen_text"
         android:textColor="#ffffff"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="35dp"
         android:textAlignment="center"
+        android:id="@+id/title"
         android:gravity="top"
         android:textSize="40sp"
         android:textStyle="bold"
         tools:ignore="RtlCompat" />
 
+    <!--<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo_id"
+        android:layout_centerHorizontal="true" />-->
+
     <ImageView
         android:id="@+id/logo_id"
         android:layout_width="350dp"
         android:layout_height="350dp"
-        android:layout_centerInParent="true"
+        android:layout_above="@+id/logo_team"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:contentDescription="@string/logo"
         android:src="@drawable/ultimate_goal_banner"
-        android:contentDescription="@string/logo" />
+        app:layout_constraintEnd_toStartOf="@+id/logo_team"
+        app:layout_constraintStart_toEndOf="@+id/title" />
+
+    <ImageView
+        android:id="@+id/logo_team"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignBottom="@+id/author"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:contentDescription="@string/logo"
+        android:src="@drawable/teamlogo"
+        app:layout_constraintEnd_toStartOf="@+id/author"
+        app:layout_constraintStart_toEndOf="@+id/logo_id" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/logo_id"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="300dp"
+        android:layout_width="400dp"
         android:layout_height="match_parent"
         android:text="@string/author"
         android:textColor="#ffffff"
+        android:id="@+id/author"
         android:layout_centerHorizontal="true"
         android:gravity="bottom"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="20dp"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         tools:ignore="RtlCompat" />
 
