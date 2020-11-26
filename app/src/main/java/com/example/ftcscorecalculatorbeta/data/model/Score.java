@@ -53,7 +53,7 @@ public class Score {
     public String StateProv;
     public String TeamType;
     public String UserUid;
-
+    public String YouTubeVideoId;
 
     public String getSafeUserDisplayInitials()
     {

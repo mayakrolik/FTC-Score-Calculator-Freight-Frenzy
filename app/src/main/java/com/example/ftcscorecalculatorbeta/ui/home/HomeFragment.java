@@ -89,7 +89,7 @@ public class HomeFragment extends Fragment {
                     }
 
                     blnInitalized = true;
-                    Toast.makeText(getContext(), "Feed Updated", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Feed Updated", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.d(TAG, "Error getting documents: ", task.getException());
                 }

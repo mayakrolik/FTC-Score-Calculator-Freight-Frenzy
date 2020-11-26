@@ -19,6 +19,8 @@ import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -643,7 +645,7 @@ public class CalculatorFragment extends Fragment {
 
     public void saveScore()
     {
-        MainActivity activity = (MainActivity) getActivity();
+        final MainActivity activity = (MainActivity) getActivity();
         if (activity.currentUser == null) {
             activity.login();
             return;
@@ -718,6 +720,11 @@ public class CalculatorFragment extends Fragment {
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
                         // TODO :  reset everything to zero and show progress fragment
+                        clearForm();
+                        activity.bottomNavigationView.setSelectedItemId(R.id.navigation_home);
+
+                        Toast.makeText(getContext(), "Score Saved", Toast.LENGTH_SHORT).show();
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -726,6 +733,10 @@ public class CalculatorFragment extends Fragment {
                         Log.w(TAG, "Error adding document", e);
                     }
                 });
+    }
+
+    private void clearForm(){
+
     }
 
     private void updateTotals() {

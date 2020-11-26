@@ -1,5 +1,9 @@
 package com.example.ftcscorecalculatorbeta.data.model;
 
+import com.google.firebase.Timestamp;
+
+import java.util.List;
+
 public class UserProfile {
 
     public UserProfile() {}
@@ -8,6 +12,7 @@ public class UserProfile {
     public String TeamNickName;
     public String UserUid;
     public int LoginCount;
+    public Timestamp LastLogin;
     public String City;
     public String StateProv;
     public String PostalCode;
@@ -17,4 +22,6 @@ public class UserProfile {
     public String FirebaseMessagingToken;
     public String ProgramCodeDisplay;
     public String ProgramName;
+    public List<FollowingTeam> FollowingTeams;
+
 }

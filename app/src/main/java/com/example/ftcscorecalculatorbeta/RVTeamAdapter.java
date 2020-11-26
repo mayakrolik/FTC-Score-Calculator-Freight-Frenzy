@@ -35,6 +35,8 @@ import com.google.firebase.firestore.auth.User;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -65,11 +67,12 @@ public class RVTeamAdapter extends RecyclerView.Adapter<RVTeamAdapter.UserViewHo
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
 
+        SimpleDateFormat sfd = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+
         holder.UserInitials.setText(String.valueOf(users.get(position).DisplayName));
         holder.UserEmail.setText(String.valueOf(users.get(position).EmailAddress));
         holder.LoginCount.setText(String.valueOf(users.get(position).LoginCount));
-
-
+        holder.LastLogin.setText(sfd.format(users.get(position).LastLogin.toDate()));
     }
 
     @Override
@@ -88,12 +91,15 @@ public class RVTeamAdapter extends RecyclerView.Adapter<RVTeamAdapter.UserViewHo
         TextView UserInitials;
         TextView UserEmail;
         TextView LoginCount;
+        TextView LastLogin;
+
 
         UserViewHolder(final View itemView) {
             super(itemView);
             UserInitials = (TextView) itemView.findViewById(R.id.member_name);
             UserEmail = (TextView) itemView.findViewById(R.id.user_email);
             LoginCount = (TextView) itemView.findViewById(R.id.login_count);
+            LastLogin = (TextView) itemView.findViewById(R.id.last_login);
 
         }
     }

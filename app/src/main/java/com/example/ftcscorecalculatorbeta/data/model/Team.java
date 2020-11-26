@@ -1,5 +1,7 @@
 package com.example.ftcscorecalculatorbeta.data.model;
 
+import java.util.List;
+
 public class Team {
     public Team() {}
 
@@ -18,4 +20,5 @@ public class Team {
     public String ProgramName;
     public int RookieYear;
     public int ProfileYear;
+    public List<UserFollowing> UsersFollowing;
 }

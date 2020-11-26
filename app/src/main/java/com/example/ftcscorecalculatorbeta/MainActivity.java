@@ -1,16 +1,20 @@
 package com.example.ftcscorecalculatorbeta;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -32,6 +36,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     final static String TAG = "MainActivity";
 
     private FirebaseAuth mAuth;
-    public FirebaseUser currentUser;
+    public FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
     private Fragment gotoFragment;
     private Team myTeam;
     public UserProfile userProfile;
@@ -244,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
     private void incrementLoginCountAndUpdateMessagingToken()
     {
         userProfile.LoginCount = userProfile.LoginCount + 1;
+        userProfile.LastLogin = Timestamp.now();
         db.collection("Users")
                 .document(userProfile.UserUid)
                 .set(userProfile)
@@ -277,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         String strTopicName = myTeam.ProgramCodeDisplay + "_Team_" + myTeam.TeamNumber + "_Kudos";
-        Log.d(TAG, "******************* Subscribing 1 " + strTopicName);
+        Log.d(TAG, "Subscribing 1 " + strTopicName);
         FirebaseMessaging.getInstance().subscribeToTopic(strTopicName).addOnCompleteListener(oncomplete);
         strTopicName = myTeam.ProgramCodeDisplay + "_Team_" + myTeam.TeamNumber + "_Scores";
         Log.d(TAG, "Subscribing 2 " + strTopicName);
@@ -297,6 +303,9 @@ public class MainActivity extends AppCompatActivity {
         updateUI();
     }
 
+
+    public BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -309,13 +318,13 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         final FragmentManager fragmentManager = getSupportFragmentManager();
-
         final Fragment cacl_frag = new CalculatorFragment();
         final Fragment home_frag = new HomeFragment();
         final Fragment prog_frag = new ProgressFragment();
         final Fragment team_frag = new TeamFragment();
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.nav_view);
+
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.nav_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -347,6 +356,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        if (currentUser != null)
+        {
+            bottomNavigationView.setSelectedItemId(R.id.navigation_home);
+        }
+        else {
+            bottomNavigationView.setSelectedItemId(R.id.navigation_calculator);
+        }
+
     }
+
 
 }

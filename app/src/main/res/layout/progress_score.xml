@@ -388,17 +388,6 @@
                         android:layout_marginRight="5dp"
                         android:layout_marginStart="10dp" />
 
-                    <TextView
-                        android:src="@drawable/ic_baseline_toggle_off_24"
-                        android:layout_column="4"
-                        android:visibility="gone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/aut_power_shot_1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="15sp" />
-
                     <ImageView
                         android:src="@drawable/ic_baseline_check_box_outline_blank_24"
                         android:layout_column="4"
@@ -410,17 +399,6 @@
                         android:textSize="15sp"
                         />
 
-                    <TextView
-                        android:src="@drawable/ic_baseline_toggle_off_24"
-                        android:layout_column="4"
-                        android:visibility="gone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/aut_power_shot_2"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="15sp" />
-
                     <ImageView
                         android:src="@drawable/ic_baseline_check_box_outline_blank_24"
                         android:layout_column="4"
@@ -430,17 +408,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         android:textSize="15sp"/>
-
-                    <TextView
-                        android:src="@drawable/ic_baseline_toggle_off_24"
-                        android:layout_column="4"
-                        android:visibility="gone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/aut_power_shot_3"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="15sp" />
 
                     <ImageView
                         android:src="@drawable/ic_baseline_check_box_outline_blank_24"
@@ -798,61 +765,46 @@
                 </TableRow>
 
                 <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_gravity="left"
-                    android:id="@+id/end_power_shot_row">
+                    android:id="@+id/end_power_shot_row"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp">
 
                     <TextView
+                        android:id="@+id/end_power_shot_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_column="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Power Shots"
-                        app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginEnd="5dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="15sp"
                         android:layout_marginRight="5dp"
-                        />
-
-                    <ImageView
-                        android:src="@drawable/ic_baseline_check_box_outline_blank_24"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/end_power_shot_1_image"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="Power Shots"
                         android:textSize="15sp" />
 
-                    <ImageView
-                        android:src="@drawable/ic_baseline_check_box_outline_blank_24"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/end_power_shot_2_image"
-                        app:layout_constraintStart_toEndOf="@+id/end_power_shot_row"
-                        android:textSize="15sp"/>
-
-                    <TextView
-                        android:src="@drawable/ic_baseline_toggle_off_24"
                         android:layout_column="2"
-                        android:visibility="gone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/end_power_shot_3"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="15sp" />
+                        android:layout_span="2"
+                        android:orientation="horizontal">
 
-                    <ImageView
-                        android:src="@drawable/ic_baseline_check_box_outline_blank_24"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/end_power_shot_3_image"
-                        app:layout_constraintStart_toEndOf="@+id/end_power_shot_row"
-                        android:textSize="15sp"/>
+                        <ImageView
+                            android:id="@+id/end_power_shot_1_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_check_box_outline_blank_24" />
 
+                        <ImageView
+                            android:id="@+id/end_power_shot_2_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_check_box_outline_blank_24" />
+
+                        <ImageView
+                            android:id="@+id/end_power_shot_3_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_check_box_outline_blank_24" />
+                    </LinearLayout>
                 </TableRow>
 
 

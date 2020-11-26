@@ -53,37 +53,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/member_name_layout"
                 tools:ignore="NotSibling">
 
-            <!--<TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/row1">
 
-                <TextView
-                    android:layout_column="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="User Initials"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="parent"
-                    android:textSize="15sp"
-                    android:layout_marginRight="5dp"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:layout_column="2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/total_score"
-                    app:layout_constraintEnd_toEndOf="@+id/row1"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:textSize="15sp"
-                    android:text="@string/placeholder"
-                    android:layout_marginRight="5dp" />
-
-
-            </TableRow>-->
 
             <TableRow
                 android:layout_width="fill_parent"
@@ -146,6 +116,38 @@
                         android:layout_marginRight="5dp" />
 
                 </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginLeft="5dp">
+
+                    <TextView
+                        android:layout_column="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Last Login"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginEnd="5dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:textSize="15sp"
+                        android:layout_marginRight="5dp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_column="2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/last_login"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:textSize="15sp"
+                        android:text="@string/placeholder"
+                        android:layout_marginRight="5dp" />
+
+                </TableRow>
+
 
             </TableLayout>
 

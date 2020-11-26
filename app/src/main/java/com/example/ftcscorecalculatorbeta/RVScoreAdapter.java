@@ -75,9 +75,6 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
         holder.autTopGoals.setText(String.valueOf(scores.get(position).AutLowGoals));
         holder.autMidGoals.setText(String.valueOf(scores.get(position).AutMiddleGoals));
         holder.autLowGoals.setText(String.valueOf(scores.get(position).AutTopGoals));
-        holder.autPower1.setText(String.valueOf(scores.get(position).AutPowerShot1));
-        holder.autPower2.setText(Boolean.toString(scores.get(position).AutPowerShot2));
-        holder.autPower3.setText(Boolean.toString(scores.get(position).AutPowerShot3));
         holder.stoppedOnLine.setText(Boolean.toString(scores.get(position).AutStoppedOnLine));
         holder.wobbleGoalsDeposited.setText(Boolean.toString(scores.get(position).AutWobbleGoalDeposited));
         holder.telTopGoals.setText(String.valueOf(scores.get(position).TelHighGoals));
@@ -88,11 +85,7 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
         holder.endTopGoals.setText(String.valueOf(scores.get(position).EndTopGoals));
         holder.endMidGoals.setText(String.valueOf(scores.get(position).EndMiddleGoals));
         holder.endLowGoals.setText(String.valueOf(scores.get(position).EndLowGoals));
-//        holder.endPower1.setText(String.valueOf(scores.get(position).EndPowerShot1));
-   //     holder.endPower2.setText(Boolean.toString(scores.get(position).EndPowerShot2));
-   //     holder.endPower3.setText(Boolean.toString(scores.get(position).EndPowerShot3));
         holder.endWobbleInDropZone.setText(Boolean.toString(scores.get(position).EndWobbleInDropZone));
-        //holder.endStartLinePark.setText(Boolean.toString(scores.get(position).EndStartLinePark));
         holder.endWobbleGoals.setText(String.valueOf(scores.get(position).EndWobbleGoals));
         holder.objScoreId.setText(String.valueOf(scores.get(position).DocumentId));
 
@@ -171,6 +164,9 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
             for (Kudo kudo : scores.get(position).Kudos){
                 if (kudo.UserUid.equals(activity.currentUser.getUid())) {
                     holder.objKudosButton.setImageResource(R.drawable.ic_baseline_thumb_up_blue_24);
+                    int intCurrentKudos = Integer.parseInt(holder.objKudoAmount.getText().toString());
+                    intCurrentKudos++;
+                    holder.objKudoAmount.setText(String.valueOf(intCurrentKudos));
                     holder.objKudosButton.setEnabled(false);
                     break;
                 }
@@ -240,9 +236,6 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
         TextView endMidGoals;
         TextView endLowGoals;
         TextView endWobbleGoals;
-        TextView endPower1;
-        TextView endPower2;
-        TextView endPower3;
         TextView endStartLinePark;
         TextView endWobbleInDropZone;
         ImageView objend1;
@@ -265,9 +258,6 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
             autTopGoals = (TextView) itemView.findViewById(R.id.aut_top_goals);
             autMidGoals = (TextView) itemView.findViewById(R.id.aut_mid_goals);
             autLowGoals = (TextView) itemView.findViewById(R.id.aut_low_goals);
-            autPower1 = (TextView) itemView.findViewById(R.id.aut_power_shot_1);
-            autPower2 = (TextView) itemView.findViewById(R.id.aut_power_shot_2);
-            autPower3 = (TextView) itemView.findViewById(R.id.aut_power_shot_3);
             stoppedOnLine = (TextView) itemView.findViewById(R.id.stopped_on_line);
             wobbleGoalsDeposited = (TextView) itemView.findViewById(R.id.wobble_goal_deposited);
             objaut1 = (ImageView) itemView.findViewById(R.id.aut_power_shot_1_image);
@@ -284,9 +274,6 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
             endMidGoals = (TextView) itemView.findViewById(R.id.end_mid_goals);
             endLowGoals = (TextView) itemView.findViewById(R.id.end_low_goals);
             endWobbleGoals = (TextView) itemView.findViewById(R.id.wobble_goal_rings);
-            //endPower1 = (TextView) itemView.findViewById(R.id.end_power_shot_1);
-            //endPower2 = (TextView) itemView.findViewById(R.id.end_power_shot_2);
-            //endPower3 = (TextView) itemView.findViewById(R.id.end_power_shot_3);
             endStartLinePark = (TextView) itemView.findViewById(R.id.parked_on_line);
             endWobbleInDropZone = (TextView) itemView.findViewById(R.id.wobble_goal_deposited_end);
             objend1 = (ImageView) itemView.findViewById(R.id.end_power_shot_1_image);
@@ -362,7 +349,6 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
             objHomeExpandButton = view.findViewById(R.id.home_expand_card);
             objHomeTable = view.findViewById(R.id.home_table_secondary);
             objHomeCard = view.findViewById(R.id.cv);
-            //objKudosButton = view.findViewById(R.id.savescoresbutton);
 
 
             if (objHomeTable.getVisibility() == View.VISIBLE) {
