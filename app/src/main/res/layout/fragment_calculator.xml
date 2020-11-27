@@ -955,7 +955,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:layout_marginLeft="12dp"
-                    android:text="Youtube Link"
+                    android:text="YouTube Link"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -977,7 +977,7 @@
                             android:layout_gravity="end"
                             android:orientation="vertical"
                             android:paddingLeft="10dp"
-                            android:visibility="gone"
+                            android:visibility="visible"
                             android:paddingRight="10dp"
                             android:id="@+id/youtube_table"
                             app:layout_constraintTop_toBottomOf="@+id/text_youtube">
@@ -986,7 +986,6 @@
                                 android:id="@+id/text_youtube_edit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
                                 android:hint="@string/enter_youtube_video_id"
                                 android:importantForAutofill="no"
                                 android:maxLength="13"/>
@@ -994,13 +993,16 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                app:layout_constraintTop_toBottomOf="@+id/text_youtube_edit">
+                                app:layout_constraintTop_toBottomOf="@+id/text_youtube_edit"
+                                app:layout_constraintLeft_toLeftOf="@+id/text_youtube_edit"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginStart="4dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Ex. https://www.youtube.com/watch?v="
-                                android:textSize="13sp"/>
+                                android:textSize="13sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -1090,7 +1092,7 @@
                 android:layout_width="match_parent"
                 android:padding="5dp"
                 android:layout_height="wrap_content"
-                android:text="Reset Scores"
+                android:text="Reset"
                 android:textColor="#ffffff"
                 android:background="@color/colorPrimaryDark"/>
 
