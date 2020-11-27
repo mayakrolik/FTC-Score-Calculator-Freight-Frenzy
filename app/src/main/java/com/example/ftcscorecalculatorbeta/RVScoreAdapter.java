@@ -1,6 +1,9 @@
 package com.example.ftcscorecalculatorbeta;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.transition.AutoTransition;
@@ -42,6 +45,7 @@ import java.util.List;
 import java.util.Map;
 
 import android.util.Log;
+import android.widget.Toast;
 
 public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreViewHolder> {
 
@@ -301,7 +305,12 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
                     String videoId = objYoutubeSaveLink.getText().toString();
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:"+videoId));
                     intent.putExtra("VIDEO_ID", videoId);
-                    itemView.getContext().startActivity(intent);
+                    if (isIntentAvailable(itemView.getContext(), intent))
+                    {
+                        itemView.getContext().startActivity(intent);
+                    } else {
+                        Toast.makeText(itemView.getContext(), "YouTube player is not available.", Toast.LENGTH_LONG).show();
+                    }
                 }
                 });
 
@@ -361,6 +370,15 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
             });
             doOnCreate(itemView);
 
+        }
+
+
+        private static boolean isIntentAvailable(Context ctx, Intent intent) {
+            final PackageManager mgr = ctx.getPackageManager();
+            List<ResolveInfo> list =
+                    mgr.queryIntentActivities(intent,
+                            PackageManager.MATCH_DEFAULT_ONLY);
+            return list.size() > 0;
         }
 
         private void doOnCreate(View view) {
