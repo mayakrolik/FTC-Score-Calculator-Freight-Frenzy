@@ -56,7 +56,23 @@
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/todo"
                         android:src="@drawable/ic_baseline_expand_more_24"
-                        android:layout_marginBottom="15dp" />
+                        android:layout_marginBottom="5dp" />
+
+                <ImageButton
+                    android:id="@+id/view_youtube_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:contentDescription="@string/todo"
+                    android:src="@drawable/ic_baseline_ondemand_video_24"
+                    android:layout_marginBottom="15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/save_youtube_link"
+                    android:text="@string/placeholder"
+                    android:visibility="gone"/>
 
             </LinearLayout>
 

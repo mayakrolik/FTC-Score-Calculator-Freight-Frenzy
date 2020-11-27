@@ -16,6 +16,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -112,6 +113,10 @@ public class CalculatorFragment extends Fragment {
     private ImageButton objPenaltyMajorSubtract;
     private Button objSaveScores;
     private Button objResetScores;
+    private CardView objYouTubeCard;
+    private ImageButton objYouTubeExpandButton;
+    private LinearLayout objYoutubeTable;
+    private EditText objYouTubeLink;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -512,6 +517,9 @@ public class CalculatorFragment extends Fragment {
             }
         });
 
+        objYouTubeLink = view.findViewById(R.id.text_youtube_edit);
+        objYouTubeLink.addTextChangedListener(objTW);
+
         objAutonomousExpandButton = view.findViewById(R.id.autonomous_expand_card);
         objAutonomousTable = view.findViewById(R.id.autonomous_table);
         objAutonomousCard = view.findViewById(R.id.autonomous_cardview);
@@ -524,6 +532,9 @@ public class CalculatorFragment extends Fragment {
         objPenaltyExpandButton = view.findViewById(R.id.penalty_expand_card);
         objPenaltyTable = view.findViewById(R.id.penalty_table);
         objPenaltyCard = view.findViewById(R.id.CardViewPenalty);
+        objYouTubeCard = view.findViewById(R.id.CardViewYouTube);
+        objYouTubeExpandButton = view.findViewById(R.id.youtube_expand_card);
+        objYoutubeTable = view.findViewById(R.id.youtube_table);
         objAutonomousExpandButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -643,6 +654,36 @@ public class CalculatorFragment extends Fragment {
             }
         });
 
+        objYouTubeExpandButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // If the CardView is already expanded, set its visibility
+                //  to gone and change the expand less icon to expand more.
+                if (objYoutubeTable.getVisibility() == View.VISIBLE) {
+
+                    // The transition of the hiddenView is carried out
+                    //  by the TransitionManager class.
+                    // Here we use an object of the AutoTransition
+                    // Class to create a default transition.
+                    TransitionManager.beginDelayedTransition(objYouTubeCard,
+                            new AutoTransition());
+                    objYoutubeTable.setVisibility(View.GONE);
+                    objYouTubeExpandButton.setImageResource(R.drawable.ic_baseline_expand_more_24);
+                }
+
+                // If the CardView is not expanded, set its visibility
+                // to visible and change the expand more icon to expand less.
+                else {
+
+                    TransitionManager.beginDelayedTransition(objYouTubeCard,
+                            new AutoTransition());
+                    objYoutubeTable.setVisibility(View.VISIBLE);
+                    objYouTubeExpandButton.setImageResource(R.drawable.ic_baseline_expand_less_24);
+                }
+            }
+        });
+
         objResetScores = view.findViewById(R.id.clearbutton);
         objResetScores.setOnClickListener(new CompoundButton.OnClickListener() {
             @Override
@@ -720,6 +761,7 @@ public class CalculatorFragment extends Fragment {
         score.put("PenaltyMajor", (Integer.parseInt("0" + objPenaltyMajor.getText().toString())));
         score.put("PenaltyMinor", (Integer.parseInt("0" + objPenaltyMinor.getText().toString())));
         score.put("PenaltyScore", (Integer.parseInt( objPenaltyresult.getText().toString())));
+        score.put("YouTubeVideoId",  objYouTubeLink.getText().toString());
 
 
         // Add a new document with a generated ID
@@ -769,6 +811,7 @@ public class CalculatorFragment extends Fragment {
         objPowerShot3End.setChecked(false);
         objPenaltyMinor.setText("0");
         objPenaltyMajor.setText("0");
+        objYouTubeLink.setText("");
     }
 
     private void updateTotals() {

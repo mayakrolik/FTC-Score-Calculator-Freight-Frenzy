@@ -1,5 +1,7 @@
 package com.example.ftcscorecalculatorbeta;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -88,6 +90,7 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
         holder.endWobbleInDropZone.setText(Boolean.toString(scores.get(position).EndWobbleInDropZone));
         holder.endWobbleGoals.setText(String.valueOf(scores.get(position).EndWobbleGoals));
         holder.objScoreId.setText(String.valueOf(scores.get(position).DocumentId));
+        holder.objYoutubeSaveLink.setText(String.valueOf(scores.get(position).YouTubeVideoId));
 
 
         if (scores.get(position).AutStoppedOnLine){
@@ -174,6 +177,10 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
             }
         }
 
+        /*if(scores.get(position).YouTubeVideoId.isEmpty()){
+            holder.objYouTubeVideoLaunch.setVisibility(View.GONE);
+        }*/
+
         //holder.personPhoto.setImageResource(scores.get(position).photoId);
         Log.d(TAG, "onBindViewHolder");
 
@@ -245,6 +252,8 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
         ImageView objendWobbleInDropZone;
         TextView objScoreId;
         TextView objKudoAmount;
+        ImageButton objYouTubeVideoLaunch;
+        TextView objYoutubeSaveLink;
 
         ScoreViewHolder(final View itemView) {
             super(itemView);
@@ -283,6 +292,18 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
             objendWobbleInDropZone = (ImageView) itemView.findViewById(R.id.wobble_goal_deposited_end_image);
             objScoreId = (TextView) itemView.findViewById(R.id.score_id);
             objKudoAmount = (TextView) itemView.findViewById(R.id.kudo_count);
+            objYouTubeVideoLaunch = (ImageButton) itemView.findViewById(R.id.view_youtube_button);
+            objYoutubeSaveLink = (TextView) itemView.findViewById(R.id.save_youtube_link);
+
+            objYouTubeVideoLaunch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String videoId = objYoutubeSaveLink.getText().toString();
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:"+videoId));
+                    intent.putExtra("VIDEO_ID", videoId);
+                    itemView.getContext().startActivity(intent);
+                }
+                });
 
             objKudosButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -333,14 +354,11 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
                                         }
                                     });
 
-
-
                         }
                     });
 
                 }
             });
-            //personPhoto = (ImageView)itemView.findViewById(R.id.person_photo);
             doOnCreate(itemView);
 
         }
@@ -372,11 +390,19 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
                                 new AutoTransition());
                         objHomeTable.setVisibility(View.GONE);
                         objHomeExpandButton.setImageResource(R.drawable.ic_baseline_expand_more_24);
+                        if (objYouTubeVideoLaunch.getVisibility() == View.VISIBLE){
+                            objYouTubeVideoLaunch.setVisibility(View.GONE);
+                        }
                     } else {
                         TransitionManager.beginDelayedTransition(objHomeCard,
                                 new AutoTransition());
                         objHomeTable.setVisibility(View.VISIBLE);
                         objHomeExpandButton.setImageResource(R.drawable.ic_baseline_expand_less_24);
+                        if (objYoutubeSaveLink.getText().toString().equals("")) {
+                            objYouTubeVideoLaunch.setVisibility(View.GONE);
+                        } else {
+                            objYouTubeVideoLaunch.setVisibility(View.VISIBLE);
+                        }
                     }
                 }
             });
