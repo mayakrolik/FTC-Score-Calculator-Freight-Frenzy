@@ -111,6 +111,7 @@ public class CalculatorFragment extends Fragment {
     private ImageButton objPenaltyMajorAdd;
     private ImageButton objPenaltyMajorSubtract;
     private Button objSaveScores;
+    private Button objResetScores;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -641,6 +642,15 @@ public class CalculatorFragment extends Fragment {
                 }
             }
         });
+
+        objResetScores = view.findViewById(R.id.clearbutton);
+        objResetScores.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearForm();
+            }
+        });
+
     }
 
     public void saveScore()
@@ -737,6 +747,28 @@ public class CalculatorFragment extends Fragment {
 
     private void clearForm(){
 
+        objTopGoals.setText("0");
+        objMiddleGoals.setText("0");
+        objLowGoals.setText("0");
+        objSwitchStoppedOnLine.setChecked(false);
+        objSwitchWobbleGoalDeposited.setChecked(false);
+        objTopGoalsTellyOp.setText("0");
+        objMiddleGoalsTellyOp.setText("0");
+        objLowGoalsTellyOp.setText("0");
+        objTopGoalsEndgame.setText("0");
+        objMiddleGoalsEndgame.setText("0");
+        objLowGoalsEndgame.setText("0");
+        objWobbleRing.setText("0");
+        objSwitchWobbleInDropZone.setChecked(false);
+        objSwitchStartLinePark.setChecked(false);
+        objPowerShot1.setChecked(false);
+        objPowerShot2.setChecked(false);
+        objPowerShot3.setChecked(false);
+        objPowerShot1End.setChecked(false);
+        objPowerShot2End.setChecked(false);
+        objPowerShot3End.setChecked(false);
+        objPenaltyMinor.setText("0");
+        objPenaltyMajor.setText("0");
     }
 
     private void updateTotals() {
