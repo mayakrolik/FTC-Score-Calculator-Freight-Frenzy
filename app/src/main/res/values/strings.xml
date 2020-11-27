@@ -56,5 +56,5 @@
     <string name="TeamName">Team Name</string>
     <string name="TeamNumber">#</string>
     <string name="ClearScores">Clear Score</string>
-    <string name="enter_youtube_video_id">Enter Youtube Video ID (link after watch?v=)</string>
+    <string name="enter_youtube_video_id">Enter YouTube Video ID (link after watch?v=)</string>
 </resources>
