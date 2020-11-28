@@ -416,7 +416,7 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
                                 new AutoTransition());
                         objHomeTable.setVisibility(View.VISIBLE);
                         objHomeExpandButton.setImageResource(R.drawable.ic_baseline_expand_less_24);
-                        if (objYoutubeSaveLink.getText().toString().equals("null")) {
+                        if ((objYoutubeSaveLink.getText().toString().equals("null")) || (objYoutubeSaveLink.getText().toString().equals("")) || (objYoutubeSaveLink.getText().toString().length() < 7) ) {
                             objYouTubeVideoLaunch.setVisibility(View.GONE);
                         } else {
                             objYouTubeVideoLaunch.setVisibility(View.VISIBLE);

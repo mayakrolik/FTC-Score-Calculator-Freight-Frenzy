@@ -761,7 +761,7 @@ public class CalculatorFragment extends Fragment {
         score.put("PenaltyMajor", (Integer.parseInt("0" + objPenaltyMajor.getText().toString())));
         score.put("PenaltyMinor", (Integer.parseInt("0" + objPenaltyMinor.getText().toString())));
         score.put("PenaltyScore", (Integer.parseInt( objPenaltyresult.getText().toString())));
-        score.put("YouTubeVideoId",  objYouTubeLink.getText().toString());
+        score.put("YouTubeVideoId",  objYouTubeLink.getText().toString().trim());
 
 
         // Add a new document with a generated ID
