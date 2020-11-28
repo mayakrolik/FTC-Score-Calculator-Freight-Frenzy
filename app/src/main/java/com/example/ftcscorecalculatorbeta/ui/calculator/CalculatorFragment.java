@@ -789,18 +789,18 @@ public class CalculatorFragment extends Fragment {
 
     private void clearForm(){
 
-        objTopGoals.setText("0");
-        objMiddleGoals.setText("0");
-        objLowGoals.setText("0");
+        objTopGoals.setText("");
+        objMiddleGoals.setText("");
+        objLowGoals.setText("");
         objSwitchStoppedOnLine.setChecked(false);
         objSwitchWobbleGoalDeposited.setChecked(false);
-        objTopGoalsTellyOp.setText("0");
-        objMiddleGoalsTellyOp.setText("0");
-        objLowGoalsTellyOp.setText("0");
-        objTopGoalsEndgame.setText("0");
-        objMiddleGoalsEndgame.setText("0");
-        objLowGoalsEndgame.setText("0");
-        objWobbleRing.setText("0");
+        objTopGoalsTellyOp.setText("");
+        objMiddleGoalsTellyOp.setText("");
+        objLowGoalsTellyOp.setText("");
+        objTopGoalsEndgame.setText("");
+        objMiddleGoalsEndgame.setText("");
+        objLowGoalsEndgame.setText("");
+        objWobbleRing.setText("");
         objSwitchWobbleInDropZone.setChecked(false);
         objSwitchStartLinePark.setChecked(false);
         objPowerShot1.setChecked(false);
