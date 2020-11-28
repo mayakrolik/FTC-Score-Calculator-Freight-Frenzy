@@ -74,7 +74,12 @@ public class RVTeamAdapter extends RecyclerView.Adapter<RVTeamAdapter.UserViewHo
         holder.UserInitials.setText(String.valueOf(users.get(position).DisplayName));
         holder.UserEmail.setText(String.valueOf(users.get(position).EmailAddress));
         holder.LoginCount.setText(String.valueOf(users.get(position).LoginCount));
-        holder.LastLogin.setText(sfd.format(users.get(position).LastLogin.toDate()));
+        Timestamp tstamp = users.get(position).LastLogin;
+        if (tstamp != null) {
+            holder.LastLogin.setText(sfd.format(tstamp.toDate()));
+        } else {
+            holder.LastLogin.setText("Unknown");
+        }
         String strProfilePicUrl = users.get(position).ProfilePhotoUrl;
         if (strProfilePicUrl != null) {
             //holder.ProfilePic.setImageURI(Uri.parse(strProfilePicUrl));
