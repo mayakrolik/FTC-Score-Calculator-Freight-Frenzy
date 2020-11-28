@@ -1,6 +1,7 @@
 package com.example.ftcscorecalculatorbeta.ui.calculator;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -548,8 +549,8 @@ public class CalculatorFragment extends Fragment {
                     //  by the TransitionManager class.
                     // Here we use an object of the AutoTransition
                     // Class to create a default transition.
-                    TransitionManager.beginDelayedTransition(objAutonomousCard,
-                            new AutoTransition());
+                    if ( Build.VERSION.SDK_INT > 22)
+                        TransitionManager.beginDelayedTransition(objAutonomousCard,  new AutoTransition());
                     objAutonomousTable.setVisibility(View.GONE);
                     objAutonomousExpandButton.setImageResource(R.drawable.ic_baseline_expand_more_24);
                 }
@@ -558,8 +559,8 @@ public class CalculatorFragment extends Fragment {
                 // to visible and change the expand more icon to expand less.
                 else {
 
-                    TransitionManager.beginDelayedTransition(objAutonomousCard,
-                            new AutoTransition());
+                    if ( Build.VERSION.SDK_INT > 22)
+                        TransitionManager.beginDelayedTransition(objAutonomousCard, new AutoTransition());
                     objAutonomousTable.setVisibility(View.VISIBLE);
                     objAutonomousExpandButton.setImageResource(R.drawable.ic_baseline_expand_less_24);
                 }
@@ -577,7 +578,8 @@ public class CalculatorFragment extends Fragment {
                     //  by the TransitionManager class.
                     // Here we use an object of the AutoTransition
                     // Class to create a default transition.
-                    TransitionManager.beginDelayedTransition(objTeleopsCard,
+                    if ( Build.VERSION.SDK_INT > 22)
+                        TransitionManager.beginDelayedTransition(objTeleopsCard,
                             new AutoTransition());
                     objTeleopsTable.setVisibility(View.GONE);
                     objTeleopsExpandButton.setImageResource(R.drawable.ic_baseline_expand_more_24);
@@ -587,7 +589,8 @@ public class CalculatorFragment extends Fragment {
                 // to visible and change the expand more icon to expand less.
                 else {
 
-                    TransitionManager.beginDelayedTransition(objTeleopsCard,
+                    if ( Build.VERSION.SDK_INT > 22)
+                        TransitionManager.beginDelayedTransition(objTeleopsCard,
                             new AutoTransition());
                     objTeleopsTable.setVisibility(View.VISIBLE);
                     objTeleopsExpandButton.setImageResource(R.drawable.ic_baseline_expand_less_24);
@@ -606,7 +609,8 @@ public class CalculatorFragment extends Fragment {
                     //  by the TransitionManager class.
                     // Here we use an object of the AutoTransition
                     // Class to create a default transition.
-                    TransitionManager.beginDelayedTransition(objEndCard,
+                    if ( Build.VERSION.SDK_INT > 22)
+                        TransitionManager.beginDelayedTransition(objEndCard,
                             new AutoTransition());
                     objEndTable.setVisibility(View.GONE);
                     objEndExpandButton.setImageResource(R.drawable.ic_baseline_expand_more_24);
@@ -616,7 +620,8 @@ public class CalculatorFragment extends Fragment {
                 // to visible and change the expand more icon to expand less.
                 else {
 
-                    TransitionManager.beginDelayedTransition(objEndCard,
+                    if ( Build.VERSION.SDK_INT > 22)
+                        TransitionManager.beginDelayedTransition(objEndCard,
                             new AutoTransition());
                     objEndTable.setVisibility(View.VISIBLE);
                     objEndExpandButton.setImageResource(R.drawable.ic_baseline_expand_less_24);
@@ -636,7 +641,9 @@ public class CalculatorFragment extends Fragment {
                     //  by the TransitionManager class.
                     // Here we use an object of the AutoTransition
                     // Class to create a default transition.
-                    TransitionManager.beginDelayedTransition(objPenaltyCard,
+
+                    if ( Build.VERSION.SDK_INT > 22)
+                        TransitionManager.beginDelayedTransition(objPenaltyCard,
                             new AutoTransition());
                     objPenaltyTable.setVisibility(View.GONE);
                     objPenaltyExpandButton.setImageResource(R.drawable.ic_baseline_expand_more_24);
@@ -646,7 +653,8 @@ public class CalculatorFragment extends Fragment {
                 // to visible and change the expand more icon to expand less.
                 else {
 
-                    TransitionManager.beginDelayedTransition(objPenaltyCard,
+                    if ( Build.VERSION.SDK_INT > 22)
+                        TransitionManager.beginDelayedTransition(objPenaltyCard,
                             new AutoTransition());
                     objPenaltyTable.setVisibility(View.VISIBLE);
                     objPenaltyExpandButton.setImageResource(R.drawable.ic_baseline_expand_less_24);
@@ -666,7 +674,8 @@ public class CalculatorFragment extends Fragment {
                     //  by the TransitionManager class.
                     // Here we use an object of the AutoTransition
                     // Class to create a default transition.
-                    TransitionManager.beginDelayedTransition(objYouTubeCard,
+                    if ( Build.VERSION.SDK_INT > 22)
+                        TransitionManager.beginDelayedTransition(objYouTubeCard,
                             new AutoTransition());
                     objYoutubeTable.setVisibility(View.GONE);
                     objYouTubeExpandButton.setImageResource(R.drawable.ic_baseline_expand_more_24);
@@ -676,7 +685,8 @@ public class CalculatorFragment extends Fragment {
                 // to visible and change the expand more icon to expand less.
                 else {
 
-                    TransitionManager.beginDelayedTransition(objYouTubeCard,
+                    if ( Build.VERSION.SDK_INT > 22)
+                        TransitionManager.beginDelayedTransition(objYouTubeCard,
                             new AutoTransition());
                     objYoutubeTable.setVisibility(View.VISIBLE);
                     objYouTubeExpandButton.setImageResource(R.drawable.ic_baseline_expand_less_24);

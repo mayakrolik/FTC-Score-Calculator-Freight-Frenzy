@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -388,12 +389,14 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
 
 
             if (objHomeTable.getVisibility() == View.VISIBLE) {
-                TransitionManager.beginDelayedTransition(objHomeCard,
+                if ( Build.VERSION.SDK_INT > 22)
+                    TransitionManager.beginDelayedTransition(objHomeCard,
                         new AutoTransition());
                 objHomeTable.setVisibility(View.GONE);
                 objHomeExpandButton.setImageResource(R.drawable.ic_baseline_expand_more_24);
             } else {
-                TransitionManager.beginDelayedTransition(objHomeCard,
+                if ( Build.VERSION.SDK_INT > 22)
+                    TransitionManager.beginDelayedTransition(objHomeCard,
                         new AutoTransition());
                 objHomeTable.setVisibility(View.VISIBLE);
                 objHomeExpandButton.setImageResource(R.drawable.ic_baseline_expand_less_24);
@@ -404,7 +407,8 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
                 public void onClick(View view) {
 
                     if (objHomeTable.getVisibility() == View.VISIBLE) {
-                        TransitionManager.beginDelayedTransition(objHomeCard,
+                        if ( Build.VERSION.SDK_INT > 22)
+                            TransitionManager.beginDelayedTransition(objHomeCard,
                                 new AutoTransition());
                         objHomeTable.setVisibility(View.GONE);
                         objHomeExpandButton.setImageResource(R.drawable.ic_baseline_expand_more_24);
@@ -412,7 +416,8 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
                             objYouTubeVideoLaunch.setVisibility(View.GONE);
                         }
                     } else {
-                        TransitionManager.beginDelayedTransition(objHomeCard,
+                        if ( Build.VERSION.SDK_INT > 22)
+                            TransitionManager.beginDelayedTransition(objHomeCard,
                                 new AutoTransition());
                         objHomeTable.setVisibility(View.VISIBLE);
                         objHomeExpandButton.setImageResource(R.drawable.ic_baseline_expand_less_24);
