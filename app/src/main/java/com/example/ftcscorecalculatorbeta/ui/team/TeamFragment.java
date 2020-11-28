@@ -62,8 +62,13 @@ public class TeamFragment extends Fragment {
                             users.clear();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                UserProfile userProfile = document.toObject(UserProfile.class);
-                                users.add(userProfile);
+                                try {
+                                    UserProfile userProfile = document.toObject(UserProfile.class);
+                                    users.add(userProfile);
+                                } catch (Exception ex)
+                                {
+                                    // some bad data got in, but at least the app did not crash.
+                                }
                             }
 
                             RecyclerView rv = (RecyclerView) getView().findViewById(R.id.rv_team);
