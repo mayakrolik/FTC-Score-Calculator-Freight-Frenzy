@@ -70,7 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/save_youtube_link"
-                    android:text="@string/placeholder"
+                    android:text="@string/placeholder_blank"
                     android:visibility="gone"/>
 
             </LinearLayout>
@@ -882,6 +882,15 @@
                     android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@+id/kudos_layout"
                     app:layout_constraintEnd_toStartOf="@+id/kudos" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_play_arrow_24"
+                    app:layout_constraintEnd_toStartOf="@+id/kudo_count"
+                    app:layout_constraintBottom_toBottomOf="@+id/kudo_count"
+                    android:id="@+id/score_verified"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/kudo_count"

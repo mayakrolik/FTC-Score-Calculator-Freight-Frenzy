@@ -164,7 +164,11 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
         } else {
             holder.objend3.setImageResource(R.drawable.ic_baseline_check_box_outline_blank_24);
         }
-
+        if ((String.valueOf(scores.get(position).YouTubeVideoId).equals("null")) || (String.valueOf(scores.get(position).YouTubeVideoId).equals("")) || (String.valueOf(scores.get(position).YouTubeVideoId).length() < 7)){
+            holder.objVerified.setVisibility(View.GONE);
+        } else {
+            holder.objVerified.setVisibility(View.VISIBLE);
+        }
         MainActivity activity = (MainActivity) holder.itemView.getContext();
 
         if (scores.get(position).Kudos != null){
@@ -259,6 +263,7 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
         TextView objKudoAmount;
         ImageButton objYouTubeVideoLaunch;
         TextView objYoutubeSaveLink;
+        ImageView objVerified;
 
         ScoreViewHolder(final View itemView) {
             super(itemView);
@@ -299,6 +304,7 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
             objKudoAmount = (TextView) itemView.findViewById(R.id.kudo_count);
             objYouTubeVideoLaunch = (ImageButton) itemView.findViewById(R.id.view_youtube_button);
             objYoutubeSaveLink = (TextView) itemView.findViewById(R.id.save_youtube_link);
+            objVerified = (ImageView) itemView.findViewById(R.id.score_verified);
 
             objYouTubeVideoLaunch.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -402,10 +408,10 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
                 objHomeExpandButton.setImageResource(R.drawable.ic_baseline_expand_less_24);
             }
 
+
             objHomeExpandButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     if (objHomeTable.getVisibility() == View.VISIBLE) {
                         if ( Build.VERSION.SDK_INT > 22)
                             TransitionManager.beginDelayedTransition(objHomeCard,
@@ -415,6 +421,11 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
                         if (objYouTubeVideoLaunch.getVisibility() == View.VISIBLE){
                             objYouTubeVideoLaunch.setVisibility(View.GONE);
                         }
+                        if ((objYoutubeSaveLink.getText().toString().equals("null")) || (objYoutubeSaveLink.getText().toString().equals("")) || (objYoutubeSaveLink.getText().toString().length() < 7)) {
+                            objVerified.setVisibility(View.GONE);
+                        } else {
+                            objVerified.setVisibility(View.VISIBLE);
+                        }
                     } else {
                         if ( Build.VERSION.SDK_INT > 22)
                             TransitionManager.beginDelayedTransition(objHomeCard,
@@ -423,8 +434,10 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
                         objHomeExpandButton.setImageResource(R.drawable.ic_baseline_expand_less_24);
                         if ((objYoutubeSaveLink.getText().toString().equals("null")) || (objYoutubeSaveLink.getText().toString().equals("")) || (objYoutubeSaveLink.getText().toString().length() < 7) ) {
                             objYouTubeVideoLaunch.setVisibility(View.GONE);
+                            objVerified.setVisibility(View.GONE);
                         } else {
                             objYouTubeVideoLaunch.setVisibility(View.VISIBLE);
+                            objVerified.setVisibility(View.VISIBLE);
                         }
                     }
                 }

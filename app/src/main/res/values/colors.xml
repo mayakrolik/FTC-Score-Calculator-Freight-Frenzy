@@ -5,4 +5,6 @@
     <color name="colorAccent">#66b3ff</color>
     <color name="colorButtonActivated">#157DFF</color>
     <color name="colorButtonDeactivated">#72A2FF</color>
+    <color name="colorVerifiedCheck">#2FD136</color>
+
 </resources>

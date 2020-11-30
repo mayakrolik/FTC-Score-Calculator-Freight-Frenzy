@@ -21,7 +21,7 @@
         <Button
             android:id="@+id/filter_button_my_team"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:background="@color/colorButtonActivated"
             android:contentDescription="@string/todo"
             android:padding="5dp"
@@ -32,7 +32,7 @@
         <Button
             android:id="@+id/filter_button_city"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:background="@color/colorButtonDeactivated"
             android:contentDescription="@string/todo"
             android:padding="5dp"
@@ -43,7 +43,7 @@
         <Button
             android:id="@+id/filter_button_state"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:background="@color/colorButtonDeactivated"
             android:contentDescription="@string/todo"
             android:padding="5dp"
@@ -55,11 +55,40 @@
         <Button
             android:id="@+id/filter_button_country"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:background="@color/colorButtonDeactivated"
             android:contentDescription="@string/todo"
             android:padding="5dp"
             android:text="Country"
+            android:layout_weight="1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/filter_button_recent"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@color/colorButtonActivated"
+            android:contentDescription="@string/todo"
+            android:text="Recent Scores"
+            android:textSize="15sp"
+            android:layout_weight="1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/filter_button_top"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@color/colorButtonDeactivated"
+            android:contentDescription="@string/todo"
+            android:text="Top Scores"
             android:layout_weight="1"
             app:layout_constraintTop_toTopOf="parent" />
 

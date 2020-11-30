@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -32,21 +33,21 @@ import com.example.ftcscorecalculatorbeta.data.model.Score;
 import com.example.ftcscorecalculatorbeta.ui.home.HomeViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.type.DateTime;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Date;
-import java.sql.Timestamp;
 import java.util.Map;
 
 public class HomeFragment extends Fragment {
-
 
 
     final static String TAG = "HomeFragment";
@@ -54,11 +55,14 @@ public class HomeFragment extends Fragment {
     private boolean blnInitalized = false;
     public ImageButton objKudosButton;
     private String filterOption = "MyTeam";
+    private String filterCategoryOption = "Recent";
     private HomeViewModel homeViewModel;
     public Button FilterCity;
     public Button FilterState;
     public Button FilterCountry;
     public Button FilterTeam;
+    public Button FilterRecentScores;
+    public Button FilterTopScores;
 
 
     private void queryForRecentScoresForMyTeam() {
@@ -80,7 +84,7 @@ public class HomeFragment extends Fragment {
 
                     RecyclerView rv = (RecyclerView) getView().findViewById(R.id.rv);
                     RVScoreAdapter adapter = (RVScoreAdapter) rv.getAdapter();
-                    if (adapter == null){
+                    if (adapter == null) {
                         adapter = new RVScoreAdapter(scores);
                         rv.setAdapter(adapter);
 
@@ -98,12 +102,23 @@ public class HomeFragment extends Fragment {
 
 
         if (filterOption.equals("City")) {
-            db.collection("Scores")
-                    .whereEqualTo("City", activity.getMyTeam().City)
-                    .orderBy("CreatedTimestamp", Query.Direction.DESCENDING)
-                    .limit(50)
-                    .get()
-                    .addOnCompleteListener(oncompletelistener);
+            Query query = db.collection("Scores")
+                    .whereEqualTo("City", activity.getMyTeam().City);
+            if (filterCategoryOption.equals("Recent")) {
+                query.whereGreaterThan("CreatedTimestamp", new Timestamp(new Date (new Date().getTime() - (60*60*24*7))))
+                        .orderBy("CreatedTimestamp", Query.Direction.DESCENDING)
+                        .limit(50)
+                        .get()
+                        .addOnCompleteListener(oncompletelistener);
+            } else {
+                query.orderBy("TotalScore", Query.Direction.DESCENDING)
+                        .limit(50)
+                        .get()
+                        .addOnCompleteListener(oncompletelistener);
+            }
+            //.limit(50)
+            //.get()
+            //.addOnCompleteListener(oncompletelistener);
 
         }
         if (filterOption.equals("StateProv")) {
@@ -172,6 +187,8 @@ public class HomeFragment extends Fragment {
         FilterState = view.findViewById(R.id.filter_button_state);
         FilterCountry = view.findViewById(R.id.filter_button_country);
         FilterTeam = view.findViewById(R.id.filter_button_my_team);
+        FilterRecentScores = view.findViewById(R.id.filter_button_recent);
+        FilterTopScores = view.findViewById(R.id.filter_button_top);
 
         FilterCity.setOnClickListener(new CompoundButton.OnClickListener() {
             @Override
@@ -217,6 +234,26 @@ public class HomeFragment extends Fragment {
                 FilterState.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
                 FilterTeam.setBackgroundColor(getResources().getColor(R.color.colorButtonActivated));
                 FilterCountry.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
+                queryForRecentScoresForMyTeam();
+            }
+        });
+
+        FilterRecentScores.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterCategoryOption = "Recent";
+                FilterRecentScores.setBackgroundColor(getResources().getColor(R.color.colorButtonActivated));
+                FilterTopScores.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
+                queryForRecentScoresForMyTeam();
+            }
+        });
+
+        FilterTopScores.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterCategoryOption = "Top";
+                FilterTopScores.setBackgroundColor(getResources().getColor(R.color.colorButtonActivated));
+                FilterRecentScores.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
                 queryForRecentScoresForMyTeam();
             }
         });

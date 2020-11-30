@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/splash_screen_text"
-        android:textColor="#ffffff"
+        android:textColor="@color/colorPrimaryDark"
         android:textAlignment="center"
         android:id="@+id/title"
         android:gravity="top"
@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/logo"
-        android:src="@drawable/ultimate_goal_banner_2"
+        android:src="@drawable/teamlogo"
         app:layout_constraintBottom_toTopOf="@+id/splash_h_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,17 +48,6 @@
         android:padding="10dp"
         android:layout_marginBottom="30dp">
 
-        <ImageView
-            android:id="@+id/logo_team"
-            android:layout_width="150dp"
-            android:layout_height="100dp"
-            android:contentDescription="@string/logo"
-
-            android:src="@drawable/team_logo"
-            app:layout_constraintBottom_toTopOf="@+id/author"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -69,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Created by"
-            android:textColor="#ffffff"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="20sp"/>
 
         <TextView
