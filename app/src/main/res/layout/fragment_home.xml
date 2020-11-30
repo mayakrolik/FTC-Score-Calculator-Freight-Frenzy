@@ -110,9 +110,6 @@
 
     </ScrollView>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="@id/home_layout" />
+
 
 </LinearLayout>
