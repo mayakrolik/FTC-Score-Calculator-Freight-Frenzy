@@ -12,6 +12,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class App extends Application {
 
+    // We are publishing the app here:   https://ftc-calculator.web.app/ftc-calc-app.apk
+
     @Override
     public void onCreate() {
         super.onCreate();
