@@ -105,11 +105,18 @@ public class MainActivity extends AppCompatActivity {
         updateUI();
     }
 
+    private boolean showingRegistrationForm = false;
+
     private void startUserRegistration()
     {
         FragmentManager fm = getSupportFragmentManager();
         RegisterFragment regFragment = RegisterFragment.newInstance();
-        regFragment.show(fm, "fragment_register");
+        if (userProfile == null) {
+            if (!showingRegistrationForm) {
+                showingRegistrationForm = true;
+                regFragment.show(fm, "fragment_register");
+            }
+        }
     }
 
     @Override
@@ -177,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadUserProfile()
     {
+        if (userProfile != null) return;  // just in case this is called multiple times, don't call the db multiple times
         DocumentReference docRef = db.collection("Users").document(currentUser.getUid());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -193,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 } else {
                     Log.d(TAG, "get failed with ", task.getException());
+                    startUserRegistration();
                 }
             }
         });
@@ -200,6 +209,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadTeam()
     {
+        if (myTeam != null) return;   // just in case this is called multiple times, don't call the db multiple times
         DocumentReference docRef = db.collection("Teams").document(String.valueOf(userProfile.TeamNumber));
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override

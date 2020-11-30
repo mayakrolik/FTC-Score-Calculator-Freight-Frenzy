@@ -75,7 +75,7 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
     @Override
     public void onBindViewHolder(@NonNull ScoreViewHolder holder, int position) {
 
-        SimpleDateFormat sfd = new SimpleDateFormat("MM-dd-yy HH:mm");
+        SimpleDateFormat sfd = new SimpleDateFormat("MM-dd-yyyy HH:mm");
 
         holder.teamName.setText(String.valueOf(scores.get(position).TeamNumber) + " " + String.valueOf(scores.get(position).TeamNickName) + " (" + (String.valueOf(scores.get(position).getSafeUserDisplayInitials())) + ")");
         holder.totalScore.setText(String.valueOf(scores.get(position).TotalScore));
@@ -181,19 +181,17 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
                     holder.objKudosButton.setImageResource(R.drawable.ic_baseline_thumb_up_blue_24);
                     int intCurrentKudos = Integer.parseInt(holder.objKudoAmount.getText().toString());
                     intCurrentKudos++;
-                    holder.objKudoAmount.setText(String.valueOf(intCurrentKudos));
                     holder.objKudosButton.setEnabled(false);
                     break;
                 }
-
             }
+        } else {
+            holder.objKudoAmount.setText("0");
+            holder.objKudosButton.setEnabled(true);
+            holder.objKudosButton.setImageResource(R.drawable.ic_baseline_thumb_up_24);
         }
 
-        /*if(scores.get(position).YouTubeVideoId.isEmpty()){
-            holder.objYouTubeVideoLaunch.setVisibility(View.GONE);
-        }*/
 
-        //holder.personPhoto.setImageResource(scores.get(position).photoId);
         Log.d(TAG, "onBindViewHolder");
 
     }
