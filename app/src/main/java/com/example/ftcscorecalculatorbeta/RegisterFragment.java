@@ -143,21 +143,20 @@ public class RegisterFragment extends DialogFragment {
     private void saveUserProfile()
     {
         MainActivity activity = (MainActivity)getActivity();
-        activity.setMyTeam(tenativeTeam);
-
+ 
         Map<String, Object> user = new HashMap<>();
         user.put("UserUid", activity.currentUser.getUid());
-        user.put("TeamNumber", activity.getMyTeam().TeamNumber);
-        user.put("TeamNickName", activity.getMyTeam().NickName);
+        user.put("TeamNumber", tenativeTeam.TeamNumber);
+        user.put("TeamNickName", tenativeTeam.NickName);
         user.put("LoginCount", 0);
-        user.put("City", activity.getMyTeam().City);
-        user.put("StateProv", activity.getMyTeam().StateProv);
-        user.put("PostalCode", activity.getMyTeam().PostalCode);
-        user.put("CountryCode", activity.getMyTeam().CountryCode);
+        user.put("City", tenativeTeam.City);
+        user.put("StateProv", tenativeTeam.StateProv);
+        user.put("PostalCode", tenativeTeam.PostalCode);
+        user.put("CountryCode", tenativeTeam.CountryCode);
         user.put("DisplayName", activity.currentUser.getDisplayName());
         user.put("EmailAddress", activity.currentUser.getEmail());
-        user.put("ProgramCodeDisplay", activity.getMyTeam().ProgramCodeDisplay);
-        user.put("ProgramName", activity.getMyTeam().ProgramName);
+        user.put("ProgramCodeDisplay", tenativeTeam.ProgramCodeDisplay);
+        user.put("ProgramName", tenativeTeam.ProgramName);
 
         // Add a new document with a generated ID
         db.collection("Users")

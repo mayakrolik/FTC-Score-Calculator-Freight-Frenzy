@@ -170,9 +170,13 @@ public class MainActivity extends AppCompatActivity {
             Log.d( TAG, "User logged in is " + currentUser.getDisplayName());
 
             if (userProfile != null) {
-                if (gotoFragment != null) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, gotoFragment).commit();
-                    gotoFragment = null;
+                if (myTeam != null) {
+                    if (gotoFragment != null) {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, gotoFragment).commit();
+                        gotoFragment = null;
+                    }
+                } else {
+                    loadTeam();
                 }
             } else {
                 // get user profile
@@ -182,9 +186,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private boolean loadingUserProfile = false;
+
     private void loadUserProfile()
     {
         if (userProfile != null) return;  // just in case this is called multiple times, don't call the db multiple times
+        if (loadingUserProfile) return;;
+        loadingUserProfile = true;
         DocumentReference docRef = db.collection("Users").document(currentUser.getUid());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -203,13 +211,18 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "get failed with ", task.getException());
                     startUserRegistration();
                 }
+                loadingUserProfile = false;
             }
         });
     }
 
+    private boolean loadingTeam = false;
+
     private void loadTeam()
     {
         if (myTeam != null) return;   // just in case this is called multiple times, don't call the db multiple times
+        if (loadingTeam) return;
+        loadingTeam = true;
         DocumentReference docRef = db.collection("Teams").document(String.valueOf(userProfile.TeamNumber));
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -228,6 +241,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Log.d(TAG, "get failed with ", task.getException());
                 }
+                loadingTeam = false;
             }
         });
     }
