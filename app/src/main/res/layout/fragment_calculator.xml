@@ -896,7 +896,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
-                            android:text="@string/penalty_minor" />
+                            android:text="@string/penalty_major" />
 
                         <LinearLayout
                             android:layout_width="match_parent"

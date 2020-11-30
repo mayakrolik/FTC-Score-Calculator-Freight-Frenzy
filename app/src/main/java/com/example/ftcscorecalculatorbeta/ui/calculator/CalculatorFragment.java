@@ -819,8 +819,8 @@ public class CalculatorFragment extends Fragment {
         objPowerShot1End.setChecked(false);
         objPowerShot2End.setChecked(false);
         objPowerShot3End.setChecked(false);
-        objPenaltyMinor.setText("0");
-        objPenaltyMajor.setText("0");
+        objPenaltyMinor.setText("");
+        objPenaltyMajor.setText("");
         objYouTubeLink.setText("");
     }
 
