@@ -40,6 +40,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -74,7 +75,9 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
     @Override
     public void onBindViewHolder(@NonNull ScoreViewHolder holder, int position) {
 
-        holder.teamName.setText(String.valueOf(scores.get(position).getSafeUserDisplayInitials()) + " (#" + String.valueOf(scores.get(position).TeamNumber) + " " + String.valueOf(scores.get(position).TeamNickName) + ")");
+        SimpleDateFormat sfd = new SimpleDateFormat("MM-dd-yy");
+
+        holder.teamName.setText(String.valueOf(scores.get(position).TeamNumber) + " " + String.valueOf(scores.get(position).TeamNickName) + " (" + (String.valueOf(scores.get(position).getSafeUserDisplayInitials())) + ")");
         holder.totalScore.setText(String.valueOf(scores.get(position).TotalScore));
         holder.autonomousScore.setText(String.valueOf(scores.get(position).AutScore));
         holder.tellyopScore.setText(String.valueOf(scores.get(position).TelScore));
@@ -96,7 +99,7 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
         holder.endWobbleGoals.setText(String.valueOf(scores.get(position).EndWobbleGoals));
         holder.objScoreId.setText(String.valueOf(scores.get(position).DocumentId));
         holder.objYoutubeSaveLink.setText(String.valueOf(scores.get(position).YouTubeVideoId));
-
+        holder.objPostTime.setText(sfd.format(scores.get(position).CreatedTimestamp.toDate()));
 
         if (scores.get(position).AutStoppedOnLine){
             holder.lineStop.setImageResource(R.drawable.ic_baseline_toggle_on_24);
@@ -264,6 +267,7 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
         ImageButton objYouTubeVideoLaunch;
         TextView objYoutubeSaveLink;
         ImageView objVerified;
+        TextView objPostTime;
 
         ScoreViewHolder(final View itemView) {
             super(itemView);
@@ -305,6 +309,7 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
             objYouTubeVideoLaunch = (ImageButton) itemView.findViewById(R.id.view_youtube_button);
             objYoutubeSaveLink = (TextView) itemView.findViewById(R.id.save_youtube_link);
             objVerified = (ImageView) itemView.findViewById(R.id.score_verified);
+            objPostTime = (TextView) itemView.findViewById(R.id.time_posted);
 
             objYouTubeVideoLaunch.setOnClickListener(new View.OnClickListener() {
                 @Override

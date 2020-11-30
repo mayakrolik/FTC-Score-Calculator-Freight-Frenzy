@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,69 +8,78 @@
     tools:ignore="HardcodedText">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cv"
         app:cardCornerRadius="10dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/progress_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:id="@+id/progress_layout">
+            android:padding="5dp">
 
             <LinearLayout
-                android:orientation="horizontal"
+                android:id="@+id/team_name_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                android:id="@+id/team_name_layout">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <Space
                     android:layout_width="5dp"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp" />
 
                 <TextView
+                    android:id="@+id/team_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
+                    android:layout_marginRight="5dp"
                     android:text="@string/placeholder"
-                    android:id="@+id/team_name"/>
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/time_posted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/placeholder"
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="@+id/progress_layout"
-                app:layout_constraintEnd_toEndOf="@+id/progress_layout">
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="@+id/progress_layout"
+                app:layout_constraintTop_toTopOf="@+id/progress_layout">
 
-                    <ImageButton
-                        android:id="@+id/home_expand_card"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/todo"
-                        android:src="@drawable/ic_baseline_expand_more_24"
-                        android:layout_marginBottom="5dp" />
+                <ImageButton
+                    android:id="@+id/home_expand_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@string/todo"
+                    android:src="@drawable/ic_baseline_expand_more_24" />
 
                 <ImageButton
                     android:id="@+id/view_youtube_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
+                    android:layout_marginBottom="15dp"
                     android:contentDescription="@string/todo"
                     android:src="@drawable/ic_baseline_ondemand_video_24"
-                    android:layout_marginBottom="15dp" />
+                    android:visibility="gone" />
 
                 <TextView
+                    android:id="@+id/save_youtube_link"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/save_youtube_link"
                     android:text="@string/placeholder_blank"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
             </LinearLayout>
 
@@ -86,134 +94,131 @@
                 tools:ignore="NotSibling">
 
                 <TableRow
+                    android:id="@+id/row1"
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
-                    app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginBottom="5dp"
-                    android:id="@+id/row1">
+                    app:layout_constraintStart_toStartOf="parent">
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_column="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
                         android:text="Total Score"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="parent"
                         android:textSize="13sp"
-                        android:layout_marginRight="5dp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="parent" />
 
                     <TextView
-                        android:layout_column="2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:id="@+id/total_score"
-                        app:layout_constraintEnd_toEndOf="@+id/row1"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp"
-                        android:text="@string/placeholder"
-                        android:layout_marginRight="5dp" />
-
-
-                    <TextView
-                        android:layout_column="3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Autonomous Score"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginStart="10dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp"
+                        android:layout_column="2"
                         android:layout_marginRight="5dp"
-                        android:layout_marginLeft="10dp"
-                        android:textStyle="bold"/>
+                        android:text="@string/placeholder"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="@+id/row1"
+                        app:layout_constraintTop_toTopOf="parent" />
+
 
                     <TextView
-                        android:layout_column="4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/autonomous_score"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_column="3"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="Autonomous Score"
                         android:textSize="13sp"
-                        android:text="@string/placeholder" />
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/autonomous_score"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="4"
+                        android:text="@string/placeholder"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </TableRow>
 
                 <TableRow
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
-                    app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginBottom="5dp">
+                    android:layout_marginBottom="5dp"
+                    app:layout_constraintStart_toStartOf="parent">
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_column="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
                         android:text="TellyOp Score"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginEnd="5dp"
-                        app:layout_constraintTop_toTopOf="parent"
                         android:textSize="13sp"
-                        android:layout_marginRight="5dp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:layout_column="2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:id="@+id/tellyop_score"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp"
-                        android:text="@string/placeholder"
-                        android:layout_marginRight="5dp" />
-
-                    <TextView
-                        android:layout_column="3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Endgame Score"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginStart="10dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp"
+                        android:layout_column="2"
                         android:layout_marginRight="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:textStyle="bold"/>
+                        android:text="@string/placeholder"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:layout_column="4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/end_score"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_column="3"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="Endgame Score"
                         android:textSize="13sp"
-                        android:text="@string/placeholder" />
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/end_score"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="4"
+                        android:text="@string/placeholder"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </TableRow>
 
                 <TableRow
                     android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="5dp">
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    app:layout_constraintStart_toStartOf="parent">
 
                     <Space
                         android:layout_width="match_parent"
-                        android:layout_height="13dp"/>
+                        android:layout_height="13dp" />
 
                 </TableRow>
 
             </TableLayout>
-
-
-
 
 
             <TableLayout
@@ -228,455 +233,455 @@
                 <TableRow
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginLeft="5dp">
+                    android:layout_marginLeft="5dp"
+                    app:layout_constraintStart_toStartOf="parent">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_marginRight="5dp"
                         android:text="Autonomous"
                         android:textSize="13sp"
-                        android:layout_marginRight="5dp"
-                        android:layout_column="1"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                 </TableRow>
 
                 <TableRow
+                    android:id="@+id/row1secondary"
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
-                    app:layout_constraintStart_toStartOf="@+id/home_table_initial"
                     android:layout_marginLeft="5dp"
-                    android:id="@+id/row1secondary">
+                    app:layout_constraintStart_toStartOf="@+id/home_table_initial">
 
                     <TextView
-                        android:layout_column="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_marginRight="5dp"
                         android:text="Low Goals"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="parent"
                         android:textSize="13sp"
-                        android:layout_marginRight="5dp" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="parent" />
 
                     <TextView
-                        android:layout_column="2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:id="@+id/aut_low_goals"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:text="@string/placeholder"
+                        android:textSize="13sp"
                         app:layout_constraintEnd_toEndOf="@+id/row1"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp"
-                        android:text="@string/placeholder" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:layout_marginStart="10dp"
-                        android:layout_column="3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
                         android:text="Stopped on line"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginEnd="5dp"
-                        app:layout_constraintTop_toTopOf="parent"
                         android:textSize="13sp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginLeft="10dp" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:src="@drawable/ic_baseline_toggle_off_24"
-                        android:layout_column="4"
-                        android:visibility="gone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:id="@+id/stopped_on_line"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp" />
-
-                    <ImageView
-                        android:src="@drawable/ic_baseline_toggle_off_24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_column="4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/stopped_on_line_image"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp">
-
-                    <TextView
-                        android:layout_column="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mid Goals"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginEnd="5dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp"
-                        android:layout_marginRight="5dp" />
-
-                    <TextView
-                        android:layout_column="2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/aut_mid_goals"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp"
-                        android:text="@string/placeholder" />
-
-                    <TextView
-                        android:layout_column="3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Goal deposited"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginEnd="5dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginLeft="10dp" />
-
-                    <TextView
                         android:src="@drawable/ic_baseline_toggle_off_24"
-                        android:layout_column="4"
+                        android:textSize="13sp"
                         android:visibility="gone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/wobble_goal_deposited"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
+                        android:id="@+id/stopped_on_line_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="4"
                         android:src="@drawable/ic_baseline_toggle_off_24"
-                        android:layout_column="4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/wobble_goal_deposited_image"
+                        android:textSize="13sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </TableRow>
 
                 <TableRow
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
-                    app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginLeft="5dp">
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_column="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Top Goals"
                         android:layout_marginEnd="5dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp"
-                        android:layout_marginRight="5dp" />
-
-                    <TextView
-                        android:layout_column="2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/aut_top_goals"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp"
-                        android:text="@string/placeholder" />
-
-                    <TextView
-                        android:layout_column="3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Power Shots"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginEnd="5dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp"
                         android:layout_marginRight="5dp"
+                        android:text="Mid Goals"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/aut_mid_goals"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:text="@string/placeholder"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
                         android:layout_marginStart="10dp"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="Goal deposited"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <ImageView
-                        android:src="@drawable/ic_baseline_check_box_outline_blank_24"
-                        android:layout_column="4"
+                    <TextView
+                        android:id="@+id/wobble_goal_deposited"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/aut_power_shot_1_image"
+                        android:layout_column="4"
+                        android:src="@drawable/ic_baseline_toggle_off_24"
+                        android:textSize="13sp"
+                        android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp"/>
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:src="@drawable/ic_baseline_check_box_outline_blank_24"
-                        android:layout_column="4"
+                        android:id="@+id/wobble_goal_deposited_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/aut_power_shot_2_image"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp"/>
-
-                    <ImageView
-                        android:src="@drawable/ic_baseline_check_box_outline_blank_24"
                         android:layout_column="4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/aut_power_shot_3_image"
+                        android:src="@drawable/ic_baseline_toggle_off_24"
+                        android:textSize="13sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </TableRow>
 
                 <TableRow
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginBottom="2dp"
-                    android:layout_marginLeft="5dp">
+                    android:layout_marginLeft="5dp"
+                    app:layout_constraintStart_toStartOf="parent">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="Top Goals"
+                        android:textSize="13sp"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/aut_top_goals"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:text="@string/placeholder"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="Power Shots"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/aut_power_shot_1_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="4"
+                        android:src="@drawable/ic_baseline_check_box_outline_blank_24"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/aut_power_shot_2_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="4"
+                        android:src="@drawable/ic_baseline_check_box_outline_blank_24"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/aut_power_shot_3_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="4"
+                        android:src="@drawable/ic_baseline_check_box_outline_blank_24"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="2dp"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="2dp"
                         android:text="TelleOp"
                         android:textSize="13sp"
-                        android:layout_marginRight="5dp"
-                        android:layout_column="1"
-                        android:layout_marginBottom="2dp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginLeft="70dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
                         android:text="Penalties"
                         android:textSize="13sp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginStart="70dp"
-                        android:layout_column="3"
-                        android:textStyle="bold"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginLeft="70dp" />
+                        android:textStyle="bold" />
 
                 </TableRow>
 
                 <TableRow
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="2dp"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_marginRight="5dp"
+                        android:text="Low Goals"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tel_low_goals"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/placeholder"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="@+id/row1"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginLeft="70dp"
+                        android:layout_marginRight="5dp"
+                        android:text="Minor"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="parent" />
+
+                    <TextView
+                        android:id="@+id/penalty_minor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="4"
+                        android:text="@string/placeholder"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="@+id/row1"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginBottom="2dp">
 
-                <TextView
-                    android:layout_column="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Low Goals"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="parent"
-                    android:textSize="13sp"
-                    android:layout_marginRight="5dp" />
-
-                <TextView
-                    android:layout_column="2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tel_low_goals"
-                    app:layout_constraintEnd_toEndOf="@+id/row1"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:textSize="13sp"
-                    android:text="@string/placeholder"
-                    android:layout_marginRight="5dp" />
-
                     <TextView
-                        android:layout_column="3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Minor"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="parent"
-                        android:textSize="13sp"
+                        android:layout_column="1"
+                        android:layout_marginEnd="5dp"
                         android:layout_marginRight="5dp"
-                        android:layout_marginStart="70dp"
-                        android:layout_marginLeft="70dp" />
+                        android:text="Mid Goals"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:layout_column="4"
+                        android:id="@+id/tel_mid_goals"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/penalty_minor"
-                        app:layout_constraintEnd_toEndOf="@+id/row1"
-                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_column="2"
+                        android:text="@string/placeholder"
                         android:textSize="13sp"
-                        android:text="@string/placeholder" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            </TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginLeft="70dp"
+                        android:layout_marginRight="5dp"
+                        android:text="Major"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="parent" />
 
-            <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginBottom="2dp">
-
-                <TextView
-                    android:layout_column="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Mid Goals"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginEnd="5dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:textSize="13sp"
-                    android:layout_marginRight="5dp" />
-
-                <TextView
-                    android:layout_column="2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tel_mid_goals"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:textSize="13sp"
-                    android:text="@string/placeholder" />
-
-                <TextView
-                    android:layout_column="3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Major"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="parent"
-                    android:textSize="13sp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginStart="70dp"
-                    android:layout_marginLeft="70dp" />
-
-                <TextView
-                    android:layout_column="4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/penalty_major"
-                    app:layout_constraintEnd_toEndOf="@+id/row1"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:textSize="13sp"
-                    android:text="@string/placeholder" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginBottom="2dp">
-
-                <TextView
-                    android:layout_column="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Top Goals"
-                    android:layout_marginEnd="5dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:textSize="13sp"
-                    android:layout_marginRight="5dp" />
-
-                <TextView
-                    android:layout_column="2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tel_top_goals"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:textSize="13sp"
-                    android:text="@string/placeholder" />
+                    <TextView
+                        android:id="@+id/penalty_major"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="4"
+                        android:text="@string/placeholder"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="@+id/row1"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </TableRow>
 
                 <TableRow
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginLeft="5dp">
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="2dp"
+                    app:layout_constraintStart_toStartOf="parent">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="Top Goals"
+                        android:textSize="13sp"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tel_top_goals"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:text="@string/placeholder"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_marginRight="5dp"
                         android:text="Endgame"
                         android:textSize="13sp"
-                        android:layout_marginRight="5dp"
-                        android:layout_column="1"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                 </TableRow>
 
                 <TableRow
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginLeft="5dp">
+                    android:layout_marginLeft="5dp"
+                    app:layout_constraintStart_toStartOf="parent">
 
                     <TextView
-                        android:layout_column="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_marginRight="5dp"
                         android:text="Low Goals"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="parent"
                         android:textSize="13sp"
-                        android:layout_marginRight="5dp" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="parent" />
 
                     <TextView
-                        android:layout_column="2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:id="@+id/end_low_goals"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:text="@string/placeholder"
+                        android:textSize="13sp"
                         app:layout_constraintEnd_toEndOf="@+id/row1"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp"
-                        android:text="@string/placeholder" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:layout_marginStart="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_column="3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Parked on line"
-                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginEnd="5dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp"
                         android:layout_marginRight="5dp"
-                        android:layout_marginLeft="10dp" />
+                        android:text="Parked on line"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:src="@drawable/ic_baseline_toggle_off_24"
-                        android:layout_column="4"
-                        android:visibility="gone"
+                        android:id="@+id/parked_on_line"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/parked_on_line"
+                        android:layout_column="4"
+                        android:src="@drawable/ic_baseline_toggle_off_24"
+                        android:textSize="13sp"
+                        android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:src="@drawable/ic_baseline_toggle_off_24"
-                        android:layout_column="4"
+                        android:id="@+id/parked_on_line_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/parked_on_line_image"
+                        android:layout_column="4"
+                        android:src="@drawable/ic_baseline_toggle_off_24"
+                        android:textSize="13sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </TableRow>
 
@@ -686,59 +691,59 @@
                     android:layout_marginLeft="5dp">
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_column="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mid Goals"
-                        app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginEnd="5dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp"
-                        android:layout_marginRight="5dp" />
-
-                    <TextView
-                        android:layout_column="2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/end_mid_goals"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp"
-                        android:text="@string/placeholder" />
-
-                    <TextView
-                        android:layout_column="3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Wobble Goal Drop"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginEnd="5dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp"
                         android:layout_marginRight="5dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginLeft="10dp" />
+                        android:text="Mid Goals"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:src="@drawable/ic_baseline_toggle_off_24"
-                        android:layout_column="4"
-                        android:visibility="gone"
+                        android:id="@+id/end_mid_goals"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/wobble_goal_deposited_end"
+                        android:layout_column="2"
+                        android:text="@string/placeholder"
+                        android:textSize="13sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp" />
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="Wobble Goal Drop"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/wobble_goal_deposited_end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="4"
+                        android:src="@drawable/ic_baseline_toggle_off_24"
+                        android:textSize="13sp"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:src="@drawable/ic_baseline_toggle_off_24"
-                        android:layout_column="4"
+                        android:id="@+id/wobble_goal_deposited_end_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/wobble_goal_deposited_end_image"
+                        android:layout_column="4"
+                        android:src="@drawable/ic_baseline_toggle_off_24"
+                        android:textSize="13sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="13sp" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </TableRow>
 
@@ -773,12 +778,12 @@
                         android:layout_height="wrap_content"
                         android:layout_column="2"
                         android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginRight="5dp"
                         android:text="Wobble Rings"
                         android:textSize="13sp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginLeft="10dp" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/wobble_goal_rings"
@@ -839,31 +844,31 @@
             </TableLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/vertical_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:id="@+id/vertical_button"
-                app:layout_constraintEnd_toEndOf="@+id/progress_layout"
-                app:layout_constraintBottom_toTopOf="@+id/kudos_layout">
+                app:layout_constraintBottom_toTopOf="@+id/kudos_layout"
+                app:layout_constraintEnd_toEndOf="@+id/progress_layout">
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_baseline_person_add_24"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:visibility="gone"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
                     android:src="@drawable/ic_baseline_how_to_reg_24"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:visibility="gone"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginBottom="5dp"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -884,13 +889,13 @@
                     app:layout_constraintEnd_toStartOf="@+id/kudos" />
 
                 <ImageView
+                    android:id="@+id/score_verified"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_baseline_play_arrow_24"
-                    app:layout_constraintEnd_toStartOf="@+id/kudo_count"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@+id/kudo_count"
-                    android:id="@+id/score_verified"
-                    android:visibility="gone"/>
+                    app:layout_constraintEnd_toStartOf="@+id/kudo_count" />
 
                 <TextView
                     android:id="@+id/kudo_count"
@@ -924,13 +929,13 @@
 </LinearLayout>
 
 
-<!--<TextView
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="@string/kudos"
-android:layout_marginEnd="5dp"
-app:layout_constraintEnd_toStartOf="@+id/kudos"
-android:textSize="15sp"
-android:layout_marginRight="5dp"
-android:layout_marginBottom="5dp"
-app:layout_constraintBottom_toBottomOf="@+id/progress_layout"/>-->
+    <!--<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/kudos"
+    android:layout_marginEnd="5dp"
+    app:layout_constraintEnd_toStartOf="@+id/kudos"
+    android:textSize="15sp"
+    android:layout_marginRight="5dp"
+    android:layout_marginBottom="5dp"
+    app:layout_constraintBottom_toBottomOf="@+id/progress_layout"/>-->
