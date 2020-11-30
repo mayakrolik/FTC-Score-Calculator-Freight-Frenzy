@@ -143,7 +143,7 @@ public class RegisterFragment extends DialogFragment {
     private void saveUserProfile()
     {
         MainActivity activity = (MainActivity)getActivity();
- 
+
         Map<String, Object> user = new HashMap<>();
         user.put("UserUid", activity.currentUser.getUid());
         user.put("TeamNumber", tenativeTeam.TeamNumber);

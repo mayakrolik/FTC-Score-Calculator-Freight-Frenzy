@@ -54,6 +54,7 @@ public class TeamFragment extends Fragment {
 
         db.collection("Users")
                 .whereEqualTo("TeamNumber", activity.getMyTeam().TeamNumber)
+                .orderBy("DisplayName", Query.Direction.ASCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
