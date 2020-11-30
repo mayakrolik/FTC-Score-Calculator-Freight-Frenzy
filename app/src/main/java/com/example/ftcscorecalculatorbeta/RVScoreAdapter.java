@@ -75,7 +75,7 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
     @Override
     public void onBindViewHolder(@NonNull ScoreViewHolder holder, int position) {
 
-        SimpleDateFormat sfd = new SimpleDateFormat("MM-dd-yy");
+        SimpleDateFormat sfd = new SimpleDateFormat("MM-dd-yy HH:mm");
 
         holder.teamName.setText(String.valueOf(scores.get(position).TeamNumber) + " " + String.valueOf(scores.get(position).TeamNickName) + " (" + (String.valueOf(scores.get(position).getSafeUserDisplayInitials())) + ")");
         holder.totalScore.setText(String.valueOf(scores.get(position).TotalScore));
