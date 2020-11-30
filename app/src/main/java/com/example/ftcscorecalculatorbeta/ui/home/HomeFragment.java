@@ -41,6 +41,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.type.DateTime;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -101,11 +102,21 @@ public class HomeFragment extends Fragment {
         };
 
 
+        // Get the current date
+        Date currentDate = new Date();
+        // convert date to calendar
+        Calendar c = Calendar.getInstance();
+        c.setTime(currentDate);
+        // manipulate date  - subtract seven days
+        c.add(Calendar.DATE, -7);
+        // convert calendar to date
+        Date oneWeekAgo = c.getTime();
+
         if (filterOption.equals("City")) {
             Query query = db.collection("Scores")
                     .whereEqualTo("City", activity.getMyTeam().City);
             if (filterCategoryOption.equals("Recent")) {
-                query.whereGreaterThan("CreatedTimestamp", new Timestamp(new Date (new Date().getTime() - (60*60*24*7))))
+                query.whereGreaterThan("CreatedTimestamp", new Timestamp(oneWeekAgo))
                         .orderBy("CreatedTimestamp", Query.Direction.DESCENDING)
                         .limit(50)
                         .get()
@@ -116,35 +127,57 @@ public class HomeFragment extends Fragment {
                         .get()
                         .addOnCompleteListener(oncompletelistener);
             }
-            //.limit(50)
-            //.get()
-            //.addOnCompleteListener(oncompletelistener);
-
         }
+
         if (filterOption.equals("StateProv")) {
-            db.collection("Scores")
-                    .whereEqualTo("StateProv", activity.getMyTeam().StateProv)
+            Query query = db.collection("Scores")
+                    .whereEqualTo("StateProv", activity.getMyTeam().StateProv);
+            if (filterCategoryOption.equals("Recent")) {
+                query.whereGreaterThan("CreatedTimestamp", new Timestamp(oneWeekAgo))
                     .orderBy("CreatedTimestamp", Query.Direction.DESCENDING)
                     .limit(50)
                     .get()
                     .addOnCompleteListener(oncompletelistener);
+            } else {
+                query.orderBy("TotalScore", Query.Direction.DESCENDING)
+                        .limit(50)
+                        .get()
+                        .addOnCompleteListener(oncompletelistener);
+            }
         }
         if (filterOption.equals("MyTeam")) {
-            db.collection("Scores")
-                    .whereEqualTo("TeamNumber", activity.getMyTeam().TeamNumber)
+            Query query = db.collection("Scores")
+                    .whereEqualTo("TeamNumber", activity.getMyTeam().TeamNumber);
+
+            if (filterCategoryOption.equals("Recent")) {
+                query.whereGreaterThan("CreatedTimestamp", new Timestamp(oneWeekAgo))
                     .orderBy("CreatedTimestamp", Query.Direction.DESCENDING)
                     .limit(50)
                     .get()
                     .addOnCompleteListener(oncompletelistener);
+            } else {
+                query.orderBy("TotalScore", Query.Direction.DESCENDING)
+                        .limit(50)
+                        .get()
+                        .addOnCompleteListener(oncompletelistener);
+            }
         }
 
         if (filterOption.equals("CountryCode")) {
-            db.collection("Scores")
-                    .whereEqualTo("CountryCode", activity.getMyTeam().CountryCode)
-                    .orderBy("CreatedTimestamp", Query.Direction.DESCENDING)
+            Query query = db.collection("Scores")
+                    .whereEqualTo("CountryCode", activity.getMyTeam().CountryCode);
+
+            if (filterCategoryOption.equals("Recent")) {
+                query.orderBy("CreatedTimestamp", Query.Direction.DESCENDING)
                     .limit(50)
                     .get()
                     .addOnCompleteListener(oncompletelistener);
+            } else {
+                query.orderBy("TotalScore", Query.Direction.DESCENDING)
+                        .limit(50)
+                        .get()
+                        .addOnCompleteListener(oncompletelistener);
+            }
         }
 
     }
