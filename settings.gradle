@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "FTC Score Calculator Beta"
+rootProject.name = "FTC Score Calculator"
