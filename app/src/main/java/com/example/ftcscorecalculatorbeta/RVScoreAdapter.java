@@ -51,9 +51,6 @@ import android.widget.Toast;
 
 public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreViewHolder> {
 
-    public ImageButton Kudos;
-    private Score myTotalScore;
-
     List<Score> scores;
 
     public RVScoreAdapter(List<Score> scores) {
@@ -194,17 +191,6 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
 
         Log.d(TAG, "onBindViewHolder");
 
-    }
-
-    public void clear() {
-        scores.clear();
-        notifyDataSetChanged();
-    }
-
-    // Add a list of items -- change to type used
-    public void addAll(List<Score> list) {
-        scores.addAll(list);
-        notifyDataSetChanged();
     }
 
     @Override

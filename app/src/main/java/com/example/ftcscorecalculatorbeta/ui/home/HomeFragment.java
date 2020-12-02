@@ -80,18 +80,11 @@ public class HomeFragment extends Fragment {
                         Log.d(TAG, document.getId() + " => " + document.getData());
                         Score score = document.toObject(Score.class);
                         scores.add(score);
-
                     }
 
                     RecyclerView rv = (RecyclerView) getView().findViewById(R.id.rv);
                     RVScoreAdapter adapter = (RVScoreAdapter) rv.getAdapter();
-                    if (adapter == null) {
-                        adapter = new RVScoreAdapter(scores);
-                        rv.setAdapter(adapter);
-
-                    } else {
-                        adapter.addAll(scores);
-                    }
+                    adapter.notifyDataSetChanged();
 
                     blnInitalized = true;
                     Toast.makeText(getContext(), "Feed Updated", Toast.LENGTH_SHORT).show();

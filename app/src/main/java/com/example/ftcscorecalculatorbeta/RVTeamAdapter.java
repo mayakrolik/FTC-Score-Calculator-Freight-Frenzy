@@ -86,6 +86,8 @@ public class RVTeamAdapter extends RecyclerView.Adapter<RVTeamAdapter.UserViewHo
             Glide.with(holder.itemView.getContext())
                     .load(Uri.parse(strProfilePicUrl))
                     .into(holder.ProfilePic);
+        } else {
+            holder.ProfilePic.setImageResource(R.drawable.ic_baseline_person_24);
         }
     }
 

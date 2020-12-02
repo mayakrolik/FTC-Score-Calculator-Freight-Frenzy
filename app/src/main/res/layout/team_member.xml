@@ -155,7 +155,7 @@
                 android:id="@+id/profilePicImageView"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/ic_baseline_people_24"
+                android:src="@drawable/ic_baseline_person_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
