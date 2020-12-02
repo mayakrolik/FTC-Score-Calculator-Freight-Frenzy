@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.ftcscorecalculatorbeta.ui.home.HomeFragment"
+        android:name="org.ftcteam14564.firstscorecalculator.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/calculatorFragment"
-        android:name="com.example.ftcscorecalculatorbeta.ui.calculator.CalculatorFragment"
+        android:name="org.ftcteam14564.firstscorecalculator.ui.calculator.CalculatorFragment"
         android:label="fragment_calculator"
         tools:layout="@layout/fragment_calculator" >
         <action
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/progressFragment"
-        android:name="com.example.ftcscorecalculatorbeta.ui.progress.ProgressFragment"
+        android:name="org.ftcteam14564.firstscorecalculator.ui.progress.ProgressFragment"
         android:label="fragment_progress"
         tools:layout="@layout/fragment_progress" >
         <action
@@ -79,7 +79,7 @@
     </fragment>
     <fragment
         android:id="@+id/teamFragment"
-        android:name="com.example.ftcscorecalculatorbeta.ui.team.TeamFragment"
+        android:name="org.ftcteam14564.firstscorecalculator.ui.team.TeamFragment"
         android:label="fragment_team"
         tools:layout="@layout/fragment_team" >
         <action

@@ -14,7 +14,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.example.ftcscorecalculatorbeta"
+        applicationId "org.ftcteam14564.firstscorecalculator"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1

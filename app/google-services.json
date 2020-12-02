@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:2083224980:android:4000d228c4c9ac22552381",
         "android_client_info": {
-          "package_name": "com.example.ftcscorecalculatorbeta"
+          "package_name": "org.ftcteam14564.firstscorecalculator"
         }
       },
       "oauth_client": [
