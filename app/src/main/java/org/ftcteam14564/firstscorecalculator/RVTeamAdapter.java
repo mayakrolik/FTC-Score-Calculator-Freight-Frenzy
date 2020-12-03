@@ -47,7 +47,7 @@ public class RVTeamAdapter extends RecyclerView.Adapter<RVTeamAdapter.UserViewHo
         SimpleDateFormat sfd = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
 
         holder.UserInitials.setText(String.valueOf(users.get(position).DisplayName));
-        holder.UserEmail.setText(String.valueOf(users.get(position).EmailAddress));
+        holder.UserEmail.setText(StringUtils.SafeUserEmailAddress(String.valueOf(users.get(position).EmailAddress)));
         holder.LoginCount.setText(String.valueOf(users.get(position).LoginCount));
         Timestamp tstamp = users.get(position).LastLogin;
         if (tstamp != null) {
