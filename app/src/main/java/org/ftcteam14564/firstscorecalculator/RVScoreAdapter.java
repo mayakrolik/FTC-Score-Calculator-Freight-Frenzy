@@ -164,8 +164,6 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
             for (Kudo kudo : scores.get(position).Kudos){
                 if (kudo.UserUid.equals(activity.currentUser.getUid())) {
                     holder.objKudosButton.setImageResource(R.drawable.ic_baseline_thumb_up_blue_24);
-                    int intCurrentKudos = Integer.parseInt(holder.objKudoAmount.getText().toString());
-                    intCurrentKudos++;
                     holder.objKudosButton.setEnabled(false);
                     break;
                 }
@@ -298,9 +296,13 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
                 }
                 });
 
+            final java.util.concurrent.atomic.AtomicBoolean clickedGiveKudos = new java.util.concurrent.atomic.AtomicBoolean(false);
+
             objKudosButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if (clickedGiveKudos.get()) return;
+                    clickedGiveKudos.set(true);
                     objKudosButton.setImageResource(R.drawable.ic_baseline_thumb_up_blue_24);
                     objKudosButton.setEnabled(false);
                     final FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -337,6 +339,9 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void avoid) {
+                                            int intCurrentKudos = Integer.parseInt(objKudoAmount.getText().toString());
+                                            intCurrentKudos++;
+                                            objKudoAmount.setText( String.valueOf(intCurrentKudos));
                                             Log.d(TAG, "Score Document updated.");
                                         }
                                     })

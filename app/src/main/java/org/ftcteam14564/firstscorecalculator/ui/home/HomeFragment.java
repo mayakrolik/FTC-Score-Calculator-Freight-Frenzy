@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -51,7 +53,9 @@ public class HomeFragment extends Fragment {
     public Button FilterTeam;
     public Button FilterRecentScores;
     public Button FilterTopScores;
+    public RelativeLayout loadingPanel;
 
+    private boolean loadingData = false;
 
     private void queryForRecentScoresForMyTeam() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -74,7 +78,10 @@ public class HomeFragment extends Fragment {
                     adapter.notifyDataSetChanged();
 
                     blnInitalized = true;
-                    Toast.makeText(getContext(), "Feed Updated", Toast.LENGTH_SHORT).show();
+                    loadingData = false;
+                    loadingPanel.setVisibility(View.GONE);
+
+                    // Toast.makeText(getContext(), "Feed Updated", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.d(TAG, "Error getting documents: ", task.getException());
                 }
@@ -203,9 +210,14 @@ public class HomeFragment extends Fragment {
         FilterRecentScores = view.findViewById(R.id.filter_button_recent);
         FilterTopScores = view.findViewById(R.id.filter_button_top);
 
+        loadingPanel = view.findViewById(R.id.loadingPanel);
+
         FilterCity.setOnClickListener(new CompoundButton.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (loadingData) return;
+                loadingData = true;
+                loadingPanel.setVisibility(View.VISIBLE);
                 filterOption = "City";
                 FilterCity.setBackgroundColor(getResources().getColor(R.color.colorButtonActivated));
                 FilterState.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
@@ -218,6 +230,9 @@ public class HomeFragment extends Fragment {
         FilterState.setOnClickListener(new CompoundButton.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (loadingData) return;
+                loadingData = true;
+                loadingPanel.setVisibility(View.VISIBLE);
                 filterOption = "StateProv";
                 FilterCity.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
                 FilterState.setBackgroundColor(getResources().getColor(R.color.colorButtonActivated));
@@ -230,6 +245,9 @@ public class HomeFragment extends Fragment {
         FilterCountry.setOnClickListener(new CompoundButton.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (loadingData) return;
+                loadingData = true;
+                loadingPanel.setVisibility(View.VISIBLE);
                 filterOption = "CountryCode";
                 FilterCity.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
                 FilterState.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
@@ -242,6 +260,9 @@ public class HomeFragment extends Fragment {
         FilterTeam.setOnClickListener(new CompoundButton.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (loadingData) return;
+                loadingData = true;
+                loadingPanel.setVisibility(View.VISIBLE);
                 filterOption = "MyTeam";
                 FilterCity.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
                 FilterState.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
@@ -254,6 +275,9 @@ public class HomeFragment extends Fragment {
         FilterRecentScores.setOnClickListener(new CompoundButton.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (loadingData) return;
+                loadingData = true;
+                loadingPanel.setVisibility(View.VISIBLE);
                 filterCategoryOption = "Recent";
                 FilterRecentScores.setBackgroundColor(getResources().getColor(R.color.colorButtonActivated));
                 FilterTopScores.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
@@ -264,6 +288,9 @@ public class HomeFragment extends Fragment {
         FilterTopScores.setOnClickListener(new CompoundButton.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (loadingData) return;
+                loadingData = true;
+                loadingPanel.setVisibility(View.VISIBLE);
                 filterCategoryOption = "Top";
                 FilterTopScores.setBackgroundColor(getResources().getColor(R.color.colorButtonActivated));
                 FilterRecentScores.setBackgroundColor(getResources().getColor(R.color.colorButtonDeactivated));
