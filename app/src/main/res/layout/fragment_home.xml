@@ -141,7 +141,6 @@
             android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            style="@android:style/Widget.ProgressBar.Large"
             android:indeterminate="true" />
     </RelativeLayout>
 
