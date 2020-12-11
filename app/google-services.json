@@ -10,18 +10,27 @@
       "client_info": {
         "mobilesdk_app_id": "1:2083224980:android:4000d228c4c9ac22552381",
         "android_client_info": {
-          "package_name": "org.ftcteam14564.firstscorecalculator"
+          "package_name": "com.example.ftcscorecalculatorbeta"
         }
       },
       "oauth_client": [
         {
-          "client_id": "2083224980-vdkskratn18jd37mudokoavn4qkpgrlo.apps.googleusercontent.com",
+          "client_id": "2083224980-602enthkug4lq0ehj35g653a6j2u5l08.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.ftcscorecalculatorbeta",
-            "certificate_hash": "a01f03cb3403199bf09d930422fafa496ca0e266"
+            "certificate_hash": "8487f1b4f46f62e50ae1fd886c611366302e5401"
           }
-        },        {
+        },
+        {
+          "client_id": "2083224980-bvt5eat8qjivi9o4864a87q17d4fof3l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ftcscorecalculatorbeta",
+            "certificate_hash": "05cb1560ca92b70e2bf5031fe6cec7c1e1b7395e"
+          }
+        },
+        {
           "client_id": "2083224980-egliucdv79e3k137l9nt7e5oj7up05sm.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -30,11 +39,72 @@
           }
         },
         {
-          "client_id": "2083224980-602enthkug4lq0ehj35g653a6j2u5l08.apps.googleusercontent.com",
+          "client_id": "2083224980-vdkskratn18jd37mudokoavn4qkpgrlo.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.ftcscorecalculatorbeta",
+            "certificate_hash": "a01f03cb3403199bf09d930422fafa496ca0e266"
+          }
+        },
+        {
+          "client_id": "2083224980-7k2vaem4ir7g0me9tr3vqop89qmbmlct.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAu2vzad9jCi-Ga3QhtnHQkJ1wvWK674kM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "2083224980-7k2vaem4ir7g0me9tr3vqop89qmbmlct.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2083224980:android:270c41cab1bbeb53552381",
+        "android_client_info": {
+          "package_name": "org.ftcteam14564.firstscorecalculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "2083224980-0470c315oaiueakgs1at4elo7u3sos1g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.ftcteam14564.firstscorecalculator",
             "certificate_hash": "8487f1b4f46f62e50ae1fd886c611366302e5401"
+          }
+        },
+        {
+          "client_id": "2083224980-14u45or7projknr3ddptc0qh13ftv36j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.ftcteam14564.firstscorecalculator",
+            "certificate_hash": "15bb2790ed9413994a9b8930152bbed849ae7b0b"
+          }
+        },
+        {
+          "client_id": "2083224980-9afqstp8bj7fuppeh88jeqns4legbk6l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.ftcteam14564.firstscorecalculator",
+            "certificate_hash": "05cb1560ca92b70e2bf5031fe6cec7c1e1b7395e"
+          }
+        },
+        {
+          "client_id": "2083224980-opp473p2egr0vv8s197b8optdc7tf91c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.ftcteam14564.firstscorecalculator",
+            "certificate_hash": "a01f03cb3403199bf09d930422fafa496ca0e266"
           }
         },
         {
