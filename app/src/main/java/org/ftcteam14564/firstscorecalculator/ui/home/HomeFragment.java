@@ -155,10 +155,11 @@ public class HomeFragment extends Fragment {
                     .whereEqualTo("CountryCode", activity.getMyTeam().CountryCode);
 
             if (filterCategoryOption.equals("Recent")) {
-                query.orderBy("CreatedTimestamp", Query.Direction.DESCENDING)
-                    .limit(50)
-                    .get()
-                    .addOnCompleteListener(oncompletelistener);
+                query.whereGreaterThan("CreatedTimestamp", new Timestamp(oneWeekAgo))
+                        .orderBy("CreatedTimestamp", Query.Direction.DESCENDING)
+                        .limit(50)
+                        .get()
+                        .addOnCompleteListener(oncompletelistener);
             } else {
                 query.orderBy("TotalScore", Query.Direction.DESCENDING)
                         .limit(50)
