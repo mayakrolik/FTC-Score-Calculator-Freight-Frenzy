@@ -1,6 +1,43 @@
 <resources>
     <string name="app_name">FTC Score Calculator</string>
+    <string name="aut_duck_delivered">Ducks Delivered</string>
+    <string name="aut_in_storage_unit">In Storage Unit</string>
+    <string name="aut_completely_in_storage_unit">Completely in Storage Unit</string>
+    <string name="aut_in_warehouse">In Warehouse</string>
+    <string name="aut_completely_in_warehouse">Completely in Warehouse</string>
+    <string name="aut_freight_storage_unit">Freight in Storage Unit</string>
+    <string name="aut_freight_storage_hub">Freight in Storage Hub</string>
+    <string name="aut_preload_duck">Duck Deposited on Level</string>
+    <string name="aut_preload_shipping_equipment">Shipping Equipment Deposited</string>
+    <string name="tel_freight_storage_unit">Freight in Storage Unit</string>
+    <string name="tel_level_1">Low Level</string>
+    <string name="tel_level_2">Mid Level</string>
+    <string name="tel_level_3">Top Level</string>
+    <string name="tel_shared_shipping_hub">Freight in Shared Hub</string>
+    <string name="end_freight_storage_unit">Freight in Storage Unit</string>
+    <string name="end_level_1">Low Level</string>
+    <string name="end_level_2">Mid Level</string>
+    <string name="end_level_3">Top Level</string>
+    <string name="end_shared_shipping_hub">Freight in Shared Hub</string>
+    <string name="end_element_delivered">Duck/Element Delivered</string>
+    <string name="end_alliance_hub_balanced">Alliance Hub Balanced</string>
+    <string name="end_shared_hub_unbalanced">Shared Hub Unbalanced</string>
+    <string name="end_parked_in_warehouse">Parked in Warehouse</string>
+    <string name="end_completely_parked_in_warehouse">Completely in Warehouse</string>
+    <string name="end_team_shipping_elements">Team Shipping Elements</string>
     <!-- Strings used for fragments for navigation -->
+<!--    public int EndFreightStorageUnit; // 1-->
+<!--    public int EndLevel1; // 2-->
+<!--    public int EndLevel2; // 4-->
+<!--    public int EndLevel3; // 6-->
+<!--    public int EndFreightSharedShippingHub; // 4-->
+<!--    public boolean EndElementDelivered; // 6-->
+<!--    public boolean EndAllianceShippingHubBalanced; // 10-->
+<!--    public boolean EndSharedShippingHubUnbalanced; // 20-->
+<!--    public boolean EndParkedInWarehouse; // 3-->
+<!--    public boolean EndParkedCompletelyInWarehouse; // 6-->
+<!--    public int EndNumberTeamShippingElements; // 15-->
+
     <string name="top_goals">Top Goals</string>
     <string name="top_goals_add">Top Goals Add</string>
     <string name="top_goals_subtract">Top Goals Subtract</string>

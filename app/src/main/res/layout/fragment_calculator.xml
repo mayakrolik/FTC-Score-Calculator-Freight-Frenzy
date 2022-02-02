@@ -67,6 +67,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:stretchColumns="*"
+                    android:visibility="visible"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text_autonomous">
 
@@ -79,7 +80,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
-                            android:text="@string/top_goals" />
+                            android:text="@string/aut_duck_delivered" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -90,23 +91,23 @@
                             android:paddingRight="10dp">
 
                             <ImageButton
-                                android:id="@+id/top_goals_subtract"
+                                android:id="@+id/ducks_delivered_subtract"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:contentDescription="@string/todo"
                                 android:src="@drawable/ic_baseline_remove_24" />
 
                             <EditText
-                                android:id="@+id/text_top_goals"
-                                android:layout_width="90sp"
+                                android:id="@+id/ducks_delivered"
+                                android:layout_width="45sp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:hint="@string/top_goals_hint"
+                                android:hint="@string/zero_points"
                                 android:importantForAutofill="no"
                                 android:inputType="number" />
 
                             <ImageButton
-                                android:id="@+id/top_goals_add"
+                                android:id="@+id/ducks_delivered_add"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:contentDescription="@string/todo"
@@ -124,137 +125,63 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
-                            android:text="@string/middle_goals" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_column="2"
-                            android:layout_gravity="end"
-                            android:orientation="horizontal"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp">
-
-                            <ImageButton
-                                android:id="@+id/middle_goals_subtract"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:contentDescription="@string/todo"
-                                android:src="@drawable/ic_baseline_remove_24" />
-
-                            <EditText
-                                android:id="@+id/text_middle_goals"
-                                android:layout_width="90sp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:hint="@string/middle_goals_hint"
-                                android:importantForAutofill="no"
-                                android:inputType="number" />
-
-                            <ImageButton
-                                android:id="@+id/middle_goals_add"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:contentDescription="@string/todo"
-                                android:src="@drawable/ic_baseline_add_24" />
-
-                        </LinearLayout>
-
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="1"
-                            android:text="@string/low_goals" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_column="2"
-                            android:layout_gravity="end"
-                            android:orientation="horizontal"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp">
-
-                            <ImageButton
-                                android:id="@+id/low_goals_subtract"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:contentDescription="@string/todo"
-                                android:src="@drawable/ic_baseline_remove_24" />
-
-                            <EditText
-                                android:id="@+id/text_low_goals"
-                                android:layout_width="90sp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:hint="@string/low_goals_hint"
-                                android:importantForAutofill="no"
-                                android:inputType="number" />
-
-                            <ImageButton
-                                android:id="@+id/low_goals_add"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:contentDescription="@string/todo"
-                                android:src="@drawable/ic_baseline_add_24" />
-                        </LinearLayout>
-
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="1"
-                            android:text="@string/powershot_aut" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_column="2"
-                            android:layout_gravity="end"
-                            android:orientation="horizontal"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp">
-
-                            <CheckBox
-                                android:id="@+id/CheckboxPowerShot1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:importantForAutofill="no" />
-
-                            <CheckBox
-                                android:id="@+id/CheckboxPowerShot2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:importantForAutofill="no" />
-
-                            <CheckBox
-                                android:id="@+id/CheckboxPowerShot3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:importantForAutofill="no" />
-                        </LinearLayout>
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="1"
-                            android:text="@string/stopped_on_line" />
+                            android:text="@string/aut_in_storage_unit" />
 
                         <Switch
-                            android:id="@+id/switchStoppedOnLine"
+                            android:id="@+id/switch_aut_in_storage_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="@string/aut_completely_in_storage_unit" />
+
+                        <Switch
+                            android:id="@+id/switch_aut_completely_in_storage_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="@string/aut_in_warehouse" />
+
+                        <Switch
+                            android:id="@+id/switch_aut_in_warehouse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:ignore="UseSwitchCompatOrMaterialXml" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="@string/aut_completely_in_warehouse" />
+
+                        <Switch
+                            android:id="@+id/switch_out_completely_in_warehouse"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             tools:ignore="UseSwitchCompatOrMaterialXml" />
@@ -270,15 +197,70 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
-                            android:text="@string/wobble_goal_deposited" />
+                            android:text="@string/aut_freight_storage_unit" />
 
                         <Switch
-                            android:id="@+id/switchWobbleGoalDeposited"
+                            android:id="@+id/switch_aut_freight_storage_unit"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             tools:ignore="UseSwitchCompatOrMaterialXml" />
 
                     </TableRow>
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="@string/aut_freight_storage_hub" />
+
+                        <Switch
+                            android:id="@+id/switch_aut_freight_storage_hub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="@string/aut_preload_duck" />
+
+                        <Switch
+                            android:id="@+id/switch_aut_preload_duck"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="@string/aut_preload_shipping_equipment" />
+
+                        <Switch
+                            android:id="@+id/switch_aut_preload_shipping_equipment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+                    </TableRow>
+
                 </TableLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -294,8 +276,6 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-
                 >
 
                 <TextView
@@ -348,7 +328,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
-                            android:text="@string/top_goals_telly" />
+                            android:text="@string/tel_freight_storage_unit" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -359,23 +339,23 @@
                             android:paddingRight="10dp">
 
                             <ImageButton
-                                android:id="@+id/top_goals_teleop_subtract"
+                                android:id="@+id/freight_in_storage_unit_teleop_subtract"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:contentDescription="@string/todo"
                                 android:src="@drawable/ic_baseline_remove_24" />
 
                             <EditText
-                                android:id="@+id/text_top_goals_teleop"
+                                android:id="@+id/freight_in_storage_unit_teleop"
                                 android:layout_width="90sp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:hint="@string/top_goals_telly"
+                                android:hint="@string/zero_points"
                                 android:importantForAutofill="no"
                                 android:inputType="number" />
 
                             <ImageButton
-                                android:id="@+id/top_goals_teleop_add"
+                                android:id="@+id/freight_in_storage_unit_teleop_add"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:contentDescription="@string/todo"
@@ -392,7 +372,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
-                            android:text="@string/middle_goals_telly" />
+                            android:text="@string/tel_level_3" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -403,23 +383,23 @@
                             android:paddingRight="10dp">
 
                             <ImageButton
-                                android:id="@+id/middle_goals_teleop_subtract"
+                                android:id="@+id/top_level_teleop_subtract"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:contentDescription="@string/todo"
                                 android:src="@drawable/ic_baseline_remove_24" />
 
                             <EditText
-                                android:id="@+id/text_middle_goals_teleop"
+                                android:id="@+id/text_top_level_teleop"
                                 android:layout_width="90sp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:hint="@string/middle_goals_telly"
+                                android:hint="@string/tel_level_3"
                                 android:importantForAutofill="no"
                                 android:inputType="number" />
 
                             <ImageButton
-                                android:id="@+id/middle_goals_teleop_add"
+                                android:id="@+id/top_level_teleop_add"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:contentDescription="@string/todo"
@@ -436,7 +416,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
-                            android:text="@string/low_goals_telly" />
+                            android:text="@string/tel_level_2" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -447,23 +427,23 @@
                             android:paddingRight="10dp">
 
                             <ImageButton
-                                android:id="@+id/low_goals_teleop_subtract"
+                                android:id="@+id/middle_level_teleop_subtract"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:contentDescription="@string/todo"
                                 android:src="@drawable/ic_baseline_remove_24" />
 
                             <EditText
-                                android:id="@+id/text_low_goals_teleop"
+                                android:id="@+id/text_middle_level_teleop"
                                 android:layout_width="90sp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:hint="@string/low_goals_telly"
+                                android:hint="@string/tel_level_2"
                                 android:importantForAutofill="no"
                                 android:inputType="number" />
 
                             <ImageButton
-                                android:id="@+id/low_goals_teleop_add"
+                                android:id="@+id/middle_level_teleop_add"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:contentDescription="@string/todo"
@@ -471,6 +451,95 @@
                         </LinearLayout>
 
                     </TableRow>
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="@string/tel_level_1" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_column="2"
+                            android:layout_gravity="end"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <ImageButton
+                                android:id="@+id/low_level_teleop_subtract"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_remove_24" />
+
+                            <EditText
+                                android:id="@+id/text_low_level_teleop"
+                                android:layout_width="90sp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:hint="@string/tel_level_1"
+                                android:importantForAutofill="no"
+                                android:inputType="number" />
+
+                            <ImageButton
+                                android:id="@+id/low_level_teleop_add"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_add_24" />
+                        </LinearLayout>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="@string/tel_shared_shipping_hub" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_column="2"
+                            android:layout_gravity="end"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <ImageButton
+                                android:id="@+id/freight_in_shared_hub_teleop_subtract"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_remove_24" />
+
+                            <EditText
+                                android:id="@+id/freight_in_shared_hub_teleop"
+                                android:layout_width="90sp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:hint="@string/zero_points"
+                                android:importantForAutofill="no"
+                                android:inputType="number" />
+
+                            <ImageButton
+                                android:id="@+id/freight_in_shared_hub_teleop_add"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_add_24" />
+                        </LinearLayout>
+
+                    </TableRow>
+
                 </TableLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -537,7 +606,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
-                            android:text="@string/top_goals_end" />
+                            android:text="@string/end_freight_storage_unit" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -548,23 +617,67 @@
                             android:paddingRight="10dp">
 
                             <ImageButton
-                                android:id="@+id/top_goals_end_subtract"
+                                android:id="@+id/freight_storage_end_subtract"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:contentDescription="@string/todo"
                                 android:src="@drawable/ic_baseline_remove_24" />
 
                             <EditText
-                                android:id="@+id/text_top_goals_end"
+                                android:id="@+id/freight_storage_end"
                                 android:layout_width="90sp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:hint="@string/top_goals_hint"
+                                android:hint="@string/zero_points"
                                 android:importantForAutofill="no"
                                 android:inputType="number" />
 
                             <ImageButton
-                                android:id="@+id/top_goals_end_add"
+                                android:id="@+id/freight_storage_end_add"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_add_24" />
+                        </LinearLayout>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="@string/end_level_3" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_column="2"
+                            android:layout_gravity="end"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <ImageButton
+                                android:id="@+id/top_level_end_subtract"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_baseline_remove_24" />
+
+                            <EditText
+                                android:id="@+id/top_level_end"
+                                android:layout_width="90sp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:hint="@string/end_level_3"
+                                android:importantForAutofill="no"
+                                android:inputType="number" />
+
+                            <ImageButton
+                                android:id="@+id/top_level_end_add"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:contentDescription="@string/todo"
@@ -583,7 +696,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
-                            android:text="@string/middle_goals_end" />
+                            android:text="@string/end_level_2" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -594,23 +707,23 @@
                             android:paddingRight="10dp">
 
                             <ImageButton
-                                android:id="@+id/middle_goals_end_subtract"
+                                android:id="@+id/middle_level_end_subtract"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:contentDescription="@string/todo"
                                 android:src="@drawable/ic_baseline_remove_24" />
 
                             <EditText
-                                android:id="@+id/text_middle_goals_end"
+                                android:id="@+id/middle_level_end"
                                 android:layout_width="90sp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:hint="@string/middle_goals_hint"
+                                android:hint="@string/end_level_2"
                                 android:importantForAutofill="no"
                                 android:inputType="number" />
 
                             <ImageButton
-                                android:id="@+id/middle_goals_end_add"
+                                android:id="@+id/middle_level_end_add"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:contentDescription="@string/todo"
@@ -628,7 +741,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
-                            android:text="@string/low_goals_end" />
+                            android:text="@string/end_level_1" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -639,23 +752,23 @@
                             android:paddingRight="10dp">
 
                             <ImageButton
-                                android:id="@+id/low_goals_end_subtract"
+                                android:id="@+id/low_level_end_subtract"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:contentDescription="@string/todo"
                                 android:src="@drawable/ic_baseline_remove_24" />
 
                             <EditText
-                                android:id="@+id/text_low_goals_end"
+                                android:id="@+id/low_level_end"
                                 android:layout_width="90sp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:hint="@string/low_goals_hint"
+                                android:hint="@string/end_level_1"
                                 android:importantForAutofill="no"
                                 android:inputType="number" />
 
                             <ImageButton
-                                android:id="@+id/low_goals_end_add"
+                                android:id="@+id/low_level_end_add"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:contentDescription="@string/todo"
@@ -672,46 +785,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
-                            android:text="@string/powershot_end" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_column="2"
-                            android:layout_gravity="end"
-                            android:orientation="horizontal"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp">
-
-                            <CheckBox
-                                android:id="@+id/CheckboxPowerShot1End"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:importantForAutofill="no" />
-
-                            <CheckBox
-                                android:id="@+id/CheckboxPowerShot2End"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:importantForAutofill="no" />
-
-                            <CheckBox
-                                android:id="@+id/CheckboxPowerShot3End"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:importantForAutofill="no" />
-                        </LinearLayout>
-
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="1"
-                            android:text="@string/wobble_ring" />
+                            android:text="@string/end_shared_shipping_hub" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -722,23 +796,23 @@
                             android:paddingRight="10dp">
 
                             <ImageButton
-                                android:id="@+id/wobble_ring_subtract"
+                                android:id="@+id/freight_in_shared_hub_end_subtract"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:contentDescription="@string/todo"
                                 android:src="@drawable/ic_baseline_remove_24" />
 
                             <EditText
-                                android:id="@+id/text_wobble_ring"
+                                android:id="@+id/freight_in_shared_hub_end"
                                 android:layout_width="90sp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:hint="@string/wobble_ring"
+                                android:hint="@string/zero_points"
                                 android:importantForAutofill="no"
                                 android:inputType="number" />
 
                             <ImageButton
-                                android:id="@+id/wobble_ring_add"
+                                android:id="@+id/freight_in_shared_hub_end_add"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:contentDescription="@string/todo"
@@ -755,14 +829,31 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
-                            android:text="@string/drop_zone" />
+                            android:text="@string/end_element_delivered" />
 
                         <Switch
-                            android:id="@+id/switchWobbleInDropZone"
+                            android:id="@+id/switch_end_element_delivered"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             tools:ignore="UseSwitchCompatOrMaterialXml" />
 
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="@string/end_alliance_hub_balanced" />
+
+                        <Switch
+                            android:id="@+id/switch_end_alliance_hub_balanced"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:ignore="UseSwitchCompatOrMaterialXml" />
 
                     </TableRow>
 
@@ -774,16 +865,86 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
-                            android:text="@string/start_line_park" />
+                            android:text="@string/end_shared_hub_unbalanced" />
 
                         <Switch
-                            android:id="@+id/switchStartLinePark"
+                            android:id="@+id/switch_end_shared_hub_unbalanced"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             tools:ignore="UseSwitchCompatOrMaterialXml" />
 
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="@string/end_parked_in_warehouse" />
+
+                        <Switch
+                            android:id="@+id/switch_end_parked_in_warehouse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:ignore="UseSwitchCompatOrMaterialXml" />
 
                     </TableRow>
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="@string/end_completely_parked_in_warehouse" />
+
+                        <Switch
+                            android:id="@+id/switch_end_completely_parked_in_warehouse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="@string/end_team_shipping_elements" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_column="2"
+                            android:layout_gravity="end"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <CheckBox
+                                android:id="@+id/checkbox_end_team_shipping_elements_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:importantForAutofill="no" />
+
+                            <CheckBox
+                                android:id="@+id/checkbox_end_team_shipping_elements_2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:importantForAutofill="no" />
+
+                        </LinearLayout>
+
+                    </TableRow>
+
                 </TableLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -977,7 +1138,7 @@
                             android:layout_gravity="end"
                             android:orientation="vertical"
                             android:paddingLeft="10dp"
-                            android:visibility="gone"
+                            android:visibility="visible"
                             android:paddingRight="10dp"
                             android:id="@+id/youtube_table"
                             app:layout_constraintTop_toBottomOf="@+id/text_youtube">

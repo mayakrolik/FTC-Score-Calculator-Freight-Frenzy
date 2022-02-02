@@ -192,46 +192,79 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
     }
 
     public static class ScoreViewHolder extends RecyclerView.ViewHolder {
+        ImageView AutDeliverDuck; // 10 points
+        ImageView AutInStorageUnit; // 3 points
+        ImageView AutCompletelyInStorageUnit; // 6
+        ImageView AutInWarehouse; // 5
+        ImageView AutCompletelyInWarehouse; // 10
+        ImageView AutFreightStorageUnit; // 2
+        ImageView AutFreightShippingHub; // 6
+        ImageView AutPreLoadBox; // 10
+        ImageView AutPreLoadUsingShippingEquipment; // 20
+        TextView TelFreightStorageUnit; // 1
+        TextView TelLevel1; // 2
+        TextView TelLevel2; // 4
+        TextView TelLevel3; // 6
+        TextView TelFreightSharedShippingHub; // 4
+        TextView EndFreightStorageUnit; // 1
+        TextView EndLevel1; // 2
+        TextView EndLevel2; // 4
+        TextView EndLevel3; // 6
+        TextView EndFreightSharedShippingHub1; // 4
+        ImageView EndElementDelivered; // 6
+        ImageView EndAllianceShippingHubBalanced; // 10
+        ImageView EndSharedShippingHubUnbalanced; // 20
+        ImageView EndParkedInWarehouse; // 3
+        ImageView EndParkedCompletelyInWarehouse; // 6
+        ImageView EndNumberTeamShippingElements1; // 15
+        ImageView EndNumberTeamShippingElements2; // 15
+        //old
         CardView cv;
         TextView teamName;
         TextView autonomousScore;
         TextView totalScore;
         TextView tellyopScore;
         TextView endScore;
-        TextView autTopGoals;
-        TextView autMidGoals;
-        TextView autLowGoals;
-        TextView autPower1;
-        TextView autPower2;
-        TextView autPower3;
-        TextView stoppedOnLine;
-        TextView wobbleGoalsDeposited;
+
+//        TextView autTopGoals;
+//        TextView autMidGoals;
+//        TextView autLowGoals;
+//        TextView autPower1;
+//        TextView autPower2;
+//        TextView autPower3;
+//        TextView stoppedOnLine;
+//        TextView wobbleGoalsDeposited;
+
         // ImageView personPhoto;
         ImageButton objHomeExpandButton;
         TableLayout objHomeTable;
         CardView objHomeCard;
         ImageButton objKudosButton;
-        ImageView objaut1;
-        ImageView objaut2;
-        ImageView objaut3;
-        ImageView lineStop;
-        ImageView goalDepositAuto;
-        TextView telTopGoals;
-        TextView telMidGoals;
-        TextView telLowGoals;
+
+//        ImageView objaut1;
+//        ImageView objaut2;
+//        ImageView objaut3;
+//        ImageView lineStop;
+//        ImageView goalDepositAuto;
+//        TextView telTopGoals;
+//        TextView telMidGoals;
+//        TextView telLowGoals;
+
         TextView penMin;
         TextView penMaj;
-        TextView endTopGoals;
-        TextView endMidGoals;
-        TextView endLowGoals;
-        TextView endWobbleGoals;
-        TextView endStartLinePark;
-        TextView endWobbleInDropZone;
-        ImageView objend1;
-        ImageView objend2;
-        ImageView objend3;
-        ImageView objendStartLinePark;
-        ImageView objendWobbleInDropZone;
+
+//        TextView endTopGoals;
+//        TextView endMidGoals;
+//        TextView endLowGoals;
+//        TextView endWobbleGoals;
+//        TextView endStartLinePark;
+//        TextView endWobbleInDropZone;
+//        ImageView objend1;
+//        ImageView objend2;
+//        ImageView objend3;
+//        ImageView objendStartLinePark;
+//        ImageView objendWobbleInDropZone;
+
         TextView objScoreId;
         TextView objKudoAmount;
         ImageButton objYouTubeVideoLaunch;
@@ -248,6 +281,32 @@ public class RVScoreAdapter extends RecyclerView.Adapter<RVScoreAdapter.ScoreVie
             tellyopScore = (TextView) itemView.findViewById(R.id.tellyop_score);
             endScore = (TextView) itemView.findViewById(R.id.end_score);
             objKudosButton = (ImageButton) itemView.findViewById(R.id.kudos);
+            AutDeliverDuck = (TextView) itemView.findViewById(R.id.aut_du); // 10 points
+//            ImageView AutInStorageUnit; // 3 points
+//            ImageView AutCompletelyInStorageUnit; // 6
+//            ImageView AutInWarehouse; // 5
+//            ImageView AutCompletelyInWarehouse; // 10
+//            ImageView AutFreightStorageUnit; // 2
+//            ImageView AutFreightShippingHub; // 6
+//            ImageView AutPreLoadBox; // 10
+//            ImageView AutPreLoadUsingShippingEquipment; // 20
+//            TextView TelFreightStorageUnit; // 1
+//            TextView TelLevel1; // 2
+//            TextView TelLevel2; // 4
+//            TextView TelLevel3; // 6
+//            TextView TelFreightSharedShippingHub; // 4
+//            TextView EndFreightStorageUnit; // 1
+//            TextView EndLevel1; // 2
+//            TextView EndLevel2; // 4
+//            TextView EndLevel3; // 6
+//            TextView EndFreightSharedShippingHub1; // 4
+//            ImageView EndElementDelivered; // 6
+//            ImageView EndAllianceShippingHubBalanced; // 10
+//            ImageView EndSharedShippingHubUnbalanced; // 20
+//            ImageView EndParkedInWarehouse; // 3
+//            ImageView EndParkedCompletelyInWarehouse; // 6
+//            ImageView EndNumberTeamShippingElements1; // 15
+//            ImageView EndNumberTeamShippingElements2;
             autTopGoals = (TextView) itemView.findViewById(R.id.aut_top_goals);
             autMidGoals = (TextView) itemView.findViewById(R.id.aut_mid_goals);
             autLowGoals = (TextView) itemView.findViewById(R.id.aut_low_goals);
